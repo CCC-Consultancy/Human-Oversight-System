@@ -737,8 +737,8 @@ function Step1({onNext,savedData}){
         <label className="fl">Scenario — describe the situation or paste a decision output for review</label>
         <textarea className="fi" style={{minHeight:120,marginBottom:16}} placeholder="Paste or describe the decision scenario here. Include as much relevant detail as possible — the assessment engine uses the content of your description to determine risk signals, regulatory flags, and the appropriate outcome. e.g. The system flagged a £240,000 loan application from a logistics SME. Director changes in the past 3 months. Clean credit history. No adverse media. One compliance note from 2023 — unresolved..." value={scenario} onChange={e=>setScenario(e.target.value)}/>
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div><label className="fl">Organisation Name</label><input className="fi" type="text" placeholder="e.g. Aethis Limited" value={orgName} onChange={e=>setOrgName(e.target.value)}/></div>
-          <div><label className="fl">Reviewer Name</label><input className="fi" type="text" placeholder="e.g. Victoria Ashaye" value={reviewer} onChange={e=>setReviewer(e.target.value)}/></div>
+          <div><label className="fl">Organisation Name</label><input className="fi" type="text" placeholder="e.g. Vantage Limited" value={orgName} onChange={e=>setOrgName(e.target.value)}/></div>
+          <div><label className="fl">Reviewer Name</label><input className="fi" type="text" placeholder="e.g. John Doe" value={reviewer} onChange={e=>setReviewer(e.target.value)}/></div>
         </div>
         <div className="btn-row">
           <button className="btn btn-p" onClick={generate} disabled={loading}>
