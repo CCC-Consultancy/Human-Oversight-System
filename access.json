@@ -1,0 +1,9 @@
+{
+  "codes": [
+    "HOS-DEMO1",
+    "HOS-DEMO2",
+    "CCC-2026-A",
+    "CCC-2026-B"
+  ],
+  "_note": "To grant access: add a code to the 'codes' array. To revoke access: remove the code. Changes take effect immediately — no redeployment needed. Users must enter the exact code (case-insensitive). Keep this file private — do not share its URL."
+}
