@@ -1128,36 +1128,109 @@ function App(){
 /* ══════════════════════════════════════════════════════════════════
    ACCESS GATE — loads access.json, validates code, mounts App
 ══════════════════════════════════════════════════════════════════ */
-function AccessGate({onGranted}){
-  const [code,setCode]=useState('');
-  const [status,setStatus]=useState('idle');
-  const [msg,setMsg]=useState('');
-  async function verify(e){
+/* ══════════════════════════════════════════════════════════════════
+   ACCESS SYSTEM — continuous re-validation
+   ─────────────────────────────────────────────────────────────────
+   How it works:
+   1. On every page load, Root checks sessionStorage for a saved code.
+   2. If a code exists, it immediately re-validates it against the
+      live access.json — before showing the app.
+   3. If the code is no longer in access.json (revoked), access is
+      denied and the gate is shown again.
+   4. While the app is open, a background check runs every 5 minutes.
+      If the code is revoked mid-session, the app unmounts immediately
+      and shows the revocation screen.
+   5. sessionStorage stores the code itself — not just a flag — so
+      every re-check is a real validation, not a stored approval.
+══════════════════════════════════════════════════════════════════ */
+
+const ACCESS_KEY = 'hos_code';
+const RECHECK_INTERVAL = 5 * 60 * 1000; // 5 minutes
+
+async function fetchValidCodes() {
+  const res = await fetch('./access.json?_=' + Date.now(), {cache:'no-store'});
+  if(!res.ok) throw new Error('config_missing');
+  const cfg = await res.json();
+  if(!Array.isArray(cfg.codes)) throw new Error('config_invalid');
+  return cfg.codes.map(c => String(c).trim().toUpperCase());
+}
+
+async function validateCode(code) {
+  const codes = await fetchValidCodes();
+  return codes.includes(code.trim().toUpperCase());
+}
+
+function AccessGate({onGranted, reason}) {
+  const [code, setCode] = useState('');
+  const [status, setStatus] = useState('idle');
+  const [msg, setMsg] = useState('');
+
+  const isRevoked = reason === 'revoked';
+
+  async function verify(e) {
     e.preventDefault();
-    if(!code.trim()){setStatus('error');setMsg('Please enter an access code.');return;}
+    if(!code.trim()) { setStatus('error'); setMsg('Please enter an access code.'); return; }
     setStatus('checking');
-    try{
-      const res=await fetch('./access.json?_='+Date.now(),{cache:'no-store'});
-      if(!res.ok)throw new Error('not found');
-      const cfg=await res.json();
-      const valid=Array.isArray(cfg.codes)&&cfg.codes.map(c=>String(c).trim().toUpperCase()).includes(code.trim().toUpperCase());
-      if(valid){sessionStorage.setItem('hos_access','1');onGranted();}
-      else{setStatus('error');setMsg('Invalid access code. Please check your code or contact info@cccconsultancygroup.com.');}
-    }catch{setStatus('locked');setMsg('Access configuration could not be loaded. Please contact info@cccconsultancygroup.com.');}
+    try {
+      const valid = await validateCode(code);
+      if(valid) {
+        sessionStorage.setItem(ACCESS_KEY, code.trim().toUpperCase());
+        onGranted();
+      } else {
+        setStatus('error');
+        setMsg('Invalid access code. Please check your code or contact info@cccconsultancygroup.com.');
+      }
+    } catch(err) {
+      const isConfigError = err.message === 'config_missing' || err.message === 'config_invalid';
+      setStatus('locked');
+      setMsg(isConfigError
+        ? 'Access configuration could not be loaded. Please try again or contact info@cccconsultancygroup.com.'
+        : 'Network error — please check your connection and try again.');
+    }
   }
+
   return(
     <div style={{minHeight:'100vh',background:'var(--bg)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:24}}>
       <div style={{background:'#fff',borderRadius:20,padding:'40px 36px',maxWidth:420,width:'100%',boxShadow:'0 16px 48px rgba(15,23,42,.14)',textAlign:'center'}}>
-        <div style={{width:52,height:52,background:'var(--primary)',borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',fontSize:22}}>🔍</div>
+        <div style={{width:52,height:52,background:isRevoked?'var(--reject)':'var(--primary)',borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',fontSize:22}}>
+          {isRevoked ? '🔒' : '🔍'}
+        </div>
         <div style={{fontSize:20,fontWeight:800,color:'var(--primary)',marginBottom:6}}>Human Oversight System</div>
         <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'1px',color:'var(--turquoise)',marginBottom:20}}>CCC Consultancy Group · Licensed Tool</div>
-        <p style={{fontSize:13.5,color:'var(--muted)',lineHeight:1.7,marginBottom:28}}>This tool is available to licensed users only. Enter your access code to continue. Contact <a href="mailto:info@cccconsultancygroup.com" style={{color:'var(--turquoise)',fontWeight:600}}>CCC</a> to obtain access.</p>
+
+        {isRevoked && (
+          <div style={{background:'#FEE2E2',border:'1px solid #FECDD3',borderRadius:10,padding:'14px 16px',marginBottom:20,fontSize:13,color:'#991B1B',lineHeight:1.6}}>
+            <strong>Access revoked.</strong> Your access code is no longer valid. Please contact <a href="mailto:info@cccconsultancygroup.com" style={{color:'#991B1B',fontWeight:700}}>CCC Consultancy Group</a> to renew your licence.
+          </div>
+        )}
+
+        <p style={{fontSize:13.5,color:'var(--muted)',lineHeight:1.7,marginBottom:28}}>
+          {isRevoked
+            ? 'If you have a new access code, enter it below to continue.'
+            : 'This tool is available to licensed users only. Enter your access code to continue. Contact '}
+          {!isRevoked && <a href="mailto:info@cccconsultancygroup.com" style={{color:'var(--turquoise)',fontWeight:600}}>CCC</a>}
+          {!isRevoked && ' to obtain access.'}
+        </p>
+
         <form onSubmit={verify}>
-          <input type="text" value={code} onChange={e=>setCode(e.target.value)} placeholder="Enter access code" style={{width:'100%',padding:'12px 16px',border:'1.5px solid var(--border)',borderRadius:10,fontSize:15,fontFamily:'Inter,sans-serif',outline:'none',marginBottom:14,textAlign:'center',letterSpacing:'2px',fontWeight:700,color:'var(--primary)'}} autoFocus autoComplete="off" spellCheck={false}/>
-          {status==='error'&&<div style={{background:'#FEE2E2',color:'#991B1B',borderRadius:8,padding:'10px 14px',fontSize:12.5,marginBottom:14,lineHeight:1.55,border:'1px solid #FECDD3'}}>{msg}</div>}
-          {status==='locked'&&<div style={{background:'#FEF3C7',color:'#78350F',borderRadius:8,padding:'10px 14px',fontSize:12.5,marginBottom:14,lineHeight:1.55,border:'1px solid #FCD34D'}}>{msg}</div>}
-          <button type="submit" disabled={status==='checking'} style={{width:'100%',background:'var(--primary)',color:'#fff',border:'none',borderRadius:11,padding:'13px 0',fontSize:14,fontWeight:700,cursor:status==='checking'?'not-allowed':'pointer',opacity:status==='checking'?.65:1,fontFamily:'Inter,sans-serif'}}>
-            {status==='checking'?'Verifying…':'Unlock Access →'}
+          <input
+            type="text"
+            value={code}
+            onChange={e=>setCode(e.target.value)}
+            placeholder="Enter access code"
+            style={{width:'100%',padding:'12px 16px',border:'1.5px solid var(--border)',borderRadius:10,fontSize:15,fontFamily:'Inter,sans-serif',outline:'none',marginBottom:14,textAlign:'center',letterSpacing:'2px',fontWeight:700,color:'var(--primary)'}}
+            autoFocus
+            autoComplete="off"
+            spellCheck={false}
+          />
+          {status==='error' && <div style={{background:'#FEE2E2',color:'#991B1B',borderRadius:8,padding:'10px 14px',fontSize:12.5,marginBottom:14,lineHeight:1.55,border:'1px solid #FECDD3'}}>{msg}</div>}
+          {status==='locked' && <div style={{background:'#FEF3C7',color:'#78350F',borderRadius:8,padding:'10px 14px',fontSize:12.5,marginBottom:14,lineHeight:1.55,border:'1px solid #FCD34D'}}>{msg}</div>}
+          <button
+            type="submit"
+            disabled={status==='checking'}
+            style={{width:'100%',background:'var(--primary)',color:'#fff',border:'none',borderRadius:11,padding:'13px 0',fontSize:14,fontWeight:700,cursor:status==='checking'?'not-allowed':'pointer',opacity:status==='checking'?.65:1,fontFamily:'Inter,sans-serif'}}
+          >
+            {status==='checking' ? 'Verifying…' : 'Unlock Access →'}
           </button>
         </form>
         <div style={{marginTop:22,fontSize:11,color:'var(--muted)'}}>© 2026 CCC Consultancy Group Ltd. All rights reserved.</div>
@@ -1165,10 +1238,70 @@ function AccessGate({onGranted}){
     </div>
   );
 }
-function Root(){
-  const [granted,setGranted]=useState(()=>sessionStorage.getItem('hos_access')==='1');
-  if(!granted)return <AccessGate onGranted={()=>setGranted(true)}/>;
-  return <App/>;
+
+function Root() {
+  // 'loading'  — checking the saved code on startup
+  // 'granted'  — code validated, show app
+  // 'denied'   — no code, show gate
+  // 'revoked'  — code was valid before but has been removed
+  const [authState, setAuthState] = useState('loading');
+  const recheckRef = useRef(null);
+
+  // Validate a code string against live access.json
+  async function revalidate(codeToCheck, isBackground) {
+    if(!codeToCheck) { setAuthState('denied'); return; }
+    try {
+      const valid = await validateCode(codeToCheck);
+      if(valid) {
+        setAuthState('granted');
+      } else {
+        // Code was in sessionStorage but is no longer in access.json — revoked
+        sessionStorage.removeItem(ACCESS_KEY);
+        setAuthState(isBackground ? 'revoked' : 'denied');
+      }
+    } catch {
+      // Network error on background check — don't kick user out, try again next cycle
+      if(!isBackground) setAuthState('denied');
+    }
+  }
+
+  // On mount: check sessionStorage and validate immediately
+  useEffect(() => {
+    const saved = sessionStorage.getItem(ACCESS_KEY);
+    revalidate(saved, false);
+  }, []);
+
+  // Once granted, start background re-check every 5 minutes
+  useEffect(() => {
+    if(authState !== 'granted') {
+      if(recheckRef.current) clearInterval(recheckRef.current);
+      return;
+    }
+    recheckRef.current = setInterval(() => {
+      const saved = sessionStorage.getItem(ACCESS_KEY);
+      revalidate(saved, true); // background=true: revoke cleanly if code gone
+    }, RECHECK_INTERVAL);
+    return () => clearInterval(recheckRef.current);
+  }, [authState]);
+
+  function handleGranted() {
+    setAuthState('granted');
+  }
+
+  if(authState === 'loading') {
+    // Brief loading state while we check the saved code
+    return(
+      <div style={{minHeight:'100vh',background:'var(--bg)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+        <div style={{textAlign:'center'}}>
+          <div style={{width:40,height:40,border:'3px solid var(--border)',borderTopColor:'var(--turquoise)',borderRadius:'50%',animation:'spin .7s linear infinite',margin:'0 auto 16px'}}/>
+          <div style={{fontSize:13,color:'var(--muted)',fontWeight:500}}>Checking access…</div>
+        </div>
+      </div>
+    );
+  }
+
+  if(authState === 'granted') return <App/>;
+  return <AccessGate onGranted={handleGranted} reason={authState==='revoked'?'revoked':null}/>;
 }
 ReactDOM.createRoot(document.getElementById('root')).render(<Root/>);
 </script>
