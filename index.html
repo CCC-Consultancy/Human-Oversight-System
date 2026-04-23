@@ -19,6 +19,7 @@
   --reject:#DC2626;--reject-bg:#FEE2E2;
   --refer:#2563EB;--refer-bg:#DBEAFE;
   --override:#7C3AED;--override-bg:#EDE9FE;
+  --escalate:#9F1239;--escalate-bg:#FFE4E6;
   --r:18px;--rsm:10px;
   --sh:0 8px 28px rgba(16,24,40,.08);--shsm:0 2px 10px rgba(16,24,40,.05);
   --tr:.2s ease;
@@ -29,7 +30,6 @@ body.loaded{opacity:1}
 #root{display:flex;flex-direction:column;min-height:100vh}
 input,select,textarea,button{font-family:inherit}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -64,6 +64,20 @@ input,select,textarea,button{font-family:inherit}
 .card{background:var(--surface);border-radius:var(--r);padding:28px;box-shadow:var(--sh);margin-bottom:18px}
 .card-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;color:var(--turquoise);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
 
+/* ─── INPUT TYPE SELECTOR ─── */
+.itype-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.itype-card{border:2px solid var(--border);border-radius:14px;padding:18px 20px;cursor:pointer;background:var(--surface);transition:all .2s;text-align:left}
+.itype-card:hover{border-color:#9ca3af}
+.itype-card.sel{border-color:var(--turquoise);background:var(--tq-light)}
+.itype-icon{font-size:22px;margin-bottom:9px;display:block}
+.itype-title{font-size:13.5px;font-weight:800;color:var(--primary);margin-bottom:5px}
+.itype-desc{font-size:11.5px;color:var(--muted);line-height:1.6}
+.itype-card.sel .itype-title{color:var(--turquoise)}
+
+/* ─── DISCLAIMER ─── */
+.disclaimer{background:#F8FAFF;border:1px solid #C7D7F0;border-radius:10px;padding:11px 15px;margin-bottom:16px;font-size:11.5px;color:#374151;line-height:1.65;display:flex;gap:10px;align-items:flex-start}
+.disclaimer span:first-child{flex-shrink:0;font-size:14px;margin-top:1px}
+
 /* ─── STEPS ─── */
 .steps{background:var(--surface);border-radius:var(--rsm);padding:14px 22px;margin-bottom:26px;box-shadow:var(--shsm);display:flex;align-items:center}
 .sn{display:flex;align-items:center;gap:9px}
@@ -84,6 +98,7 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 .btn-p{background:var(--primary);color:#fff}.btn-p:hover{background:var(--primary-hover)}.btn-p:disabled{opacity:.5;cursor:not-allowed}
 .btn-o{background:transparent;color:var(--primary);border:1.5px solid var(--border)}.btn-o:hover{border-color:var(--primary)}
 .btn-t{background:var(--turquoise);color:#fff}.btn-t:hover{background:#18a8bd}.btn-t:disabled{opacity:.5;cursor:not-allowed}
+.btn-e{background:var(--escalate);color:#fff}.btn-e:hover{background:#881337}
 .btn-row{display:flex;gap:10px;align-items:center;margin-top:6px}
 
 /* ─── OUTPUT ─── */
@@ -147,6 +162,13 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 .orch.sel .orchk{background:var(--override);border-color:var(--override);color:#fff}
 .orcn{font-size:12px;font-weight:700;color:var(--text)}.orcd{font-size:10px;color:var(--muted);margin-top:2px}
 
+/* ─── ESCALATION BOX ─── */
+.escbox{background:#FFF1F2;border:1.5px solid #FECDD3;border-radius:12px;padding:18px;margin-bottom:14px}
+.esclbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--escalate);margin-bottom:14px}
+.escgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.esc-preview{background:#fff;border:1px solid #FECDD3;border-radius:10px;padding:14px;margin-top:12px;font-size:12px;line-height:1.75;color:#374151;font-family:monospace;white-space:pre-wrap;max-height:220px;overflow-y:auto}
+.esc-preview-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--escalate);margin-bottom:8px}
+
 /* ─── SUGGEST ─── */
 .sug{border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12.5px;border:1px solid}
 .sug.good{background:#F0FDF4;border-color:#86EFAC;color:#14532D}
@@ -167,7 +189,7 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 /* ─── AUDIT ─── */
 .aitem{background:var(--surface);border-radius:12px;padding:16px 18px;margin-bottom:10px;border-left:4px solid var(--border);box-shadow:var(--shsm);transition:box-shadow .2s}
 .aitem:hover{box-shadow:var(--sh)}
-.h-approve{border-left-color:var(--approve)}.h-cond{border-left-color:var(--flag)}.h-override{border-left-color:var(--override)}.h-escalate{border-left-color:var(--reject)}
+.h-approve{border-left-color:var(--approve)}.h-cond{border-left-color:var(--flag)}.h-override{border-left-color:var(--override)}.h-escalate{border-left-color:var(--escalate)}
 .ameta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .aid{font-size:11px;font-weight:700;color:var(--turquoise);font-family:monospace}
 .atime{font-size:11px;color:var(--muted)}
@@ -176,7 +198,9 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 .mb-g{background:#F2F2F2;color:var(--text)}
 .mb-approve{background:var(--approve-bg);color:var(--approve)}.mb-flag{background:var(--flag-bg);color:var(--flag)}
 .mb-reject{background:var(--reject-bg);color:var(--reject)}.mb-refer{background:var(--refer-bg);color:var(--refer)}
-.mb-ov{background:var(--override-bg);color:var(--override)}.mb-cond{background:#FEF9C3;color:#854D0E}.mb-esc{background:#FFE4E6;color:#9F1239}
+.mb-ov{background:var(--override-bg);color:var(--override)}.mb-cond{background:#FEF9C3;color:#854D0E}.mb-esc{background:var(--escalate-bg);color:var(--escalate)}
+.mb-ai{background:#F3F4F6;color:#374151}
+.mb-proposed{background:#E0F2FE;color:#0369A1}
 
 /* ─── STATS ─── */
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
@@ -263,6 +287,7 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
   .wrap{padding:16px}.hdr{padding:0 16px}
   .statgrid{grid-template-columns:1fr 1fr}.chartgrid{grid-template-columns:1fr}
   .ai-g{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr}.orgrid{grid-template-columns:1fr}
+  .itype-grid{grid-template-columns:1fr}.escgrid{grid-template-columns:1fr}
   .steps .sl{display:none}.hdr-tool{display:none}.fright{text-align:left}
   .fbfloat span{display:none}.fbfloat{padding:12px}
   .resume-bar{padding:12px 16px}
@@ -272,370 +297,335 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 <body>
 <div id="root"></div>
 <script type="text/babel">
-const {useState,useEffect,useRef,useMemo} = React;
+const {useState,useEffect,useRef,useMemo,useCallback} = React;
 
-/* ═══════════════════════════════════════════════════════════════════
-   ASSESSMENT ENGINE v2
-   ─────────────────────────────────────────────────────────────────
-   How it works:
-   1. PHRASE SCANNING   — scans for multi-word risk phrases (more
-      specific than single keywords, e.g. "structuring behaviour")
-   2. SINGLE KEYWORD    — scans remaining text for single-word signals
-   3. NEGATION GUARD    — if a risk term is preceded by a negator
-      (no, not, without, denies, cleared, not identified, etc.)
-      its weight is inverted to avoid false positives
-   4. SECTOR BOOSTER    — sector-specific keyword sets that amplify
-      certain signals for the relevant industry
-   5. JURISDICTION FLAG — detects Nigeria / CBN / UK / FCA etc. to
-      select the right regulatory references
-   6. SCORE → DECISION  — net score maps to outcome; confidence is
-      calibrated by keyword density and score magnitude
-   7. CONTENT ASSEMBLY  — outcome, sector, and decision-type drive
-      selection from curated content libraries (rationale blocks,
-      risk flags, recommended actions, data gaps, regulatory refs)
-   ─────────────────────────────────────────────────────────────────
-   Defensibility note shown to user: the engine output is a
-   structured starting point for human review, not a regulatory
-   determination. The five-lens protocol, override taxonomy and
-   audit trail are the defensible layer.
-═══════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════════
+   ASSESSMENT ENGINE v3
+   ── All keyword/phrase libraries, negation detection, sector
+      boosters, jurisdiction detection, content assembly ──
+══════════════════════════════════════════════════════════════════ */
+const NEGATORS=['no ','not ','without ','denies ','denied ','cleared ','no evidence of ','absence of ','not identified','not found','no sign','no indication','no history of','absence','unrelated to','contrary to','not involved','no record of','ruled out','disproved','never','none','unconfirmed'];
+const PHRASES_HIGH=['money laundering','financial crime','suspicious activity','shell company','shell structure','offshore account','layering structure','structuring behaviour','smurfing','round tripping','trade based money laundering','politically exposed person','pep connection','sanctions hit','sanctions match','watchlist match','beneficial ownership opaque','fraudulent document','fabricated evidence','forged','identity fraud','account takeover','unauthorized access','data breach','cyber incident','ransomware','system compromise','regulatory breach','compliance failure','material breach','enforcement action','regulatory investigation','director disqualification','winding up order','insolvency proceedings','bankruptcy filing','adverse media','negative news','reputational risk','criminal conviction','criminal record','source of funds unclear','source of wealth unknown','unexplained wealth','cash intensive','high risk jurisdiction','non-cooperative jurisdiction','fatf blacklist','fatf greylist','third party payment','unusual transaction','anomalous pattern','velocity risk','unauthorized disposal','misappropriation of funds','embezzlement','bribery','corruption','conflict of interest undisclosed','insider trading','market manipulation','front running','governance failure','board failure','control breakdown','internal fraud','whistleblower report','regulatory sanction','fca fine','cbn sanction','sec penalty','disciplinary action','customer complaint elevated','conduct risk','mis-selling','suitability failure','capital inadequacy','liquidity stress','solvency concern','going concern doubt'];
+const PHRASES_MED=['new director','director change','recent restructure','ownership change','complex structure','limited trading history','new customer','dormant account','recently activated','pending verification','unverified identity','partial documentation','incomplete kyc','multiple jurisdictions','cross-border','offshore element','foreign beneficial owner','related party transaction','connected party','associated entity','elevated risk rating','risk flag raised','internal flag','system alert','cash heavy','high cash usage','low documentation','verbal agreement only','manual override history','previous concern logged','previous flag','escalated before','concentration risk','single counterparty','large single exposure','delayed filing','late accounts','overdue returns','compliance gap','undisclosed relationship','undisclosed liability','off-balance sheet','personal guarantee','director loan','shareholder loan','inter-company','high leverage','debt servicing concern','covenant breach','margin call','model uncertainty','data quality concern','incomplete data','proxy assumption'];
+const PHRASES_LOW=['clean credit history','no adverse findings','no regulatory action','compliant history','audited accounts','unqualified audit','clean audit','strong controls','well governed','licensed and regulated','full regulatory approval','long trading history','established business','stable financials','profitable operations','strong revenue','growing business','documented source of funds','verified identity','full kyc completed','enhanced due diligence passed','sanctions clear','pep clear','adverse media clear','no adverse media','transparent ownership','disclosed beneficiaries','simple structure','straightforward','experienced management','qualified board','independent directors','robust governance','low risk rating','low risk sector','minimal complexity','standard transaction','timely filing','accounts up to date','regulatory returns filed','no outstanding issues','independent audit','third party verified','external validation','corroborating evidence','insured','hedged','collateralised','secured lending','tangible security'];
+const SECTOR_BOOSTERS={financial_services:{high:['conduct risk','mis-selling','unsuitable advice','client money','custody'],low:['fca authorised','pra regulated','senior manager certified']},banking:{high:['capital shortfall','liquidity gap','stress test fail','basel breach'],low:['icaap compliant','basel iii','tier 1 capital adequate']},fintech:{high:['unlicensed','emoney breach','payment fraud','chargeback elevated','customer harm'],low:['fca registered','emoney licence','pi licence','sandbox approved']},insurance:{high:['reserving inadequate','scr breach','claims manipulation','underwriting loss'],low:['solvency ii compliant','scr met','pra regulated insurance']},asset_management:{high:['mandate breach','overweight','mis-classification','misleading prospectus'],low:['ucits compliant','aifmd compliant','mifid suitability met']},compliance_regulatory:{high:['material gap','systemic failure','repeat finding','unresolved finding'],low:['compliant','remediated','closed finding','audit cleared']},governance_risk:{high:['board failure','no audit committee','no risk committee','director conflict'],low:['code compliant','board review completed','risk appetite approved']},startup_scaleup:{high:['no authorisation','unregulated activity','burn rate concern','runway short'],low:['authorised','fca early stage','seed funded','investment grade']}};
+const JURISDICTIONS={nigeria:['CBN','NFIU','Nigeria','NGN','naira','Lagos','Abuja','Kano','SEC Nigeria','NDIC','EFCC'],uk:['FCA','PRA','UK','sterling','GBP','London','FRC','ICO','HMRC','Companies House','NCA'],eu:['EBA','ESMA','ECB','EUR','euro','European','MiFID','GDPR','Basel','BCBS'],us:['SEC','FINRA','OCC','FDIC','USD','dollar','FinCEN','OFAC','BSA']};
+const REGS_BY_SECTOR={financial_services:['FCA Handbook (SYSC, COBS, PRIN)','PRA Rulebook','FSMA 2000','MiFID II','UK Senior Managers & Certification Regime'],banking:['Basel III / CRD V','PRA Capital Requirements','EBA Guidelines on ICAAP','BCBS 239 Risk Data Principles','PRA SS7/18 Model Risk'],fintech:['FCA Payment Services Regulations 2017','EMI Regulations 2011','UK GDPR / Data Protection Act 2018','FCA Consumer Duty (PS22/9)','CBN Regulatory Framework for Fintechs'],insurance:['Solvency II / UK Solvency Rules','FCA ICOBS Sourcebook','PRA Solvency Capital Requirements','IAIS Core Principles',"Lloyd's Market Guidelines"],asset_management:['AIFMD / UK AIFM Regulations','UCITS Directive','FCA COLL Sourcebook','MiFID II Suitability (Art 25)','ESMA Risk Management Guidelines'],compliance_regulatory:['FCA Threshold Conditions','FRC UK Corporate Governance Code 2018','COSO Internal Control Framework','ISO 31000:2018','FCA DEPP Sourcebook'],governance_risk:['UK Corporate Governance Code 2018','FRC Audit & Assurance Guidance','FCA SYSC 4','ISO 31000:2018','COSO ERM Framework'],startup_scaleup:['FCA Authorisation Requirements (PERG)','Companies Act 2006','FCA Consumer Duty (PS22/9)','ICO Data Protection Framework','FCA Senior Managers Regime (SM&CR)'],nigeria:['CBN AML/CFT Regulations 2013 (as amended)','CBN CSAT Framework 2023','NFIU Financial Intelligence Guidelines','SEC Nigeria Market Conduct Rules','NDIC Guidelines'],generic:['FATF 40 Recommendations','ISO 31000:2018 Risk Management','Basel Committee on Banking Supervision Principles','OECD Corporate Governance Principles','International Standards on Auditing (ISA)']};
+const REGS_BY_DTYPE={credit_assessment:['CCA 1974 (as amended)','FCA CONC Sourcebook','Basel IRB Approach Guidance','IFRS 9 Expected Credit Loss','FCA Consumer Duty (PS22/9)'],fraud_detection:['Fraud Act 2006','FCA Financial Crime Guide (FCG)','JMLSG Guidance (Part I & II)','UK Finance Fraud Prevention Standards','Proceeds of Crime Act 2002 (POCA)'],aml_alert:['POCA 2002','Terrorism Act 2000','JMLSG Guidance (Parts I-III)','FATF Recommendations (40+9)','MLR 2017','CBN AML/CFT Regulations'],compliance_flag:['FCA Enforcement Guide','DEPP Sourcebook','Compliance Monitoring Best Practice (FCA)','COSO Internal Control Framework','FCA Consumer Duty (PS22/9)'],risk_rating:['Basel III Pillar 2 ICAAP','ISO 31000:2018','FCA SREP Guidance','EBA Risk Assessment Guidelines','PRA Stress Testing Framework'],kyc_check:['MLR 2017 (Reg 28-30)','FATF Recommendation 10','JMLSG Chapter 5','FCA FCG 3 — CDD','CBN KYC Manual'],regulatory_breach:['FCA Enforcement Guide','DEPP Chapter 6','Financial Services Act 2012','Upper Tribunal Guidance','FCA SUP 15 (Notifications)'],investment_recommendation:['MiFID II Suitability (Art 25)','FCA COBS 9A','ESG Disclosure Regulations','FCA Retail Investment Guidance','FCA Consumer Duty (PS22/9)'],vendor_risk:['FCA SS2/21 Outsourcing','EBA Outsourcing Guidelines 2019','ICO Third Party Data Sharing Guidance','NCSC Supply Chain Security','FCA Consumer Duty Third-Party Obligations'],governance_finding:['UK Corporate Governance Code 2018','FRC Audit & Assurance Guidance','FCA SYSC 4 Governance','Senior Managers & Certification Regime','FRC Board Evaluation Guidance']};
+const DATA_GAPS={credit_assessment:['Full 24-month bank statement and cashflow analysis','Most recent audited financial statements (2 years)','Director personal credit bureau report','Sector-specific stress test scenarios','Up-to-date Companies House filings','Independent business valuation','Management accounts for current period','Asset and liability schedule'],fraud_detection:['Full transaction history — prior 12 months','Device fingerprint and IP geolocation data','Cross-account behavioural pattern analysis','Third-party fraud intelligence database check','Real-time sanctions screening result','Call recording or chat logs for context','Originating account verification','Biometric verification result'],aml_alert:['Enhanced source of funds documentation','Ultimate beneficial owner (UBO) verification','PEP and adverse media screening result','Cross-border transaction mapping','Correspondent bank relationship disclosure','Source of wealth declaration','Account opening documentation','Senior management sign-off on risk acceptance'],kyc_check:['Certified proof of address (within 3 months)','UBO register extract','Enhanced due diligence report for high-risk jurisdictions','Sanctions and watchlist screening certificate','Business activity verification','Regulatory licence or registration confirmation','Company formation documents','Shareholder register and voting rights disclosure'],risk_rating:['Quantitative scenario analysis (base / stress / severe)','Peer benchmarking data for sector','Forward-looking macroeconomic sensitivity analysis','Control effectiveness testing results','Risk appetite statement alignment evidence','Loss history data (3 years)','KRI trend data','Internal audit findings relevant to this risk area'],compliance_flag:['Regulatory correspondence audit trail (full)','Board-level attestation on control environment','Most recent compliance monitoring report','Policy breach root cause analysis','Remediation timeline with named ownership','Previous regulatory dialogue on this issue','Legal opinion on exposure','Policy documentation (current version)'],regulatory_breach:['Regulatory investigation file — full correspondence','Legal counsel opinion on materiality and liability','Board resolution on response strategy','FCA/CBN notification status confirmation','Redress calculation methodology and quantum','Timeline of events (detailed chronology)','Affected customer identification and harm assessment','Remediation plan with governance oversight'],investment_recommendation:['Client suitability assessment — signed and dated','Risk appetite questionnaire results (current)','Portfolio stress test outputs','Conflicts of interest register review','MiFID II / Consumer Duty execution policy compliance check','Historical suitability outcomes for similar recommendations','ESG preference documentation','Independent suitability review'],vendor_risk:['Vendor SOC 2 Type II / ISO 27001 certificate','Business continuity and disaster recovery plan (tested)','Sub-processor and fourth-party exposure mapping','Exit strategy and data portability plan','Regulatory notification of outsourcing arrangement','Information security assessment','Data processing agreement (DPA)','Contractual SLA and liability cap review'],governance_finding:['Board skills and experience matrix (current)','Committee terms of reference (latest version)','Independent governance review report','Board performance evaluation results (last 12 months)','Whistleblowing policy and case register','Succession plan for key roles','MI reporting pack to Board','Conflicts of interest register']};
+const ACTIONS={APPROVE:{credit_assessment:'Proceed to credit offer documentation. Apply standard monitoring covenants. Schedule 12-month covenant review.',fraud_detection:'Clear transaction. Update customer risk profile and fraud intelligence record. Log outcome.',aml_alert:'Close alert with documented rationale. Update customer risk rating. Schedule next AML review per risk appetite.',compliance_flag:'Document compliance clearance. Update controls register. Notify compliance monitoring team of outcome.',risk_rating:'Record updated rating in risk register. Notify risk owners. Schedule next assessment per risk calendar.',kyc_check:'Onboard customer. Apply standard transaction monitoring parameters. Set enhanced review trigger thresholds.',regulatory_breach:'File regulatory self-report if required. Document remediation action. Notify General Counsel.',investment_recommendation:'Execute recommendation. Document suitability rationale. Set performance review schedule.',vendor_risk:'Execute vendor contract. Activate ongoing monitoring schedule. Register in third-party risk register.',governance_finding:'Document finding as closed. Record in governance register. Report to Board at next scheduled meeting.',generic:'Proceed. Document decision rationale. Apply standard monitoring and schedule a structured review.'},FLAG:{credit_assessment:'Place application on hold. Request additional financial documentation. Escalate to senior credit officer within 5 business days.',fraud_detection:'Temporarily suspend transaction. Initiate enhanced verification process. Alert fraud operations team immediately.',aml_alert:'Suspend activity pending clarification. Request supporting documentation. Refer to MLRO for assessment.',compliance_flag:'Suspend flagged activity. Initiate gap analysis. Assign remediation owner with 30-day target.',risk_rating:'Escalate to Risk Committee. Apply interim controls. Conduct enhanced scenario analysis within 14 days.',kyc_check:'Suspend onboarding. Issue enhanced due diligence request. Set 10-business-day response deadline.',regulatory_breach:'Notify Legal and Compliance immediately. Preserve evidence. Assess FCA/CBN notification obligation.',investment_recommendation:'Pause recommendation. Review suitability documentation. Obtain second opinion from senior adviser.',vendor_risk:'Suspend vendor engagement. Commission independent assurance. Review contractual protections.',governance_finding:'Escalate to Board sub-committee. Appoint independent reviewer. Prepare remediation plan within 21 days.',generic:'Place matter on hold. Obtain additional information. Escalate to appropriate senior officer within agreed SLA.'},REJECT:{credit_assessment:'Decline application. Issue adverse action notice per CONC requirements. Document credit decisioning rationale in full.',fraud_detection:'Block transaction and freeze account. File Suspicious Activity Report (SAR). Notify fraud operations immediately.',aml_alert:'File Suspicious Activity Report with NCA / NFIU. Restrict account. Notify MLRO and Legal Counsel.',compliance_flag:'Issue breach notice. Escalate to Compliance Committee. Initiate regulatory notification assessment.',risk_rating:'Refer to Risk Committee for formal resolution. Apply enhanced controls. Consider regulatory disclosure.',kyc_check:'Decline onboarding. Document decision in full. Apply PEP/sanctions flag to watchlist if applicable.',regulatory_breach:'Notify regulator as required. Engage external legal counsel. Preserve all evidence and correspondence.',investment_recommendation:'Do not execute recommendation. Issue suitability declination letter. Report to Compliance.',vendor_risk:'Terminate or decline vendor engagement. Notify procurement and Legal. Review any data previously shared.',governance_finding:'Escalate to Board immediately. Engage independent external reviewer. Notify regulator if material.',generic:'Decline or reject. Document all reasons. Notify relevant stakeholders and preserve all supporting evidence.'},REFER:{credit_assessment:'Refer to credit committee for collegial review. Request independent risk opinion. Set 5-business-day turnaround.',fraud_detection:'Refer to Fraud Operations Unit for specialist analysis. Preserve transaction evidence. Set 48-hour review SLA.',aml_alert:'Refer to MLRO for consent decision. Provide full transaction history and source of funds analysis.',compliance_flag:'Refer to Compliance Committee. Engage external compliance adviser if novel or material issue.',risk_rating:'Refer to Group Risk Function for senior review. Commission independent stress testing.',kyc_check:'Refer to Compliance for enhanced due diligence decision. Engage specialist screening provider.',regulatory_breach:'Refer to Legal and Regulatory Affairs. Obtain senior legal opinion on notification obligations.',investment_recommendation:'Refer to Investment Committee. Obtain independent suitability opinion. Document referral rationale.',vendor_risk:'Refer to Procurement Risk Committee. Commission third-party assurance review.',governance_finding:'Refer to Nominations & Governance Committee. Engage independent governance adviser.',generic:'Refer to appropriate senior decision-making authority. Document referral rationale and agreed timeline.'}};
+const RATIONALE={APPROVE:{h:'The scenario presents a pattern consistent with compliant, well-controlled activity. Assessment across all relevant risk dimensions indicates that key indicators fall within acceptable parameters for this sector. Available evidence is sufficient to support a positive determination, and no material flags have been identified that would warrant further scrutiny or escalation at this stage.',m:'On balance, the risk profile of this scenario supports approval, though certain contextual factors introduce residual uncertainty. The risk indicators identified are present but do not, individually or collectively, reach the threshold required for further action. A positive determination is appropriate, subject to standard monitoring conditions to manage ongoing exposure.',l:'A positive determination is supported by the available information, though assessment confidence is constrained by the completeness of evidence presented. The decision to approve is made on the weight of information available and should be subject to enhanced monitoring and a structured follow-up review within 30 days of this determination.'},FLAG:{h:'This scenario presents a concentration of risk indicators that, taken together, create material uncertainty about the appropriate course of action. The evidence does not clearly support rejection at this stage, but it is sufficient to warrant a structured pause, targeted investigation, and human review before any determination is finalised. The flags identified are sector-relevant and require resolution.',m:'Several features of this scenario fall outside normal expected parameters for this sector and decision type. The risk indicators, while individually not definitive, form a pattern that warrants closer examination. Additional information should be obtained and reviewed before a final determination is made.',l:'This scenario contains elements that are inconsistent with standard risk parameters, though the available information is not sufficient to make a definitive determination at this stage. A flag has been raised to prompt further investigation, and structured human review is required before any decision is taken.'},REJECT:{h:'The risk profile presented in this scenario is materially elevated, with multiple indicators pointing to significant exposure. The combination of factors identified exceeds the acceptable threshold for this decision type and sector context. A positive determination cannot be supported without fundamental changes to the underlying risk profile, and rejection is the appropriate outcome at this stage.',m:'The weight of evidence in this scenario supports a rejection determination. While some individual factors carry ambiguity, the aggregate risk indicators — particularly those relating to compliance alignment and regulatory exposure — present a profile inconsistent with acceptable parameters for this sector.',l:'The assessment outcome leans toward rejection based on the risk signals identified, though the confidence level reflects the constraints of available information. This determination is made on a precautionary basis and the matter should be fully investigated before any reconsideration. Rejection does not preclude reapplication following remediation.'},REFER:{h:'This scenario presents a risk profile of sufficient complexity and materiality that a definitive determination cannot be made at standard review level. The matter exhibits features requiring specialist assessment, senior review, or collegial decision-making to ensure the appropriate outcome. Referral is required.',m:'The risk and compliance dimensions of this scenario intersect in a way that creates genuine decisional complexity. The matter warrants escalation to a more senior or specialist reviewer who can bring additional expertise and authority to the determination.',l:'Given the constraints on available information and the nature of the risk signals identified, this scenario cannot be resolved at the current review level with sufficient confidence. Referral ensures the matter receives the appropriate level of scrutiny before a final determination is made.'}};
+const FLAGS_BY_SECTOR={financial_services:['Potential breach of FCA conduct requirements identified','Inadequate client money controls noted','Senior management accountability gap present','Financial crime risk indicators present in scenario','Customer outcome deficiency identified'],banking:['Capital adequacy concern relative to risk exposure','Credit concentration in single counterparty or sector identified','Liquidity buffer below internal stress threshold','Operational risk event not captured in register','ICAAP assumptions may not reflect current environment'],fintech:['Regulatory licensing status requires clarification','Customer due diligence process gaps identified','Payments settlement risk elevated','Data protection compliance uncertainty noted','AML transaction monitoring parameters potentially insufficient'],insurance:['Solvency position relative to SCR requires review','Reserving adequacy concern identified','Underwriting controls appear insufficient for risk level','Claims handling conduct issue noted','Policyholder outcome risk elevated'],asset_management:['Investment mandate boundary potentially breached','Suitability assessment documentation insufficient','Liquidity mismatch in portfolio construction identified','Conflicts of interest not adequately managed or disclosed','Valuation methodology independence concern'],compliance_regulatory:['Regulatory obligation mapping incomplete or out of date','Control effectiveness below required threshold','Material gap in compliance monitoring framework','Policy documentation absent or not current','Board-level oversight of compliance function insufficient'],governance_risk:['Board composition does not meet independence standards','Risk appetite not formally approved or communicated','Three lines of defence model not fully embedded','Risk register not current or owner-assigned','Internal audit findings not tracked to closure'],startup_scaleup:['Regulatory authorisation status unclear or absent','Corporate governance framework nascent or informal','Financial controls not commensurate with risk profile','Personal and company financial separation inadequate','Data handling and privacy compliance uncertain']};
+const FLAGS_BY_DTYPE={credit_assessment:['Debt-service coverage ratio below sector benchmark','Director or shareholder credit history adverse','Sector-specific cyclical stress exposure identified','Concentration risk in loan book','Tangible asset security coverage insufficient'],fraud_detection:['Transaction velocity inconsistent with established customer profile','Geographic anomaly in transaction origin','Device and behavioural mismatch identified','Rapid fund movement following deposit','Account opened recently with immediate high-value activity'],aml_alert:['Source of funds documentation incomplete or implausible','Politically exposed person (PEP) connection identified','High-risk jurisdiction involvement identified','Complex layering structure in transaction chain','Structuring behaviour consistent with known typologies'],kyc_check:['Identity document verification inconclusive','Beneficial ownership structure opaque or complex','Adverse media search returned relevant results','Enhanced due diligence required but not completed','Address verification inconsistent with stated profile'],risk_rating:['Risk score methodology not validated against outcomes data','Qualitative factors underweighted in scoring model','Correlation risk between categories not modelled','Forward-looking indicators absent from assessment','Concentration within a single risk driver identified'],regulatory_breach:['Regulatory notification obligation may be triggered','Evidence preservation requirements not yet satisfied','Limitation period considerations may apply','Regulatory correspondence not adequately logged or retained','Remediation plan absent or insufficient for the finding'],investment_recommendation:['Suitability assessment documentation incomplete','Customer risk appetite not adequately captured','ESG preference not considered in recommendation','Concentration risk identified in recommended portfolio','Conflicts of interest disclosure insufficient'],vendor_risk:['Sub-processor chain not fully mapped','Business continuity plan not tested within required period','Data residency outside approved jurisdictions','Contractual liability cap may be inadequate for risk exposure','Exit management plan absent or significantly outdated'],governance_finding:['Board skills matrix does not cover required competencies','Committee structure does not provide effective independent challenge','Management information to Board inadequate for effective oversight','Succession planning gap identified','Board evaluation not conducted or findings not acted upon'],compliance_flag:['Control gap identified that may require regulatory notification','Policy documentation not current or incomplete','Monitoring activity below required frequency','Remediation tracking not formalised','Escalation pathway not clearly defined for this finding type']};
+const GENERIC_FLAGS=['Material risk indicator identified in the scenario presented','Compliance exposure requires further assessment','Control gap noted — remediation action recommended','Documentation insufficient relative to level of risk','Regulatory alignment requires verification against current standards','Sector-specific risk concentration identified','Oversight framework may not be commensurate with risk profile','Escalation pathway not clearly defined for this risk type'];
 
-const NEGATORS = ['no ','not ','without ','denies ','denied ','cleared ','no evidence of ','absence of ','not identified','not found','no sign','no indication','no history of','absence','unrelated to','contrary to','not involved','no record of','ruled out','disproved','never','none','unconfirmed'];
+// ── PROPOSED DECISION FLAGS (for non-AI input mode) ──
+const PROPOSED_FLAGS_BY_SECTOR={financial_services:['FCA Consumer Duty outcomes not fully considered','TCF principles may not be adequately embedded in this proposal','Conduct risk dimension has not been explicitly assessed','Regulatory pre-notification requirement should be considered','Senior Manager accountability not allocated for this decision'],banking:['Capital impact of this decision not quantified','Liquidity implications under stress scenario not considered','Credit risk concentration effect not assessed','Model risk governance approval required','Basel III implications not explicitly addressed'],fintech:['Regulatory perimeter clarification recommended before proceeding','Consumer harm risk not fully mapped','Data protection impact assessment may be required','AML exposure of proposed approach not assessed','Authorisation scope adequately covers proposed activity'],insurance:['Policyholder outcome risk not explicitly modelled','SCR impact assessment required','Product governance framework compliance not confirmed','Conduct implications for vulnerable customers not assessed','Solvency II proportionality principle not applied'],compliance_regulatory:['Regulatory obligation mapping not yet completed for this decision','Three lines of defence involvement not documented','Board-level approval may be required for this decision level','Policy framework adequacy not confirmed','Compliance sign-off not obtained'],governance_risk:['Board authority threshold should be confirmed before proceeding','Risk appetite alignment not explicitly demonstrated','Risk register update required following this decision','Second line challenge has not been documented','Committee approval protocol may apply'],startup_scaleup:['Regulatory authorisation confirms this activity is within scope','Board governance sufficient for this decision level should be confirmed','Financial headroom assessment recommended','Investor consent requirements should be checked','Personal liability implications of this decision should be considered']};
+const GENERIC_PROPOSED_FLAGS=['Proposed decision has not been subject to formal risk assessment','Regulatory approval or notification requirement not confirmed','Stakeholder impact assessment not documented','Board or committee authority level not confirmed','Decision rationale may not meet audit or regulatory scrutiny standards','Precedent implications of this decision not assessed','Implementation risks not formally identified','Exit or reversal plan not considered'];
 
-const PHRASES_HIGH = [
-  'money laundering','financial crime','suspicious activity','shell company','shell structure','offshore account',
-  'layering structure','structuring behaviour','smurfing','round tripping','trade based money laundering',
-  'politically exposed person','pep connection','sanctions hit','sanctions match','watchlist match',
-  'beneficial ownership opaque','fraudulent document','fabricated evidence','forged','identity fraud',
-  'account takeover','unauthorized access','data breach','cyber incident','ransomware','system compromise',
-  'regulatory breach','compliance failure','material breach','enforcement action','regulatory investigation',
-  'director disqualification','winding up order','insolvency proceedings','bankruptcy filing',
-  'adverse media','negative news','reputational risk','criminal conviction','criminal record',
-  'source of funds unclear','source of wealth unknown','unexplained wealth','cash intensive',
-  'high risk jurisdiction','non-cooperative jurisdiction','fatf blacklist','fatf greylist',
-  'third party payment','unusual transaction','anomalous pattern','velocity risk',
-  'unauthorized disposal','misappropriation of funds','embezzlement','bribery','corruption',
-  'conflict of interest undisclosed','insider trading','market manipulation','front running',
-  'governance failure','board failure','control breakdown','internal fraud','whistleblower report',
-  'regulatory sanction','fca fine','cbn sanction','sec penalty','disciplinary action',
-  'customer complaint elevated','conduct risk','mis-selling','suitability failure',
-  'capital inadequacy','liquidity stress','solvency concern','going concern doubt',
+/* ─────────────────────────────────────────────────────────────────
+   SCENARIO-AWARE CONTENT MAPS
+   Each flag, data gap, and regulatory reference carries a list of
+   trigger keywords. scoreItems() ranks them against the actual
+   scenario text and returns the top N matches. If too few trigger,
+   the remainder are filled from the highest-relevance pool.
+   This means every output reflects what the user actually typed.
+───────────────────────────────────────────────────────────────── */
+
+// FLAG ITEMS — each has triggers (keywords from scenario) and a text
+const FLAG_ITEMS = [
+  // ── Credit / Lending ──
+  {text:'Debt-service coverage ratio below sector benchmark — repayment capacity is a material concern',triggers:['loan','debt','repayment','dscr','coverage','borrow','credit','mortgage','facility','overdraft','cashflow','cash flow'],dtype:['credit_assessment'],sector:[]},
+  {text:'Director or shareholder credit history is adverse — personal financial conduct should be verified',triggers:['director','shareholder','personal','guarantee','credit history','ccj','county court','personal debt','adverse credit'],dtype:['credit_assessment'],sector:[]},
+  {text:'Source of funds documentation is incomplete or implausible given the stated scenario',triggers:['funds','source','origin','payment','transfer','deposit','cash','wealth','income','salary'],dtype:['aml_alert','kyc_check','credit_assessment'],sector:[]},
+  {text:'Politically exposed person (PEP) connection identified — enhanced due diligence is mandatory',triggers:['pep','political','politician','minister','government','public official','official','embassy','state','senior official'],dtype:['aml_alert','kyc_check'],sector:[]},
+  {text:'High-risk jurisdiction involvement identified — heightened scrutiny required under FATF standards',triggers:['jurisdiction','offshore','cayman','bvi','panama','nigeria','sanctioned','fatf','greylist','blacklist','high risk country','international','foreign'],dtype:['aml_alert','kyc_check'],sector:[]},
+  {text:'Transaction velocity is inconsistent with the established customer profile and expected activity',triggers:['transaction','velocity','frequency','multiple transfers','rapid','unusual volume','high volume','sudden','spike'],dtype:['fraud_detection','aml_alert'],sector:[]},
+  {text:'Structuring behaviour detected — transaction pattern is consistent with known layering typologies',triggers:['structur','layer','smurfing','round trip','split','multiple accounts','transfer pattern','below threshold'],dtype:['aml_alert'],sector:[]},
+  {text:'Beneficial ownership structure is opaque or complex — UBO verification is incomplete',triggers:['ownership','beneficial','ubo','nominee','trust','structure','holding','complex','opaque','obscure'],dtype:['kyc_check','aml_alert'],sector:[]},
+  {text:'Identity document verification is inconclusive — biometric or enhanced verification is required',triggers:['identity','id','passport','document','verify','verification','authenticate','proof','kyc','onboarding'],dtype:['kyc_check'],sector:[]},
+  {text:'Adverse media search has returned results relevant to this entity — further investigation is required',triggers:['adverse','media','news','press','article','report','allegation','accused','charged','convicted'],dtype:['kyc_check','aml_alert','credit_assessment'],sector:[]},
+  {text:'Account opened recently with immediate high-value activity — heightened fraud and AML risk',triggers:['new account','recently opened','new customer','just opened','recent account','first transaction','new relationship'],dtype:['fraud_detection','aml_alert'],sector:[]},
+  {text:'Device and behavioural mismatch identified — originating device does not match established customer pattern',triggers:['device','ip','location','login','browser','mobile','app','access','authentication','mfa','otp'],dtype:['fraud_detection'],sector:[]},
+  {text:'Regulatory notification obligation may have been triggered — legal counsel should assess disclosure requirements',triggers:['breach','notification','report','disclose','regulator','fca','cbn','sec','notify','mandatory','obligation','report to'],dtype:['regulatory_breach','compliance_flag'],sector:[]},
+  {text:'Evidence preservation requirements apply — all documentation and correspondence must be retained immediately',triggers:['evidence','preserve','retain','record','document','log','audit trail','correspondence','email','minute'],dtype:['regulatory_breach'],sector:[]},
+  {text:'Remediation plan is absent or insufficient for the severity of the finding identified',triggers:['remediation','fix','remedy','correct','action plan','resolution','rectify','timeline','steps','plan'],dtype:['regulatory_breach','compliance_flag','governance_finding'],sector:[]},
+  {text:'Suitability assessment documentation is incomplete — client risk appetite has not been adequately captured',triggers:['suitability','suitable','client','investor','risk appetite','questionnaire','profile','recommend','advice','portfolio'],dtype:['investment_recommendation'],sector:[]},
+  {text:'Conflicts of interest disclosure is insufficient — related party relationships have not been fully declared',triggers:['conflict','interest','related party','disclosure','declare','undisclosed','connected','relationship','associated'],dtype:['investment_recommendation','governance_finding','credit_assessment'],sector:[]},
+  {text:'ESG preference has not been considered in the recommendation — Consumer Duty alignment requires this assessment',triggers:['esg','sustainable','green','environment','social','governance','responsible','impact','climate'],dtype:['investment_recommendation'],sector:[]},
+  {text:'Sub-processor chain has not been fully mapped — fourth-party exposure is unquantified',triggers:['vendor','supplier','third party','outsource','sub-processor','fourth party','contractor','processor','cloud','saas'],dtype:['vendor_risk'],sector:[]},
+  {text:'Data residency may be outside approved jurisdictions — regulatory and contractual compliance is at risk',triggers:['data','storage','server','cloud','residency','jurisdiction','gdpr','transfer','personal data','processing'],dtype:['vendor_risk'],sector:[]},
+  {text:'Exit management plan is absent — the organisation cannot safely terminate this vendor relationship',triggers:['exit','termination','offboard','transition','wind down','contract end','exit plan','business continuity'],dtype:['vendor_risk'],sector:[]},
+  {text:'Board skills matrix does not cover required competencies for the decision level presented',triggers:['board','director','skill','competency','experience','qualification','committee','chair','ned','independent director'],dtype:['governance_finding'],sector:['governance_risk']},
+  {text:'Risk appetite has not been formally approved or communicated to the relevant decision-making function',triggers:['risk appetite','risk tolerance','risk framework','risk policy','board approval','approved','communicated'],dtype:['governance_finding','risk_rating'],sector:['governance_risk']},
+  {text:'Three lines of defence model is not fully embedded — second line challenge has not been documented',triggers:['three lines','first line','second line','third line','internal audit','compliance','risk function','oversight'],dtype:['governance_finding','compliance_flag'],sector:['governance_risk','compliance_regulatory']},
+  {text:'Internal audit findings have not been tracked to closure — remediation ownership is unassigned',triggers:['internal audit','finding','closure','open finding','unresolved','remediation owner','action owner','audit'],dtype:['governance_finding'],sector:['governance_risk']},
+  {text:'Capital adequacy concern identified — the risk exposure may not be adequately capitalised',triggers:['capital','adequacy','tier 1','cet1','icaap','capital ratio','buffer','solvency','scr','reserves'],dtype:['risk_rating'],sector:['banking','insurance','financial_services']},
+  {text:'Liquidity risk indicators present — the entity may face stress under adverse market conditions',triggers:['liquidity','liquid','funding','cash','short term','maturity','mismatch','stress','lcr','nsfr'],dtype:['risk_rating'],sector:['banking','financial_services']},
+  {text:'Conduct risk indicators present — customer outcome or fair treatment concerns have been identified',triggers:['conduct','customer','outcome','fair','mis-sell','unsuitable','complaint','redress','tcf','consumer duty'],dtype:['compliance_flag'],sector:['financial_services','banking','insurance','fintech']},
+  {text:'Regulatory licensing or authorisation status requires verification before this activity can proceed',triggers:['licen','authoris','authoriz','permission','fca register','regulated','approval','permit','approval'],dtype:['compliance_flag','regulatory_breach'],sector:['fintech','startup_scaleup']},
+  {text:'Data protection compliance uncertainty noted — a DPIA may be required before proceeding',triggers:['data','gdpr','personal data','privacy','dpia','ico','data protection','processing','consent','lawful basis'],dtype:['compliance_flag','vendor_risk'],sector:['fintech']},
+  {text:'Model risk governance approval has not been obtained — the model requires independent validation',triggers:['model','algorithm','ai','automated','decision system','machine learning','validation','model risk','sr 11-7'],dtype:['risk_rating','credit_assessment'],sector:['financial_services','banking','fintech']},
+  // Generic fallbacks always available
+  {text:'Material risk indicator identified — the scenario contains factors that require structured human assessment',triggers:[],dtype:[],sector:[]},
+  {text:'Control gap noted — the oversight framework may not be adequate for the level of risk presented',triggers:['control','gap','oversight','framework','process','procedure','policy'],dtype:[],sector:[]},
+  {text:'Documentation insufficient relative to the level of risk — additional evidence is required before proceeding',triggers:['document','evidence','paper','record','file','supporting'],dtype:[],sector:[]},
+  {text:'Regulatory alignment has not been confirmed — applicable frameworks should be verified before action is taken',triggers:['regulatory','regulation','rule','requirement','framework','compliance','obligation'],dtype:[],sector:[]},
 ];
 
-const PHRASES_MED = [
-  'new director','director change','recent restructure','ownership change','complex structure',
-  'limited trading history','new customer','dormant account','recently activated',
-  'pending verification','unverified identity','partial documentation','incomplete kyc',
-  'multiple jurisdictions','cross-border','offshore element','foreign beneficial owner',
-  'related party transaction','connected party','associated entity',
-  'elevated risk rating','risk flag raised','internal flag','system alert',
-  'cash heavy','high cash usage','low documentation','verbal agreement only',
-  'manual override history','previous concern logged','previous flag','escalated before',
-  'concentration risk','single counterparty','large single exposure',
-  'delayed filing','late accounts','overdue returns','compliance gap',
-  'undisclosed relationship','undisclosed liability','off-balance sheet',
-  'personal guarantee','director loan','shareholder loan','inter-company',
-  'high leverage','debt servicing concern','covenant breach','margin call',
-  'model uncertainty','data quality concern','incomplete data','proxy assumption',
+// DATA GAP ITEMS — scored against scenario text
+const DATA_GAP_ITEMS = [
+  {text:'Full 24-month bank statement and cashflow analysis',triggers:['bank','cashflow','cash flow','statement','account','transaction','payment','deposit'],dtype:['credit_assessment'],sector:[]},
+  {text:'Most recent audited financial statements (minimum 2 years)',triggers:['financial','accounts','audit','revenue','profit','balance sheet','turnover','income'],dtype:['credit_assessment','risk_rating'],sector:[]},
+  {text:'Director personal credit bureau report',triggers:['director','personal','guarantee','credit','shareholder'],dtype:['credit_assessment'],sector:[]},
+  {text:'Independent business valuation and asset schedule',triggers:['valuation','asset','property','security','collateral','value','worth'],dtype:['credit_assessment'],sector:[]},
+  {text:'Management accounts for the current trading period',triggers:['management','trading','current year','ytd','year to date','recent'],dtype:['credit_assessment'],sector:[]},
+  {text:'Full transaction history — prior 12 months with counterparty detail',triggers:['transaction','transfer','payment','history','activity','movement'],dtype:['fraud_detection','aml_alert'],sector:[]},
+  {text:'Device fingerprint and IP geolocation data for the session in question',triggers:['device','ip','location','online','digital','access','login','session'],dtype:['fraud_detection'],sector:[]},
+  {text:'Real-time sanctions and watchlist screening certificate',triggers:['sanction','watchlist','ofac','hmrc','consolidated list','pep','screen'],dtype:['aml_alert','kyc_check'],sector:[]},
+  {text:'Ultimate beneficial owner (UBO) verification to the required threshold',triggers:['ownership','beneficial','ubo','owner','shareholder','trust','nominee'],dtype:['kyc_check','aml_alert'],sector:[]},
+  {text:'Enhanced due diligence report for the high-risk jurisdiction or entity identified',triggers:['edd','enhanced','high risk','jurisdiction','offshore','foreign'],dtype:['kyc_check','aml_alert'],sector:[]},
+  {text:'Source of funds and source of wealth declaration with supporting evidence',triggers:['source','funds','wealth','income','salary','inheritance','proceeds','origin'],dtype:['aml_alert','kyc_check'],sector:[]},
+  {text:'PEP screening result and adverse media search — dated within 30 days',triggers:['pep','political','media','news','adverse','screening','search'],dtype:['kyc_check','aml_alert'],sector:[]},
+  {text:'Certified proof of address — dated within 3 months',triggers:['address','proof','utility','bank statement','residence','domicile'],dtype:['kyc_check'],sector:[]},
+  {text:'Regulatory correspondence audit trail — complete and unredacted',triggers:['regulator','correspondence','letter','email','fca','cbn','sec','notification','communication'],dtype:['regulatory_breach','compliance_flag'],sector:[]},
+  {text:'Legal counsel opinion on regulatory exposure and notification obligations',triggers:['legal','counsel','lawyer','solicitor','opinion','advice','liability','obligation'],dtype:['regulatory_breach'],sector:[]},
+  {text:'Root cause analysis of the control failure or policy breach',triggers:['root cause','why','failure','breach','gap','reason','cause','incident'],dtype:['compliance_flag','regulatory_breach'],sector:[]},
+  {text:'Remediation plan with named ownership, milestones, and target completion dates',triggers:['remediation','plan','action','fix','timeline','milestone','completion','owner'],dtype:['compliance_flag','regulatory_breach','governance_finding'],sector:[]},
+  {text:'Client suitability assessment — signed, dated, and current',triggers:['suitability','client','investor','customer','signed','assessment','questionnaire'],dtype:['investment_recommendation'],sector:[]},
+  {text:'Risk appetite questionnaire results with current date confirmation',triggers:['risk appetite','questionnaire','risk profile','investor profile','tolerance'],dtype:['investment_recommendation'],sector:[]},
+  {text:'Conflicts of interest register — reviewed and current',triggers:['conflict','interest','related party','register','disclosure'],dtype:['investment_recommendation','governance_finding'],sector:[]},
+  {text:'Vendor SOC 2 Type II or ISO 27001 certification — current',triggers:['vendor','supplier','soc','iso','certification','security','assurance','audit'],dtype:['vendor_risk'],sector:[]},
+  {text:'Business continuity and disaster recovery plan — tested within the last 12 months',triggers:['continuity','disaster','recovery','bcp','drp','resilience','tested','failover'],dtype:['vendor_risk'],sector:[]},
+  {text:'Data processing agreement (DPA) reviewed and executed',triggers:['dpa','data processing','gdpr','data sharing','agreement','contract','processor'],dtype:['vendor_risk'],sector:[]},
+  {text:'Exit management plan for this vendor relationship',triggers:['exit','termination','offboard','end','transition','wind down'],dtype:['vendor_risk'],sector:[]},
+  {text:'Board performance evaluation results — last 12 months',triggers:['board','evaluation','performance','review','appraisal','assessment'],dtype:['governance_finding'],sector:['governance_risk']},
+  {text:'Committee terms of reference — current and Board-approved version',triggers:['committee','terms','reference','tor','mandate','remit','audit committee','risk committee'],dtype:['governance_finding'],sector:['governance_risk']},
+  {text:'Risk register — current version with named owners and review dates',triggers:['risk register','register','risk owner','risk log','risk record'],dtype:['governance_finding','risk_rating'],sector:['governance_risk']},
+  {text:'Independent governance review report or external assessment',triggers:['independent','external','review','governance','assessment','third party review'],dtype:['governance_finding'],sector:['governance_risk']},
+  {text:'Quantitative scenario analysis — base, stress, and severe cases',triggers:['scenario','stress','model','quantitative','analysis','stress test','sensitivity'],dtype:['risk_rating'],sector:[]},
+  {text:'Control effectiveness testing results from the latest monitoring cycle',triggers:['control','testing','effectiveness','monitoring','test','sample','assurance'],dtype:['risk_rating','compliance_flag'],sector:[]},
+  {text:'KRI trend data — minimum 12-month history',triggers:['kri','indicator','trend','metric','dashboard','reporting','key risk'],dtype:['risk_rating'],sector:[]},
+  // Generic fallback
+  {text:'Supporting documentation and evidence to substantiate the scenario described',triggers:[],dtype:[],sector:[]},
+  {text:'Current regulatory status confirmation from the relevant authority',triggers:['status','current','confirm','verify','regulator'],dtype:[],sector:[]},
+  {text:'Independent verification of key facts and figures presented in the scenario',triggers:['verify','confirm','independent','third party','validate'],dtype:[],sector:[]},
 ];
 
-const PHRASES_LOW = [
-  'clean credit history','no adverse findings','no regulatory action','compliant history',
-  'audited accounts','unqualified audit','clean audit','strong controls','well governed',
-  'licensed and regulated','full regulatory approval','long trading history','established business',
-  'stable financials','profitable operations','strong revenue','growing business',
-  'documented source of funds','verified identity','full kyc completed','enhanced due diligence passed',
-  'sanctions clear','pep clear','adverse media clear','no adverse media',
-  'transparent ownership','disclosed beneficiaries','simple structure','straightforward',
-  'experienced management','qualified board','independent directors','robust governance',
-  'low risk rating','low risk sector','minimal complexity','standard transaction',
-  'timely filing','accounts up to date','regulatory returns filed','no outstanding issues',
-  'independent audit','third party verified','external validation','corroborating evidence',
-  'insured','hedged','collateralised','secured lending','tangible security',
+// REG ITEMS — scored against scenario + sector + dtype
+const REG_ITEMS = [
+  {text:'FCA Handbook — SYSC (Systems & Controls), COBS (Conduct of Business), PRIN (Principles)',triggers:['fca','conduct','principle','systems','control','authorised','regulated'],sector:['financial_services','banking','insurance','asset_management','compliance_regulatory'],dtype:[]},
+  {text:'UK Senior Managers & Certification Regime (SM&CR)',triggers:['senior manager','smcr','accountability','responsibility','approved person'],sector:['financial_services','banking','insurance'],dtype:[]},
+  {text:'FCA Consumer Duty (PS22/9) — Outcome-Based Consumer Protection',triggers:['consumer','customer','outcome','fair','duty','retail','product'],sector:['financial_services','banking','fintech','insurance'],dtype:['credit_assessment','compliance_flag','investment_recommendation']},
+  {text:'FSMA 2000 — Financial Services and Markets Act',triggers:['authorisation','regulated activity','financial promotion','fsma'],sector:['financial_services','banking'],dtype:[]},
+  {text:'MiFID II — Markets in Financial Instruments Directive',triggers:['investment','instrument','market','portfolio','trading','mifid','suitability'],sector:['financial_services','asset_management'],dtype:['investment_recommendation']},
+  {text:'FCA COBS 9A — Suitability and Product Governance',triggers:['suitability','product','recommend','advice','client'],sector:['financial_services','asset_management'],dtype:['investment_recommendation']},
+  {text:'Basel III / CRD V — Capital Requirements and Risk-Weighted Assets',triggers:['capital','tier 1','rwa','risk weighted','basel','buffer','cet1'],sector:['banking','financial_services'],dtype:['risk_rating','credit_assessment']},
+  {text:'PRA Rulebook — Prudential Standards and Supervision',triggers:['pra','prudential','capital','liquidity','stress','icaap'],sector:['banking','insurance'],dtype:[]},
+  {text:'IFRS 9 — Expected Credit Loss Provisioning',triggers:['impairment','provision','credit loss','ecl','stage','default','forward looking'],sector:['banking','financial_services'],dtype:['credit_assessment','risk_rating']},
+  {text:'CCA 1974 (as amended) — Consumer Credit Act',triggers:['consumer credit','consumer loan','personal loan','hire purchase','credit agreement','conc'],sector:['financial_services','banking','fintech'],dtype:['credit_assessment']},
+  {text:'Proceeds of Crime Act 2002 (POCA) — Money Laundering Offences',triggers:['money laundering','proceeds','criminal','asset','poca','aml'],sector:['financial_services','banking','compliance_regulatory'],dtype:['aml_alert','fraud_detection']},
+  {text:'MLR 2017 — Money Laundering Regulations (UK)',triggers:['aml','kyc','due diligence','cdd','mlr','suspicious','reporting'],sector:['financial_services','banking','fintech'],dtype:['aml_alert','kyc_check']},
+  {text:'JMLSG Guidance (Parts I–III) — Joint Money Laundering Steering Group',triggers:['aml','kyc','due diligence','customer','onboarding','risk assessment'],sector:['financial_services','banking'],dtype:['aml_alert','kyc_check']},
+  {text:'FATF 40 Recommendations — International AML/CFT Standards',triggers:['fatf','aml','international','cft','terrorism','financing','40 recommendations'],sector:[],dtype:['aml_alert','kyc_check']},
+  {text:'Fraud Act 2006 — Criminal Liability for Fraudulent Activity',triggers:['fraud','false','dishonest','deception','misrepresentation','fake'],sector:[],dtype:['fraud_detection']},
+  {text:'FCA Financial Crime Guide (FCG) — Guidance on Financial Crime Controls',triggers:['financial crime','fraud','aml','bribery','corruption','sanctions','fcg'],sector:['financial_services','banking'],dtype:['fraud_detection','aml_alert']},
+  {text:'AIFMD / UK AIFM Regulations — Alternative Investment Fund Management',triggers:['fund','aif','alternative','hedge','private equity','portfolio','manager'],sector:['asset_management'],dtype:['investment_recommendation']},
+  {text:'UCITS Directive — Undertakings for Collective Investment',triggers:['ucits','collective','fund','unit trust','oeic','retail fund'],sector:['asset_management'],dtype:[]},
+  {text:'Solvency II / UK Solvency Rules — Insurance Capital and Risk Management',triggers:['solvency','insurance','scr','mce','orsa','pillar','underwriting'],sector:['insurance'],dtype:['risk_rating']},
+  {text:'FCA ICOBS — Insurance Conduct of Business Sourcebook',triggers:['insurance','policy','policyholder','claim','insured','premium','cover'],sector:['insurance'],dtype:[]},
+  {text:'FCA Payment Services Regulations 2017 — PSR Compliance',triggers:['payment','psr','psd2','emoney','e-money','account','open banking'],sector:['fintech','banking'],dtype:[]},
+  {text:'FCA Consumer Duty (PS22/9) / EMI Regulations — Fintech Consumer Protection',triggers:['consumer','customer','fintech','app','digital','payment','e-money'],sector:['fintech'],dtype:[]},
+  {text:'UK GDPR / Data Protection Act 2018 — Data Privacy and Processing Obligations',triggers:['data','personal','gdpr','dpa','privacy','ico','processing','consent','lawful'],sector:[],dtype:['vendor_risk','compliance_flag']},
+  {text:'FCA SS2/21 — Outsourcing and Third-Party Risk Management',triggers:['outsourc','third party','vendor','supplier','cloud','service provider'],sector:['financial_services','banking'],dtype:['vendor_risk']},
+  {text:'EBA Outsourcing Guidelines 2019 — European Banking Authority Standards',triggers:['outsourc','vendor','third party','eba','european','cloud','ict'],sector:['banking','financial_services'],dtype:['vendor_risk']},
+  {text:'UK Corporate Governance Code 2018 — Board Governance Standards',triggers:['board','director','governance','committee','chair','independent','code'],sector:['governance_risk','compliance_regulatory'],dtype:['governance_finding']},
+  {text:'FCA SYSC 4 — Governance, Systems and Controls',triggers:['governance','systems','control','sysc','oversight','management','framework'],sector:['financial_services','banking','insurance'],dtype:['governance_finding','compliance_flag']},
+  {text:'ISO 31000:2018 — International Risk Management Standard',triggers:['risk management','framework','iso','risk process','risk appetite','risk register'],sector:['governance_risk','compliance_regulatory'],dtype:['risk_rating','governance_finding']},
+  {text:'COSO ERM Framework — Enterprise Risk Management',triggers:['erm','enterprise risk','coso','three lines','risk framework','risk governance'],sector:['governance_risk'],dtype:['risk_rating']},
+  {text:'FCA Enforcement Guide / DEPP — Decision Procedure and Penalties',triggers:['enforcement','penalty','fine','sanction','depp','investigation','action'],sector:['compliance_regulatory','financial_services'],dtype:['regulatory_breach']},
+  {text:'FCA SUP 15 — Notification and Reporting Obligations to Regulators',triggers:['notify','notification','sup','report','disclose','material','change'],sector:['financial_services','banking'],dtype:['regulatory_breach','compliance_flag']},
+  {text:'CBN AML/CFT Regulations 2013 (as amended) — Nigeria',triggers:['cbn','nigeria','naira','ngn','nfiu','nigerian','lagos','abuja'],sector:[],dtype:[]},
+  {text:'NFIU Financial Intelligence Guidelines — Nigeria Financial Intelligence Unit',triggers:['nfiu','nigeria','financial intelligence','lagos','nigerian','cbn'],sector:[],dtype:['aml_alert']},
+  {text:'SEC Nigeria Market Conduct Rules',triggers:['sec nigeria','nigeria','securities','market','capital market','nigerian'],sector:[],dtype:[]},
+  // Fallback
+  {text:'ISO 31000:2018 — Risk Management Principles and Guidelines',triggers:[],sector:[],dtype:[]},
+  {text:'FATF 40 Recommendations — International AML/CFT Standards',triggers:[],sector:[],dtype:[]},
+  {text:'OECD Corporate Governance Principles',triggers:[],sector:[],dtype:[]},
 ];
 
-const SECTOR_BOOSTERS = {
-  financial_services:{ high:['conduct risk','mis-selling','unsuitable advice','client money','custody'], low:['fca authorised','pra regulated','senior manager certified'] },
-  banking:{ high:['capital shortfall','liquidity gap','stress test fail','basel breach'], low:['icaap compliant','basel iii','tier 1 capital adequate'] },
-  fintech:{ high:['unlicensed','emoney breach','payment fraud','chargeback elevated','customer harm'], low:['fca registered','emoney licence','pi licence','sandbox approved'] },
-  insurance:{ high:['reserving inadequate','scr breach','claims manipulation','underwriting loss'], low:['solvency ii compliant','scr met','pra regulated insurance'] },
-  asset_management:{ high:['mandate breach','overweight','mis-classification','misleading prospectus'], low:['ucits compliant','aifmd compliant','mifid suitability met'] },
-  compliance_regulatory:{ high:['material gap','systemic failure','repeat finding','unresolved finding'], low:['compliant','remediated','closed finding','audit cleared'] },
-  governance_risk:{ high:['board failure','no audit committee','no risk committee','director conflict'], low:['code compliant','board review completed','risk appetite approved'] },
-  startup_scaleup:{ high:['no authorisation','unregulated activity','burn rate concern','runway short'], low:['authorised','fca early stage','seed funded','investment grade'] },
-};
-
-const JURISDICTIONS = {
-  nigeria:['CBN','NFIU','Nigeria','NGN','naira','Lagos','Abuja','Kano','SEC Nigeria','NDIC','EFCC'],
-  uk:['FCA','PRA','UK','sterling','GBP','London','FRC','ICO','HMRC','Companies House','NCA'],
-  eu:['EBA','ESMA','ECB','EUR','euro','European','MiFID','GDPR','Basel','BCBS'],
-  us:['SEC','FINRA','OCC','FDIC','USD','dollar','FinCEN','OFAC','BSA'],
-};
-
-const REGS_BY_SECTOR = {
-  financial_services:['FCA Handbook (SYSC, COBS, PRIN)','PRA Rulebook','FSMA 2000','MiFID II','UK Senior Managers & Certification Regime'],
-  banking:['Basel III / CRD V','PRA Capital Requirements','EBA Guidelines on ICAAP','BCBS 239 Risk Data Principles','PRA SS7/18 Model Risk'],
-  fintech:['FCA Payment Services Regulations 2017','EMI Regulations 2011','UK GDPR / Data Protection Act 2018','FCA Consumer Duty (PS22/9)','CBN Regulatory Framework for Fintechs'],
-  insurance:['Solvency II / UK Solvency Rules','FCA ICOBS Sourcebook','PRA Solvency Capital Requirements','IAIS Core Principles','Lloyd\'s Market Guidelines'],
-  asset_management:['AIFMD / UK AIFM Regulations','UCITS Directive','FCA COLL Sourcebook','MiFID II Suitability (Art 25)','ESMA Risk Management Guidelines'],
-  compliance_regulatory:['FCA Threshold Conditions','FRC UK Corporate Governance Code 2018','COSO Internal Control Framework','ISO 31000:2018','FCA DEPP Sourcebook'],
-  governance_risk:['UK Corporate Governance Code 2018','FRC Audit & Assurance Guidance','FCA SYSC 4','ISO 31000:2018','COSO ERM Framework'],
-  startup_scaleup:['FCA Authorisation Requirements (PERG)','Companies Act 2006','FCA Consumer Duty (PS22/9)','ICO Data Protection Framework','FCA Senior Managers Regime (SM&CR)'],
-  nigeria:['CBN AML/CFT Regulations 2013 (as amended)','CBN CSAT Framework 2023','NFIU Financial Intelligence Guidelines','SEC Nigeria Market Conduct Rules','NDIC Guidelines'],
-  generic:['FATF 40 Recommendations','ISO 31000:2018 Risk Management','Basel Committee on Banking Supervision Principles','OECD Corporate Governance Principles','International Standards on Auditing (ISA)'],
-};
-
-const REGS_BY_DTYPE = {
-  credit_assessment:['CCA 1974 (as amended)','FCA CONC Sourcebook','Basel IRB Approach Guidance','IFRS 9 Expected Credit Loss','FCA Consumer Duty (PS22/9)'],
-  fraud_detection:['Fraud Act 2006','FCA Financial Crime Guide (FCG)','JMLSG Guidance (Part I & II)','UK Finance Fraud Prevention Standards','Proceeds of Crime Act 2002 (POCA)'],
-  aml_alert:['POCA 2002','Terrorism Act 2000','JMLSG Guidance (Parts I-III)','FATF Recommendations (40+9)','MLR 2017','CBN AML/CFT Regulations'],
-  compliance_flag:['FCA Enforcement Guide','DEPP Sourcebook','Compliance Monitoring Best Practice (FCA)','COSO Internal Control Framework','FCA Consumer Duty (PS22/9)'],
-  risk_rating:['Basel III Pillar 2 ICAAP','ISO 31000:2018','FCA SREP Guidance','EBA Risk Assessment Guidelines','PRA Stress Testing Framework'],
-  kyc_check:['MLR 2017 (Reg 28-30)','FATF Recommendation 10','JMLSG Chapter 5','FCA FCG 3 — CDD','CBN KYC Manual'],
-  regulatory_breach:['FCA Enforcement Guide','DEPP Chapter 6','Financial Services Act 2012','Upper Tribunal Guidance','FCA SUP 15 (Notifications)'],
-  investment_recommendation:['MiFID II Suitability (Art 25)','FCA COBS 9A','ESG Disclosure Regulations','FCA Retail Investment Guidance','FCA Consumer Duty (PS22/9)'],
-  vendor_risk:['FCA SS2/21 Outsourcing','EBA Outsourcing Guidelines 2019','ICO Third Party Data Sharing Guidance','NCSC Supply Chain Security','FCA Consumer Duty Third-Party Obligations'],
-  governance_finding:['UK Corporate Governance Code 2018','FRC Audit & Assurance Guidance','FCA SYSC 4 Governance','Senior Managers & Certification Regime','FRC Board Evaluation Guidance'],
-};
-
-const DATA_GAPS = {
-  credit_assessment:['Full 24-month bank statement and cashflow analysis','Most recent audited financial statements (2 years)','Director personal credit bureau report','Sector-specific stress test scenarios','Up-to-date Companies House filings and confirmation statement','Independent business valuation','Management accounts for current period','Asset and liability schedule'],
-  fraud_detection:['Full transaction history — prior 12 months','Device fingerprint and IP geolocation data','Cross-account behavioural pattern analysis','Third-party fraud intelligence database check','Real-time sanctions screening result','Call recording or chat logs for context','Originating account verification','Biometric verification result'],
-  aml_alert:['Enhanced source of funds documentation','Ultimate beneficial owner (UBO) verification','PEP and adverse media screening result','Cross-border transaction mapping','Correspondent bank relationship disclosure','Source of wealth declaration','Account opening documentation','Senior management sign-off on risk acceptance'],
-  kyc_check:['Certified proof of address (within 3 months)','UBO register extract','Enhanced due diligence report for high-risk jurisdictions','Sanctions and watchlist screening certificate','Business activity verification and site visit','Regulatory licence or registration confirmation','Company formation documents','Shareholder register and voting rights disclosure'],
-  risk_rating:['Quantitative scenario analysis (base / stress / severe)','Peer benchmarking data for sector','Forward-looking macroeconomic sensitivity analysis','Control effectiveness testing results (latest cycle)','Risk appetite statement alignment evidence','Loss history data (3 years)','KRI trend data','Internal audit findings relevant to this risk area'],
-  compliance_flag:['Regulatory correspondence audit trail (full)','Board-level attestation on control environment','Most recent compliance monitoring report','Policy breach root cause analysis','Remediation timeline with named ownership','Previous regulatory dialogue on this issue','Legal opinion on exposure','Policy documentation (current version)'],
-  regulatory_breach:['Regulatory investigation file — full correspondence','Legal counsel opinion on materiality and liability','Board resolution on response strategy','FCA/CBN notification status confirmation','Redress calculation methodology and quantum','Timeline of events (detailed chronology)','Affected customer identification and harm assessment','Remediation plan with governance oversight'],
-  investment_recommendation:['Client suitability assessment — signed and dated','Risk appetite questionnaire results (current)','Portfolio stress test outputs','Conflicts of interest register review','MiFID II / Consumer Duty execution policy compliance check','Historical suitability outcomes for similar recommendations','ESG preference documentation','Independent suitability review'],
-  vendor_risk:['Vendor SOC 2 Type II / ISO 27001 certificate','Business continuity and disaster recovery plan (tested)','Sub-processor and fourth-party exposure mapping','Exit strategy and data portability plan','Regulatory notification of outsourcing arrangement','Information security assessment','Data processing agreement (DPA)','Contractual SLA and liability cap review'],
-  governance_finding:['Board skills and experience matrix (current)','Committee terms of reference (latest version)','Independent governance review report','Board performance evaluation results (last 12 months)','Whistleblowing policy and case register','Succession plan for key roles','MI reporting pack to Board','Conflicts of interest register'],
-};
-
-const ACTIONS = {
-  APPROVE:{
-    credit_assessment:'Proceed to credit offer documentation. Apply standard monitoring covenants. Schedule 12-month covenant review.',
-    fraud_detection:'Clear transaction. Update customer risk profile and fraud intelligence record. Log outcome.',
-    aml_alert:'Close alert with documented rationale. Update customer risk rating. Schedule next AML review per risk appetite.',
-    compliance_flag:'Document compliance clearance. Update controls register. Notify compliance monitoring team of outcome.',
-    risk_rating:'Record updated rating in risk register. Notify risk owners. Schedule next assessment per risk calendar.',
-    kyc_check:'Onboard customer. Apply standard transaction monitoring parameters. Set enhanced review trigger thresholds.',
-    regulatory_breach:'File regulatory self-report if required. Document remediation action. Notify General Counsel.',
-    investment_recommendation:'Execute recommendation. Document suitability rationale. Set performance review schedule.',
-    vendor_risk:'Execute vendor contract. Activate ongoing monitoring schedule. Register in third-party risk register.',
-    governance_finding:'Document finding as closed. Record in governance register. Report to Board at next scheduled meeting.',
-    generic:'Proceed. Document decision rationale. Apply standard monitoring and schedule a structured review.'
-  },
-  FLAG:{
-    credit_assessment:'Place application on hold. Request additional financial documentation. Escalate to senior credit officer within 5 business days.',
-    fraud_detection:'Temporarily suspend transaction. Initiate enhanced verification process. Alert fraud operations team immediately.',
-    aml_alert:'Suspend activity pending clarification. Request supporting documentation. Refer to MLRO for assessment.',
-    compliance_flag:'Suspend flagged activity. Initiate gap analysis. Assign remediation owner with 30-day target.',
-    risk_rating:'Escalate to Risk Committee. Apply interim controls. Conduct enhanced scenario analysis within 14 days.',
-    kyc_check:'Suspend onboarding. Issue enhanced due diligence request. Set 10-business-day response deadline.',
-    regulatory_breach:'Notify Legal and Compliance immediately. Preserve evidence. Assess FCA/CBN notification obligation.',
-    investment_recommendation:'Pause recommendation. Review suitability documentation. Obtain second opinion from senior adviser.',
-    vendor_risk:'Suspend vendor engagement. Commission independent assurance. Review contractual protections.',
-    governance_finding:'Escalate to Board sub-committee. Appoint independent reviewer. Prepare remediation plan within 21 days.',
-    generic:'Place matter on hold. Obtain additional information. Escalate to appropriate senior officer within agreed SLA.'
-  },
-  REJECT:{
-    credit_assessment:'Decline application. Issue adverse action notice per CONC requirements. Document credit decisioning rationale in full.',
-    fraud_detection:'Block transaction and freeze account. File Suspicious Activity Report (SAR). Notify fraud operations immediately.',
-    aml_alert:'File Suspicious Activity Report with NCA / NFIU. Restrict account. Notify MLRO and Legal Counsel.',
-    compliance_flag:'Issue breach notice. Escalate to Compliance Committee. Initiate regulatory notification assessment.',
-    risk_rating:'Refer to Risk Committee for formal resolution. Apply enhanced controls. Consider regulatory disclosure.',
-    kyc_check:'Decline onboarding. Document decision in full. Apply PEP/sanctions flag to watchlist if applicable.',
-    regulatory_breach:'Notify regulator as required. Engage external legal counsel. Preserve all evidence and correspondence.',
-    investment_recommendation:'Do not execute recommendation. Issue suitability declination letter. Report to Compliance.',
-    vendor_risk:'Terminate or decline vendor engagement. Notify procurement and Legal. Review any data previously shared.',
-    governance_finding:'Escalate to Board immediately. Engage independent external reviewer. Notify regulator if material.',
-    generic:'Decline or reject. Document all reasons. Notify relevant stakeholders and preserve all supporting evidence.'
-  },
-  REFER:{
-    credit_assessment:'Refer to credit committee for collegial review. Request independent risk opinion. Set 5-business-day turnaround.',
-    fraud_detection:'Refer to Fraud Operations Unit for specialist analysis. Preserve transaction evidence. Set 48-hour review SLA.',
-    aml_alert:'Refer to MLRO for consent decision. Provide full transaction history and source of funds analysis.',
-    compliance_flag:'Refer to Compliance Committee. Engage external compliance adviser if novel or material issue.',
-    risk_rating:'Refer to Group Risk Function for senior review. Commission independent stress testing.',
-    kyc_check:'Refer to Compliance for enhanced due diligence decision. Engage specialist screening provider.',
-    regulatory_breach:'Refer to Legal and Regulatory Affairs. Obtain senior legal opinion on notification obligations.',
-    investment_recommendation:'Refer to Investment Committee. Obtain independent suitability opinion. Document referral rationale.',
-    vendor_risk:'Refer to Procurement Risk Committee. Commission third-party assurance review.',
-    governance_finding:'Refer to Nominations & Governance Committee. Engage independent governance adviser.',
-    generic:'Refer to appropriate senior decision-making authority. Document referral rationale and agreed timeline.'
-  }
-};
-
-const RATIONALE = {
-  APPROVE:{
-    h:'The scenario presents a pattern consistent with compliant, well-controlled activity. Assessment across all relevant risk dimensions indicates that key indicators fall within acceptable parameters for this sector. Available evidence is sufficient to support a positive determination, and no material flags have been identified that would warrant further scrutiny or escalation at this stage.',
-    m:'On balance, the risk profile of this scenario supports approval, though certain contextual factors introduce residual uncertainty. The risk indicators identified are present but do not, individually or collectively, reach the threshold required for further action. A positive determination is appropriate, subject to standard monitoring conditions to manage ongoing exposure.',
-    l:'A positive determination is supported by the available information, though assessment confidence is constrained by the completeness of evidence presented. The decision to approve is made on the weight of information available and should be subject to enhanced monitoring and a structured follow-up review within 30 days of this determination.'
-  },
-  FLAG:{
-    h:'This scenario presents a concentration of risk indicators that, taken together, create material uncertainty about the appropriate course of action. The evidence does not clearly support rejection at this stage, but it is sufficient to warrant a structured pause, targeted investigation, and human review before any determination is finalised. The flags identified are sector-relevant and require resolution.',
-    m:'Several features of this scenario fall outside normal expected parameters for this sector and decision type. The risk indicators, while individually not definitive, form a pattern that warrants closer examination. Additional information should be obtained and reviewed before a final determination is made.',
-    l:'This scenario contains elements that are inconsistent with standard risk parameters, though the available information is not sufficient to make a definitive determination at this stage. A flag has been raised to prompt further investigation, and structured human review is required before any decision is taken.'
-  },
-  REJECT:{
-    h:'The risk profile presented in this scenario is materially elevated, with multiple indicators pointing to significant exposure. The combination of factors identified exceeds the acceptable threshold for this decision type and sector context. A positive determination cannot be supported without fundamental changes to the underlying risk profile, and rejection is the appropriate outcome at this stage.',
-    m:'The weight of evidence in this scenario supports a rejection determination. While some individual factors carry ambiguity, the aggregate risk indicators — particularly those relating to compliance alignment and regulatory exposure — present a profile inconsistent with acceptable parameters for this sector.',
-    l:'The assessment outcome leans toward rejection based on the risk signals identified, though the confidence level reflects the constraints of available information. This determination is made on a precautionary basis and the matter should be fully investigated before any reconsideration. Rejection does not preclude reapplication following remediation.'
-  },
-  REFER:{
-    h:'This scenario presents a risk profile of sufficient complexity and materiality that a definitive determination cannot be made at standard review level. The matter exhibits features requiring specialist assessment, senior review, or collegial decision-making to ensure the appropriate outcome. Referral is required.',
-    m:'The risk and compliance dimensions of this scenario intersect in a way that creates genuine decisional complexity. The matter warrants escalation to a more senior or specialist reviewer who can bring additional expertise and authority to the determination.',
-    l:'Given the constraints on available information and the nature of the risk signals identified, this scenario cannot be resolved at the current review level with sufficient confidence. Referral ensures the matter receives the appropriate level of scrutiny before a final determination is made.'
-  }
-};
-
-const FLAGS_BY_SECTOR = {
-  financial_services:['Potential breach of FCA conduct requirements identified','Inadequate client money controls noted','Senior management accountability gap present','Financial crime risk indicators present in scenario','Customer outcome deficiency identified'],
-  banking:['Capital adequacy concern relative to risk exposure','Credit concentration in single counterparty or sector identified','Liquidity buffer below internal stress threshold','Operational risk event not captured in register','ICAAP assumptions may not reflect current environment'],
-  fintech:['Regulatory licensing status requires clarification','Customer due diligence process gaps identified','Payments settlement risk elevated','Data protection compliance uncertainty noted','AML transaction monitoring parameters potentially insufficient'],
-  insurance:['Solvency position relative to SCR requires review','Reserving adequacy concern identified','Underwriting controls appear insufficient for risk level','Claims handling conduct issue noted','Policyholder outcome risk elevated'],
-  asset_management:['Investment mandate boundary potentially breached','Suitability assessment documentation insufficient','Liquidity mismatch in portfolio construction identified','Conflicts of interest not adequately managed or disclosed','Valuation methodology independence concern'],
-  compliance_regulatory:['Regulatory obligation mapping incomplete or out of date','Control effectiveness below required threshold','Material gap in compliance monitoring framework','Policy documentation absent or not current','Board-level oversight of compliance function insufficient'],
-  governance_risk:['Board composition does not meet independence standards','Risk appetite not formally approved or communicated','Three lines of defence model not fully embedded','Risk register not current or owner-assigned','Internal audit findings not tracked to closure'],
-  startup_scaleup:['Regulatory authorisation status unclear or absent','Corporate governance framework nascent or informal','Financial controls not commensurate with risk profile','Personal and company financial separation inadequate','Data handling and privacy compliance uncertain'],
-};
-
-const FLAGS_BY_DTYPE = {
-  credit_assessment:['Debt-service coverage ratio below sector benchmark','Director or shareholder credit history adverse','Sector-specific cyclical stress exposure identified','Concentration risk in loan book','Tangible asset security coverage insufficient'],
-  fraud_detection:['Transaction velocity inconsistent with established customer profile','Geographic anomaly in transaction origin','Device and behavioural mismatch identified','Rapid fund movement following deposit','Account opened recently with immediate high-value activity'],
-  aml_alert:['Source of funds documentation incomplete or implausible','Politically exposed person (PEP) connection identified','High-risk jurisdiction involvement identified','Complex layering structure in transaction chain','Structuring behaviour consistent with known typologies'],
-  kyc_check:['Identity document verification inconclusive','Beneficial ownership structure opaque or complex','Adverse media search returned relevant results','Enhanced due diligence required but not completed','Address verification inconsistent with stated profile'],
-  risk_rating:['Risk score methodology not validated against outcomes data','Qualitative factors underweighted in scoring model','Correlation risk between categories not modelled','Forward-looking indicators absent from assessment','Concentration within a single risk driver identified'],
-  regulatory_breach:['Regulatory notification obligation may be triggered','Evidence preservation requirements not yet satisfied','Limitation period considerations may apply','Regulatory correspondence not adequately logged or retained','Remediation plan absent or insufficient for the finding'],
-  investment_recommendation:['Suitability assessment documentation incomplete','Customer risk appetite not adequately captured','ESG preference not considered in recommendation','Concentration risk identified in recommended portfolio','Conflicts of interest disclosure insufficient'],
-  vendor_risk:['Sub-processor chain not fully mapped','Business continuity plan not tested within required period','Data residency outside approved jurisdictions','Contractual liability cap may be inadequate for risk exposure','Exit management plan absent or significantly outdated'],
-  governance_finding:['Board skills matrix does not cover required competencies','Committee structure does not provide effective independent challenge','Management information to Board inadequate for effective oversight','Succession planning gap identified','Board evaluation not conducted or findings not acted upon'],
-};
-
-const GENERIC_FLAGS = ['Material risk indicator identified in the scenario presented','Compliance exposure requires further assessment','Control gap noted — remediation action recommended','Documentation insufficient relative to level of risk','Regulatory alignment requires verification against current standards','Sector-specific risk concentration identified','Oversight framework may not be commensurate with risk profile','Escalation pathway not clearly defined for this risk type'];
-
-function pickN(arr, n){return [...arr].sort(()=>Math.random()-.5).slice(0,Math.min(n,arr.length));}
-
-function detectNegation(text, phrase){
-  const idx = text.indexOf(phrase);
-  if(idx<0) return false;
-  const before = text.substring(Math.max(0,idx-40),idx).toLowerCase();
-  return NEGATORS.some(n=>before.includes(n));
-}
-
-function detectJurisdiction(text){
-  const t=text.toLowerCase();
-  const scores={};
-  Object.entries(JURISDICTIONS).forEach(([jur,terms])=>{
-    scores[jur]=terms.filter(t2=>t.includes(t2.toLowerCase())).length;
-  });
-  return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
-}
-
-function runEngine(sector, dtype, scenario){
+/* ─────────────────────────────────────────────────────────────────
+   SCENARIO-AWARE SCORER
+   Scores each item by: trigger keyword matches in scenario (primary)
+   + dtype match bonus + sector match bonus.
+   Returns top N, with fallback items used to guarantee minimum count.
+───────────────────────────────────────────────────────────────── */
+function scoreItems(items, scenario, sector, dtype, topN) {
   const t = scenario.toLowerCase();
-  let score=0, phrasesFound=[], positiveFound=[];
-
-  // PHRASE SCANNING with negation check
-  PHRASES_HIGH.forEach(ph=>{
-    if(t.includes(ph)){
-      if(detectNegation(t,ph)){ score+=1; positiveFound.push(ph+' (negated)'); }
-      else { score+=3; phrasesFound.push(ph); }
-    }
+  const scored = items.map(item => {
+    let score = 0;
+    // Trigger keyword match (each match = 2 pts)
+    item.triggers.forEach(kw => { if(kw && t.includes(kw.toLowerCase())) score += 2; });
+    // Dtype relevance bonus
+    if(item.dtype && item.dtype.length > 0 && item.dtype.includes(dtype)) score += 3;
+    // Sector relevance bonus
+    if(item.sector && item.sector.length > 0 && item.sector.includes(sector)) score += 2;
+    // Penalise pure fallbacks (no triggers, no dtype, no sector)
+    if(!item.triggers.length && !item.dtype.length && !item.sector.length) score -= 1;
+    return { text: item.text, score };
   });
-  PHRASES_MED.forEach(ph=>{
-    if(t.includes(ph)){
-      if(detectNegation(t,ph)) score-=0.5;
-      else score+=1;
-    }
-  });
-  PHRASES_LOW.forEach(ph=>{
-    if(t.includes(ph)){
-      if(detectNegation(t,ph)) score+=1.5;
-      else score-=2;
-    }
-  });
-
-  // SECTOR BOOSTER
-  const sb = SECTOR_BOOSTERS[sector];
-  if(sb){
-    (sb.high||[]).forEach(p=>{ if(t.includes(p.toLowerCase())) score+=2; });
-    (sb.low||[]).forEach(p=>{ if(t.includes(p.toLowerCase())) score-=1.5; });
-  }
-
-  // DECISION MAPPING
-  let decision, conf;
-  if(score>=9)      { decision='REJECT'; conf=clamp(75+Math.floor(score)+rand(8),75,97); }
-  else if(score>=5) { decision='REJECT'; conf=clamp(62+Math.floor(score)+rand(10),62,88); }
-  else if(score>=2) { decision='FLAG';   conf=clamp(55+Math.floor(score*2)+rand(10),55,85); }
-  else if(score>=0) { decision=['FLAG','REFER'][Math.floor(Math.random()*2)]; conf=clamp(48+rand(18),48,75); }
-  else if(score>=-3){ decision='APPROVE'; conf=clamp(55+Math.abs(score)*3+rand(10),55,82); }
-  else              { decision='APPROVE'; conf=clamp(72+Math.abs(score)+rand(10),72,95); }
-
-  const tier = conf>=75?'h':conf>=55?'m':'l';
-
-  // JURISDICTION
-  const jur = detectJurisdiction(scenario);
-
-  // CONTENT ASSEMBLY
-  const sLabel = sector||'regulated sector';
-  const dLabel = dtype||'compliance decision';
-
-  const summaryMap={
-    APPROVE:`Assessment outcome: Approve. The ${dLabel} scenario for this ${sLabel} entity has been assessed and presents a risk profile within acceptable parameters for this context.`,
-    FLAG:`Assessment outcome: Flag for review. The ${dLabel} scenario contains risk indicators that require structured human review before a final determination is made.`,
-    REJECT:`Assessment outcome: Reject. The ${dLabel} scenario presents a risk profile that exceeds acceptable thresholds for this ${sLabel} context.`,
-    REFER:`Assessment outcome: Refer for specialist review. The ${dLabel} scenario requires senior-level or specialist assessment before a determination can be finalised.`,
-  };
-
-  const sectorFlags = FLAGS_BY_SECTOR[sector] || GENERIC_FLAGS;
-  const dtypeFlags  = FLAGS_BY_DTYPE[dtype]   || [];
-  const riskFlags   = pickN([...dtypeFlags,...sectorFlags,...GENERIC_FLAGS.slice(0,3)], 4);
-
-  const actionKey = dtype||'generic';
-  const action = (ACTIONS[decision]||{})[actionKey] || ACTIONS[decision].generic;
-
-  const dataGaps = pickN(DATA_GAPS[dtype] || ['Further documentation required','Additional verification needed','Supplementary evidence required','Supporting analysis not available'], 3);
-
-  const sectorRegs  = REGS_BY_SECTOR[sector] || [];
-  const dtypeRegs   = REGS_BY_DTYPE[dtype]   || [];
-  const jurRegs     = jur==='nigeria' ? REGS_BY_SECTOR.nigeria : jur==='eu' ? ['EBA Guidelines','ESMA Guidance','MiFID II'] : [];
-  const allRegs     = [...new Set([...dtypeRegs.slice(0,2),...sectorRegs.slice(0,2),...jurRegs.slice(0,1)])];
-  const regRefs     = pickN(allRegs.length ? allRegs : REGS_BY_SECTOR.generic, 3);
-
-  return {
-    decision, confidence:conf,
-    summary: summaryMap[decision],
-    rationale: RATIONALE[decision][tier],
-    risk_flags: riskFlags,
-    recommended_action: action,
-    data_gaps: dataGaps,
-    regulatory_references: regRefs,
-    _debug: {score: score.toFixed(2), tier, jurisdiction:jur}
-  };
+  // Sort by score descending, deduplicate text
+  const seen = new Set();
+  const ranked = scored
+    .sort((a,b) => b.score - a.score)
+    .filter(i => { if(seen.has(i.text)) return false; seen.add(i.text); return true; });
+  // Take top N — but only items with score > 0 as primary, fallbacks for padding
+  const primary = ranked.filter(i => i.score > 0).slice(0, topN);
+  if(primary.length >= topN) return primary.map(i => i.text);
+  const fallback = ranked.filter(i => i.score <= 0);
+  return [...primary, ...fallback].slice(0, topN).map(i => i.text);
 }
 
+/* SCENARIO-AWARE ACTION BUILDER
+   Selects the recommended action based on decision + dtype,
+   then enriches it with any specific entities mentioned in the scenario.
+*/
+function buildAction(decision, dtype, sector, scenario) {
+  const base = (ACTIONS[decision]||{})[dtype] || (ACTIONS[decision]||{})['generic'] || ACTIONS[decision].generic;
+  // Detect entity-specific mentions to personalise
+  const t = scenario.toLowerCase();
+  let prefix = '';
+  if(t.includes('fca') && decision==='REJECT') prefix = 'Notify FCA under SUP 15. ';
+  else if(t.includes('cbn') && decision==='REJECT') prefix = 'Notify CBN immediately. ';
+  else if(t.includes('sar') || t.includes('suspicious activity report')) prefix = 'File SAR with NCA/NFIU. ';
+  return prefix + base;
+}
+
+function detectNegation(text,phrase){const idx=text.indexOf(phrase);if(idx<0)return false;const before=text.substring(Math.max(0,idx-40),idx).toLowerCase();return NEGATORS.some(n=>before.includes(n));}
+function detectJurisdiction(text){const t=text.toLowerCase();const scores={};Object.entries(JURISDICTIONS).forEach(([jur,terms])=>{scores[jur]=terms.filter(t2=>t.includes(t2.toLowerCase())).length;});return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];}
 function clamp(v,min,max){return Math.min(max,Math.max(min,v));}
 function rand(n){return Math.floor(Math.random()*n);}
 
-/* ═══ DATA ═══ */
+function runEngine(sector,dtype,scenario,inputType){
+  const t=scenario.toLowerCase();
+  let score=0;
+  const isProposed = inputType==='proposed';
+
+  PHRASES_HIGH.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph)){score+=isProposed?0.5:1;}else{score+=isProposed?2:3;}}});
+  PHRASES_MED.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score-=0.5;else score+=isProposed?0.5:1;}});
+  PHRASES_LOW.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score+=1;else score-=isProposed?1.5:2;}});
+
+  const sb=SECTOR_BOOSTERS[sector];
+  if(sb){(sb.high||[]).forEach(p=>{if(t.includes(p.toLowerCase()))score+=isProposed?1:2;});(sb.low||[]).forEach(p=>{if(t.includes(p.toLowerCase()))score-=isProposed?1:1.5;});}
+
+  let decision,conf;
+  if(score>=9){decision='REJECT';conf=clamp(75+Math.floor(score)+rand(8),75,97);}
+  else if(score>=5){decision='REJECT';conf=clamp(62+Math.floor(score)+rand(10),62,88);}
+  else if(score>=2){decision='FLAG';conf=clamp(55+Math.floor(score*2)+rand(10),55,85);}
+  else if(score>=0){decision=['FLAG','REFER'][Math.floor(Math.random()*2)];conf=clamp(48+rand(18),48,75);}
+  else if(score>=-3){decision='APPROVE';conf=clamp(55+Math.abs(score)*3+rand(10),55,82);}
+  else{decision='APPROVE';conf=clamp(72+Math.abs(score)+rand(10),72,95);}
+
+  const tier=conf>=75?'h':conf>=55?'m':'l';
+  const jur=detectJurisdiction(scenario);
+
+  const sLabel=sector||'regulated sector';
+  const dLabel=dtype||'compliance decision';
+  const modeLabel=isProposed?'proposed decision':'AI output';
+
+  const summaryMap={
+    APPROVE:`Assessment outcome: Approve. This ${modeLabel} for a ${dLabel} in the ${sLabel} sector presents a risk profile within acceptable parameters for structured review.`,
+    FLAG:`Assessment outcome: Flag for review. This ${modeLabel} contains risk indicators that require structured human review before a final determination is made.`,
+    REJECT:`Assessment outcome: Reject. This ${modeLabel} presents a risk profile that exceeds acceptable thresholds for the ${sLabel} context.`,
+    REFER:`Assessment outcome: Refer for specialist review. This ${modeLabel} requires senior-level or specialist assessment before a determination can be finalised.`,
+  };
+
+  // ── SCENARIO-AWARE CONTENT ASSEMBLY ──
+  // Flags: use proposed-mode items for proposed, else scored FLAG_ITEMS
+  let riskFlags;
+  if(isProposed){
+    const pFlags = [...(PROPOSED_FLAGS_BY_SECTOR[sector]||[]),...GENERIC_PROPOSED_FLAGS];
+    // Score proposed flags by keyword match too
+    const pScored = pFlags.map(f => ({text:f, score: f.toLowerCase().split(' ').filter(w=>w.length>4).filter(w=>t.includes(w)).length}));
+    const pRanked = pScored.sort((a,b)=>b.score-a.score);
+    riskFlags = [...new Set(pRanked.map(i=>i.text))].slice(0,4);
+  } else {
+    riskFlags = scoreItems(FLAG_ITEMS, scenario, sector, dtype, 4);
+  }
+
+  // Data gaps: scenario-aware scored
+  const dataGaps = scoreItems(DATA_GAP_ITEMS, scenario, sector, dtype, 3);
+
+  // Regulatory references: scored + jurisdiction layer
+  let regPool = [...REG_ITEMS];
+  // Give jurisdiction-specific refs a boost
+  if(jur==='nigeria') regPool = regPool.map(r => ({...r, triggers:[...r.triggers,'nigeria','cbn','nfiu']}));
+  const regRefs = scoreItems(regPool, scenario, sector, dtype, 3);
+
+  // Recommended action: dtype + decision driven, with scenario entity enrichment
+  const action = buildAction(decision, dtype, sector, scenario);
+
+  return{decision,confidence:conf,summary:summaryMap[decision],rationale:RATIONALE[decision][tier],risk_flags:riskFlags,recommended_action:action,data_gaps:dataGaps,regulatory_references:regRefs,_debug:{score:score.toFixed(2),tier,jurisdiction:jur}};
+}
+
+/* ══ DATA ══ */
 const SECTORS_LIST=[['financial_services','Financial Services'],['compliance_regulatory','Compliance & Regulatory'],['banking','Banking'],['fintech','Fintech & Payments'],['insurance','Insurance'],['asset_management','Asset Management'],['startup_scaleup','Startup / Scale-up'],['governance_risk','Governance & Risk Management'],['other','Other (please specify)']];
 const SECTOR_MAP=Object.fromEntries(SECTORS_LIST.map(([v,l])=>[v,l]));
-
 const DTYPES_LIST=[['credit_assessment','Credit Assessment'],['fraud_detection','Fraud Detection'],['aml_alert','AML / Financial Crime Alert'],['compliance_flag','Compliance Flag'],['risk_rating','Risk Rating'],['kyc_check','KYC / Due Diligence'],['regulatory_breach','Regulatory Breach Determination'],['investment_recommendation','Investment Recommendation'],['vendor_risk','Vendor / Third-Party Risk'],['governance_finding','Governance Finding'],['other','Other (please specify)']];
 const DTYPE_MAP=Object.fromEntries(DTYPES_LIST.map(([v,l])=>[v,l]));
-
 const LENSES=[{id:'plausibility',icon:'🧠',title:'Plausibility',desc:'Does this output make logical sense given the scenario, available information, and normal patterns in this sector?'},{id:'risk_id',icon:'⚠️',title:'Risk Identification',desc:'Are material risk indicators correctly identified, appropriately weighted, and proportionate to actual exposure?'},{id:'reg_align',icon:'⚖️',title:'Regulatory Alignment',desc:'Does the output align with applicable regulatory frameworks, current expectations, and relevant standards for this sector?'},{id:'data_complete',icon:'🗂️',title:'Data Completeness',desc:'Does the system appear to have sufficient and accurate information to reach this conclusion with confidence?'},{id:'proportion',icon:'📐',title:'Proportionality',desc:'Is the recommended action proportionate to the actual risk level? Does the response fit the severity of the situation?'}];
 const R_LABELS=['','Major Concern','Concern','Acceptable','Good','Strong'];
-const OVERRIDES=[{id:'data_quality',label:'Data Quality Issue',desc:'Incomplete or incorrect input data'},{id:'model_bias',label:'Model Bias / Skew',desc:'Output shows systematic or directional skew'},{id:'reg_misalign',label:'Regulatory Misalignment',desc:'Does not reflect current regulatory position'},{id:'missing_context',label:'Missing Context',desc:'Relevant factors not captured in analysis'},{id:'disproportionate',label:'Disproportionate Response',desc:'Recommendation not proportionate to risk level'},{id:'precedent_conflict',label:'Precedent Conflict',desc:'Contradicts established precedent or internal policy'},{id:'expert_override',label:'Expert Judgement',desc:'Reviewer\'s domain expertise leads to a different conclusion'},{id:'other',label:'Other',desc:'Specify reasoning in notes field below'}];
+const OVERRIDES=[{id:'data_quality',label:'Data Quality Issue',desc:'Incomplete or incorrect input data'},{id:'model_bias',label:'Model Bias / Skew',desc:'Output shows systematic or directional skew'},{id:'reg_misalign',label:'Regulatory Misalignment',desc:'Does not reflect current regulatory position'},{id:'missing_context',label:'Missing Context',desc:'Relevant factors not captured in analysis'},{id:'disproportionate',label:'Disproportionate Response',desc:'Recommendation not proportionate to risk level'},{id:'precedent_conflict',label:'Precedent Conflict',desc:'Contradicts established precedent or internal policy'},{id:'expert_override',label:'Expert Judgement',desc:"Reviewer's domain expertise leads to a different conclusion"},{id:'other',label:'Other',desc:'Specify reasoning in notes field below'}];
 const H_OPTIONS=[{id:'approve',icon:'✅',title:'Approve',desc:'Accept output without conditions. No material concerns identified.'},{id:'approve_cond',icon:'⚠️',title:'Approve with Conditions',desc:'Accept with documented caveats. Apply additional monitoring or interim controls.'},{id:'override',icon:'🔄',title:'Override',desc:'Human judgement supersedes system output. Requires documented reasoning and taxonomy classification.'},{id:'escalate',icon:'🚨',title:'Escalate',desc:'Refer to senior reviewer or committee. Matter exceeds reviewer authority.'}];
 const H_LABELS={approve:'Approved',approve_cond:'Approved (Cond.)',override:'Overridden',escalate:'Escalated'};
-
 const SAVE_KEY='hos_progress';
+
 function genId(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';return 'HOS-'+Array.from({length:8},()=>c[Math.floor(Math.random()*c.length)]).join('');}
 function fmtDate(iso){return new Date(iso).toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}
 
-/* ═══ SMALL COMPONENTS ═══ */
+/* ══ ESCALATION EMAIL BUILDER ══ */
+function buildEscalationEmail(entry){
+  const {recipientName,recipientEmail,reviewerName,orgName,sector,dtype,inputType,aiDecision,aiConfidence,aiSummary,avgLensScore,lensRatings,orNotes,id,timestamp}=entry;
+  const subject=`HOS Escalation — ${id} — ${dtype||'Decision Review'} — Requires Senior Review`;
+  const lensLines=LENSES.map(l=>`  ${l.title}: ${lensRatings?.[l.id]||'N/A'}/5`).join('\n');
+  const body=`Dear ${recipientName||'Senior Reviewer'},
+
+This is a structured escalation from the Human Oversight System (HOS) requesting your review of the following case.
+
+ESCALATION REFERENCE
+HOS Review ID: ${id}
+Date & Time: ${fmtDate(timestamp)}
+Submitted by: ${reviewerName||'Reviewer'} — ${orgName||'Organisation not specified'}
+
+CASE DETAILS
+Sector: ${sector||'Not specified'}
+Decision Type: ${dtype||'Not specified'}
+Input Type: ${inputType==='proposed'?'Proposed Decision (pre-AI)':'AI Output Review'}
+
+ASSESSMENT RESULT
+Structured Assessment Outcome: ${aiDecision}
+Confidence Score: ${aiConfidence}%
+Summary: ${aiSummary||'Not available'}
+
+FIVE-LENS REVIEW SCORES (1 = Major Concern | 5 = Strong)
+${lensLines}
+Average Lens Score: ${avgLensScore}/5.0
+
+ESCALATION REASON
+${orNotes||'No additional notes provided. Please review the full case detail in the Audit Trail.'}
+
+ACTION REQUIRED
+This case has been escalated and requires your decision before any further action is taken. Please review the above and confirm your determination by return, or arrange a review meeting within your organisation's agreed escalation SLA.
+
+This escalation was generated automatically by the Human Oversight System (HOS), a CCC Consultancy Group tool for structured AI decision oversight.
+
+---
+CCC Consultancy Group Ltd | www.cccconsultancygroup.com | info@cccconsultancygroup.com
+© 2026 CCC Consultancy Group Ltd. All rights reserved.`;
+  return {subject,body,recipientEmail:recipientEmail||''};
+}
+
+/* ══ SMALL COMPONENTS ══ */
 function Toast({msg,type}){return <div className="toast" style={{background:type==='error'?'var(--reject)':'var(--primary)'}}>{msg}</div>;}
 
 function StepsBar({step}){
@@ -643,46 +633,28 @@ function StepsBar({step}){
   return(<div className="steps">{labels.map((label,i)=>{const n=i+1,done=n<step,active=n===step,cl=done?'d':active?'a':'p';return(<React.Fragment key={n}><div className="sn"><div className={`sc ${cl}`}>{done?'✓':n}</div><span className={`sl ${cl}`}>{label}</span></div>{n<5&&<div className={`sconn ${n<step?'d':''}`}/>}</React.Fragment>);})}</div>);
 }
 
-/* ═══ WALKTHROUGH ═══ */
+/* ══ WALKTHROUGH ══ */
 const TOUR=[
-  {title:'Welcome to the Human Oversight System',body:'HOS embeds structured human review into AI-enabled decisions. Every case goes through a five-step protocol generating a full audit trail. This tour walks you through each part of the tool in about 2 minutes.'},
-  {title:'Step 1 — Configure your review',body:'Select your sector and decision type. If neither matches your use case, choose "Other (please specify)" and type your own — the engine will adapt. Paste or describe the decision scenario, then add your organisation name and reviewer name.'},
-  {title:'Assessment Output — Step 2',body:'The built-in assessment engine analyses your scenario using phrase-level risk scanning, negation detection, and sector-specific boosters. It returns a structured output — decision, confidence, rationale, risk flags, data gaps, and regulatory references — as a starting point for human review.'},
-  {title:'Five-Lens Review — Step 3',body:'Rate the assessment output across five lenses: Plausibility, Risk Identification, Regulatory Alignment, Data Completeness, and Proportionality. Your scores drive a system recommendation for the final decision and form the structured human judgement on record.'},
-  {title:'Reviewer Decision — Step 4',body:'Choose Approve, Approve with Conditions, Override, or Escalate. Overrides require classification using the Override Taxonomy — eight categories that build institutional intelligence about where and why assessments are challenged over time.'},
-  {title:'Audit Trail',body:'Every completed review is logged with a unique HOS reference, timestamp, reviewer name, organisation, assessment outcome, human decision, and override reasoning. Exportable to CSV for regulatory evidence, audit files, or board reporting.'},
-  {title:'Governance Dashboard',body:'The Governance View aggregates all reviews into a live dashboard. Track challenge rate, average lens score, most flagged dimension, and override patterns. A governance alert fires automatically when the challenge rate exceeds 30% — the threshold indicating potential systematic issues.'},
-  {title:'Saving your progress',body:'Your progress is auto-saved after every step. If you close the browser mid-review, you will be offered the option to resume when you return. Completed reviews are permanently stored in the Audit Trail and can be exported at any time.'},
-  {title:'Feedback & support',body:'The feedback button (bottom-left, visible on every screen) opens a pre-addressed email to CCC. For advisory support on AI oversight frameworks, governance design, or regulatory compliance, use the contact details in the footer or visit the CCC website.'},
+  {title:'Welcome to the Human Oversight System',body:'HOS embeds structured human review into AI-enabled decisions and significant proposed decisions. Every case goes through a five-step protocol generating a full audit trail. This tour walks you through each part of the tool.'},
+  {title:'New: Input Type Selector',body:'Start by choosing what you are reviewing. "AI Output Review" is for system-generated decisions — credit assessments, fraud flags, compliance outputs. "Proposed Decision Review" is for significant human-proposed decisions that have not yet passed through an AI system. The engine calibrates its output differently for each.'},
+  {title:'Step 1 — Configure your review',body:'Select your sector and decision type. Paste or describe the decision scenario in as much detail as possible. The disclaimer below the scenario box tells reviewers exactly what this tool is and is not for — it is always visible and cannot be dismissed.'},
+  {title:'Assessment Output — Step 2',body:'The structured assessment engine analyses your scenario using phrase-level risk scanning, negation detection, and sector-specific calibration. It returns a structured output — decision, confidence, rationale, risk flags, data gaps, and regulatory references — as a starting point for human review.'},
+  {title:'Five-Lens Review — Step 3',body:'Rate the assessment across five lenses: Plausibility, Risk Identification, Regulatory Alignment, Data Completeness, and Proportionality. Your scores drive the system recommendation on the next step.'},
+  {title:'Reviewer Decision — Step 4',body:'Choose Approve, Approve with Conditions, Override, or Escalate. Override requires classification via the Override Taxonomy. Escalate now gives you a pre-populated escalation email — enter the recipient name and email address and the tool builds the full escalation communication for you to send.'},
+  {title:'Audit Trail & Governance',body:'Every completed review is logged with a unique HOS reference. The Governance View aggregates all reviews into a live dashboard tracking challenge rate, average lens score, and override patterns. A governance alert fires automatically when the challenge rate exceeds 30%.'},
 ];
 
 function Walkthrough({onClose}){
   const [step,setStep]=useState(0);
-  const c=TOUR[step], last=step===TOUR.length-1;
-  const top=step===0?'50%':140, left='50%';
+  const c=TOUR[step],last=step===TOUR.length-1;
+  const top=step===0?'50%':140,left='50%';
   const transform=step===0?'translate(-50%,-50%)':'translateX(-50%)';
-  return(
-    <>
-      <div className="wt-ov" onClick={onClose}/>
-      <div className="wt-tip" style={{top,left,transform}}>
-        <div className="wt-num">Step {step+1} of {TOUR.length}</div>
-        <div className="wt-tit">{c.title}</div>
-        <div className="wt-bod">{c.body}</div>
-        <div className="wt-foot">
-          <div className="wt-dots">{TOUR.map((_,i)=><div key={i} className={`wt-dot ${i===step?'on':''}`}/>)}</div>
-          <div className="wt-nav">
-            <button className="btn btn-o" style={{padding:'8px 14px',fontSize:12}} onClick={onClose}>Skip</button>
-            {step>0&&<button className="btn btn-o" style={{padding:'8px 14px',fontSize:12}} onClick={()=>setStep(s=>s-1)}>Back</button>}
-            <button className="btn btn-p" style={{padding:'8px 16px',fontSize:12}} onClick={()=>last?onClose():setStep(s=>s+1)}>{last?'Finish':'Next ›'}</button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+  return(<><div className="wt-ov" onClick={onClose}/><div className="wt-tip" style={{top,left,transform}}><div className="wt-num">Step {step+1} of {TOUR.length}</div><div className="wt-tit">{c.title}</div><div className="wt-bod">{c.body}</div><div className="wt-foot"><div className="wt-dots">{TOUR.map((_,i)=><div key={i} className={`wt-dot ${i===step?'on':''}`}/>)}</div><div className="wt-nav"><button className="btn btn-o" style={{padding:'8px 14px',fontSize:12}} onClick={onClose}>Skip</button>{step>0&&<button className="btn btn-o" style={{padding:'8px 14px',fontSize:12}} onClick={()=>setStep(s=>s-1)}>Back</button>}<button className="btn btn-p" style={{padding:'8px 16px',fontSize:12}} onClick={()=>last?onClose():setStep(s=>s+1)}>{last?'Finish':'Next ›'}</button></div></div></div></>);
 }
 
-/* ═══ STEP 1 ═══ */
+/* ══ STEP 1 ══ */
 function Step1({onNext,savedData}){
+  const [inputType,setInputType]=useState(savedData?.inputType||'');
   const [sector,setSector]=useState(savedData?.sector||'');
   const [sectorCustom,setSectorCustom]=useState(savedData?.sectorCustom||'');
   const [dtype,setDtype]=useState(savedData?.dtype||'');
@@ -692,12 +664,19 @@ function Step1({onNext,savedData}){
   const [orgName,setOrgName]=useState(savedData?.orgName||localStorage.getItem('hos_org')||'');
   const [loading,setLoading]=useState(false);
   const [toast,setToast]=useState(null);
-  function showToast(msg,type='error'){setToast({msg,type});setTimeout(()=>setToast(null),3200);}
 
-  const effectiveSector = sector==='other'?(sectorCustom.trim()||'other sector'):sector;
-  const effectiveDtype  = dtype==='other'?(dtypeCustom.trim()||'decision'):dtype;
+  function showToast(msg,type='error'){setToast({msg,type});setTimeout(()=>setToast(null),3200);}
+  const effectiveSector=sector==='other'?(sectorCustom.trim()||'other sector'):sector;
+  const effectiveDtype=dtype==='other'?(dtypeCustom.trim()||'decision'):dtype;
+
+  const scenarioPlaceholder=inputType==='ai_output'
+    ?'Paste the AI-generated decision output here, or describe what the system produced. Include the outcome, any confidence scores, flags, or recommendations the AI system returned. The engine uses this content to identify risk signals and generate a structured assessment for your review.'
+    :inputType==='proposed'
+    ?'Describe the proposed decision here. Include what is being decided, who is proposing it, what the implications are, and any relevant context — financial, regulatory, reputational, or governance. Do not paste reports or analytical documents — describe the specific decision you are seeking to review before it is acted upon.'
+    :'Select an input type above, then describe your scenario here.';
 
   function generate(){
+    if(!inputType) return showToast('Please select an input type');
     if(!sector) return showToast('Please select a sector');
     if(sector==='other'&&!sectorCustom.trim()) return showToast('Please specify your sector');
     if(!scenario.trim()) return showToast('Please describe the scenario');
@@ -705,8 +684,8 @@ function Step1({onNext,savedData}){
     if(reviewer) localStorage.setItem('hos_reviewer',reviewer);
     if(orgName) localStorage.setItem('hos_org',orgName);
     setTimeout(()=>{
-      const result=runEngine(effectiveSector,effectiveDtype,scenario);
-      onNext({result,sector:effectiveSector,sectorCustom,dtype:effectiveDtype,dtypeCustom,scenario:scenario.substring(0,400),reviewer:reviewer||'Anonymous',orgName:orgName||''});
+      const result=runEngine(effectiveSector,effectiveDtype,scenario,inputType);
+      onNext({result,inputType,sector:effectiveSector,sectorCustom,dtype:effectiveDtype,dtypeCustom,scenario:scenario.substring(0,500),reviewer:reviewer||'Anonymous',orgName:orgName||''});
       setLoading(false);
     },800+Math.random()*600);
   }
@@ -714,8 +693,24 @@ function Step1({onNext,savedData}){
   return(
     <div className="fade-up">
       {toast&&<Toast {...toast}/>}
-      <div className="card" id="step-1-card">
+      <div className="card">
         <div className="card-lbl">Review Configuration</div>
+
+        {/* INPUT TYPE SELECTOR */}
+        <label className="fl" style={{marginBottom:10}}>What are you reviewing?</label>
+        <div className="itype-grid" style={{marginBottom:22}}>
+          <div className={`itype-card ${inputType==='ai_output'?'sel':''}`} onClick={()=>setInputType('ai_output')}>
+            <span className="itype-icon">🤖</span>
+            <div className="itype-title">AI Output Review</div>
+            <div className="itype-desc">An AI system or automated model has produced a decision output — a credit assessment, fraud flag, AML alert, compliance recommendation, or similar. You are reviewing whether that output is correct, appropriate, and safe to act on.</div>
+          </div>
+          <div className={`itype-card ${inputType==='proposed'?'sel':''}`} onClick={()=>setInputType('proposed')}>
+            <span className="itype-icon">📋</span>
+            <div className="itype-title">Proposed Decision Review</div>
+            <div className="itype-desc">A significant decision is being proposed by a person or team — before it goes through an AI system or before it is acted on. You are reviewing whether it is appropriate, proportionate, and regulatory-compliant before proceeding.</div>
+          </div>
+        </div>
+
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
           <div>
             <label className="fl">Sector</label>
@@ -734,12 +729,27 @@ function Step1({onNext,savedData}){
             {dtype==='other'&&<><label className="fl">Specify Decision Type</label><input className="fi" type="text" placeholder="e.g. Sanctions screening, Model validation..." value={dtypeCustom} onChange={e=>setDtypeCustom(e.target.value)}/></>}
           </div>
         </div>
-        <label className="fl">Scenario — describe the situation or paste a decision output for review</label>
-        <textarea className="fi" style={{minHeight:120,marginBottom:16}} placeholder="Paste or describe the decision scenario here. Include as much relevant detail as possible — the assessment engine uses the content of your description to determine risk signals, regulatory flags, and the appropriate outcome. e.g. The system flagged a £240,000 loan application from a logistics SME. Director changes in the past 3 months. Clean credit history. No adverse media. One compliance note from 2023 — unresolved..." value={scenario} onChange={e=>setScenario(e.target.value)}/>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div><label className="fl">Organisation Name</label><input className="fi" type="text" placeholder="e.g. Vantage Limited" value={orgName} onChange={e=>setOrgName(e.target.value)}/></div>
-          <div><label className="fl">Reviewer Name</label><input className="fi" type="text" placeholder="e.g. John Doe" value={reviewer} onChange={e=>setReviewer(e.target.value)}/></div>
+
+        <label className="fl">
+          {inputType==='ai_output'?'AI Output — paste or describe the decision output for review':
+           inputType==='proposed'?'Proposed Decision — describe the decision being considered before action':
+           'Scenario — describe the situation or paste a decision output for review'}
+        </label>
+        <textarea className="fi" style={{minHeight:120,marginBottom:10}} placeholder={scenarioPlaceholder} value={scenario} onChange={e=>setScenario(e.target.value)}/>
+
+        {/* PERSISTENT DISCLAIMER BELOW INPUT BOX */}
+        <div className="disclaimer">
+          <span>ℹ️</span>
+          <span>
+            <strong>Tool Scope:</strong> The Human Oversight System is designed for structured review of AI-generated or system-generated decision outputs, and for reviewing significant proposed decisions before they are acted on. It is <em>not</em> a general information verification tool, a document analysis service, or a replacement for legal or regulatory advice. Pasting reports, analytical documents, or general information will produce misleading outputs. Enter the specific decision or AI output being reviewed.
+          </span>
         </div>
+
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginTop:16}}>
+          <div><label className="fl">Organisation Name</label><input className="fi" type="text" placeholder="e.g. Vantage Capital Ltd" value={orgName} onChange={e=>setOrgName(e.target.value)}/></div>
+          <div><label className="fl">Reviewer Name</label><input className="fi" type="text" placeholder="e.g. Sarah Johnson" value={reviewer} onChange={e=>setReviewer(e.target.value)}/></div>
+        </div>
+
         <div className="btn-row">
           <button className="btn btn-p" onClick={generate} disabled={loading}>
             {loading&&<span className="spinner"/>}{loading?'Analysing scenario...':'Generate Assessment Output ›'}
@@ -751,20 +761,21 @@ function Step1({onNext,savedData}){
   );
 }
 
-/* ═══ STEP 2 ═══ */
-function Step2({result,onNext,onBack}){
+/* ══ STEP 2 ══ */
+function Step2({result,inputType,onNext,onBack}){
   const col={APPROVE:'var(--approve)',FLAG:'var(--flag)',REJECT:'var(--reject)',REFER:'var(--refer)'};
   const bg={APPROVE:'var(--approve-bg)',FLAG:'var(--flag-bg)',REJECT:'var(--reject-bg)',REFER:'var(--refer-bg)'};
   const ico={APPROVE:'✅',FLAG:'⚠️',REJECT:'❌',REFER:'↗️'};
   const cc=result.confidence>=75?'var(--approve)':result.confidence>=50?'var(--flag)':'var(--reject)';
+  const modeNote=inputType==='proposed'
+    ?'⚠️ <strong>Proposed Decision Mode:</strong> The assessment below has been generated for a proposed decision — not an AI output. Risk flags reflect what a structured reviewer should consider before this decision is acted on. This is a structured starting point for human review, not a determination. Use the five-lens protocol on the next step to record your defensible judgement.'
+    :'⚠️ <strong>Assessment Engine Notice:</strong> The output below is generated by a structured local assessment engine using keyword and phrase-level risk analysis. It is a starting point for structured human review — <em>not</em> a regulatory determination. The five-lens protocol on the next step is where defensible human judgement is recorded. Treat this output as a structured prompt, not a final conclusion.';
   return(
     <div className="fade-up">
-      <div className="eng-note">
-        ⚠️ <strong>Assessment Engine Notice:</strong> The output below is generated by a structured local assessment engine using keyword and phrase-level risk analysis. It is a starting point for structured human review — <em>not</em> a regulatory determination. The five-lens protocol on the next step is where defensible human judgement is recorded. Treat this output as a structured prompt, not a final conclusion.
-      </div>
+      <div className="eng-note" dangerouslySetInnerHTML={{__html:modeNote}}/>
       <div className="alert a-info" style={{marginBottom:16}}><span>ℹ️</span><span>Review the assessment output carefully before proceeding to the five-lens structured review protocol.</span></div>
       <div className="card">
-        <div className="card-lbl">Assessment Output</div>
+        <div className="card-lbl">Assessment Output {inputType==='proposed'?'— Proposed Decision':'— AI Output'}</div>
         <div className="otop">
           <span className="dbadge" style={{background:bg[result.decision],color:col[result.decision]}}>{ico[result.decision]} {result.decision}</span>
           <div className="cfb"><div><div className="cfm">Confidence</div><div className="cfn" style={{color:cc}}>{result.confidence}%</div></div><div style={{flex:1}}><div className="cfbar"><div className="cffill" style={{width:result.confidence+'%'}}/></div></div></div>
@@ -783,7 +794,7 @@ function Step2({result,onNext,onBack}){
   );
 }
 
-/* ═══ STEP 3 ═══ */
+/* ══ STEP 3 ══ */
 function Step3({onNext,onBack,saved}){
   const [ratings,setRatings]=useState(saved?.ratings||{});
   const [notes,setNotes]=useState(saved?.notes||{});
@@ -809,31 +820,83 @@ function Step3({onNext,onBack,saved}){
   );
 }
 
-/* ═══ STEP 4 ═══ */
-function Step4({avgScore,onNext,onBack,saved}){
+/* ══ STEP 4 ══ */
+function Step4({avgScore,reviewData,onNext,onBack,saved}){
   const [decision,setDecision]=useState(saved?.decision||null);
   const [orR,setOrR]=useState(saved?.orR||[]);
   const [orN,setOrN]=useState(saved?.orN||'');
   const [cN,setCN]=useState(saved?.cN||'');
+  // Escalation fields
+  const [escName,setEscName]=useState(saved?.escName||'');
+  const [escEmail,setEscEmail]=useState(saved?.escEmail||'');
+
   const avg=parseFloat(avgScore),sCls=avg<2.5?'bad':avg<3.5?'warn':'good';
   const sTxt=avg<2.5?`System Recommendation: Lens scores indicate significant concerns (avg ${avg.toFixed(1)}/5). Override or Escalation is recommended.`:avg<3.5?`System Recommendation: Lens scores indicate moderate concerns (avg ${avg.toFixed(1)}/5). Approval with Conditions is appropriate.`:`System Recommendation: Lens scores support the output (avg ${avg.toFixed(1)}/5). Approval appears appropriate.`;
   const toggleOR=id=>setOrR(r=>r.includes(id)?r.filter(x=>x!==id):[...r,id]);
-  const showOr=decision==='override'||decision==='escalate';
+  const showOr=decision==='override';
+  const showEsc=decision==='escalate';
+
+  // Build email preview for escalation
+  const previewEntry={
+    recipientName:escName,recipientEmail:escEmail,
+    reviewerName:reviewData?.reviewer,orgName:reviewData?.orgName,
+    sector:reviewData?.sector,dtype:reviewData?.dtype,inputType:reviewData?.inputType,
+    aiDecision:reviewData?.result?.decision,aiConfidence:reviewData?.result?.confidence,
+    aiSummary:reviewData?.result?.summary,avgLensScore:avgScore,
+    lensRatings:reviewData?.lens?.ratings,orNotes:orN,
+    id:'HOS-PREVIEW',timestamp:new Date().toISOString()
+  };
+  const emailPreview=buildEscalationEmail(previewEntry);
+
+  function openMailto(){
+    const {subject,body,recipientEmail:to}=buildEscalationEmail({
+      ...previewEntry,id:'HOS-'+genId().split('-')[1]
+    });
+    const url=`mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(url,'_blank');
+  }
+
   return(
     <div className="fade-up">
       <div className="card">
         <div className="card-lbl">Reviewer Decision</div>
         <div className={`sug ${sCls}`}>💡 {sTxt}</div>
         <div className="dgrid">{H_OPTIONS.map(d=>(<div key={d.id} className={`dopt ${decision===d.id?'sel':''}`} onClick={()=>setDecision(d.id)}><span className="di">{d.icon}</span><span className="dt">{d.title}</span><span className="dd">{d.desc}</span></div>))}</div>
-        {showOr&&<div className="orbox"><div className="orlbl">🔍 Override Reasoning Taxonomy — select all that apply</div><div className="orgrid">{OVERRIDES.map(r=>{const sel=orR.includes(r.id);return(<div key={r.id} className={`orch ${sel?'sel':''}`} onClick={()=>toggleOR(r.id)}><div className="orchk">{sel&&'✓'}</div><div><div className="orcn">{r.label}</div><div className="orcd">{r.desc}</div></div></div>);})}</div><label className="fl">Documentation &amp; Notes</label><textarea className="fi" style={{minHeight:90,marginBottom:0}} placeholder="Document your reasoning for the override or escalation. This forms part of the regulatory audit trail and should be sufficiently detailed to be defensible under regulatory scrutiny..." value={orN} onChange={e=>setOrN(e.target.value)}/></div>}
+
+        {/* OVERRIDE TAXONOMY */}
+        {showOr&&<div className="orbox">
+          <div className="orlbl">🔍 Override Reasoning Taxonomy — select all that apply</div>
+          <div className="orgrid">{OVERRIDES.map(r=>{const sel=orR.includes(r.id);return(<div key={r.id} className={`orch ${sel?'sel':''}`} onClick={()=>toggleOR(r.id)}><div className="orchk">{sel&&'✓'}</div><div><div className="orcn">{r.label}</div><div className="orcd">{r.desc}</div></div></div>);})}</div>
+          <label className="fl">Documentation &amp; Notes</label>
+          <textarea className="fi" style={{minHeight:90,marginBottom:0}} placeholder="Document your reasoning for the override. This forms part of the regulatory audit trail and should be sufficiently detailed to be defensible under regulatory scrutiny..." value={orN} onChange={e=>setOrN(e.target.value)}/>
+        </div>}
+
+        {/* ESCALATION EMAIL BUILDER */}
+        {showEsc&&<div className="escbox">
+          <div className="esclbl">🚨 Escalation — Pre-Populated Email</div>
+          <p style={{fontSize:12,color:'#7f1d1d',marginBottom:16,lineHeight:1.65}}>Enter the senior reviewer's details below. The tool will build a complete, pre-addressed escalation email covering the assessment result, lens scores, and your notes. Click "Open in Email Client" to send — it will open in your default email application (Outlook, Gmail, etc.) with everything already written.</p>
+          <div className="escgrid">
+            <div><label className="fl">Recipient Name</label><input className="fi" type="text" placeholder="e.g. Jane Smith" value={escName} onChange={e=>setEscName(e.target.value)}/></div>
+            <div><label className="fl">Recipient Email</label><input className="fi" type="email" placeholder="e.g. j.smith@organisation.com" value={escEmail} onChange={e=>setEscEmail(e.target.value)}/></div>
+          </div>
+          <label className="fl">Escalation Notes</label>
+          <textarea className="fi" style={{minHeight:80,marginBottom:12}} placeholder="Explain why this case is being escalated and what decision or action you are requesting from the senior reviewer..." value={orN} onChange={e=>setOrN(e.target.value)}/>
+          <div className="esc-preview-lbl">📧 Email Preview</div>
+          <div className="esc-preview">{`To: ${escEmail||'[recipient email]'}\nSubject: ${emailPreview.subject}\n\n${emailPreview.body}`}</div>
+          <div style={{marginTop:14}}>
+            <button className="btn btn-e" onClick={openMailto} style={{marginRight:10}} disabled={!escEmail.trim()}>📬 Open in Email Client</button>
+            <span style={{fontSize:11,color:'#7f1d1d'}}>Opens your email app with this message pre-filled. You press send.</span>
+          </div>
+        </div>}
+
         {decision==='approve_cond'&&<div><label className="fl">Conditions &amp; Caveats</label><textarea className="fi" style={{minHeight:90,marginBottom:0}} placeholder="Document the conditions, monitoring requirements, or additional controls applied to this conditional approval..." value={cN} onChange={e=>setCN(e.target.value)}/></div>}
       </div>
-      <div className="btn-row"><button className="btn btn-o" onClick={onBack}>← Back</button><button className="btn btn-t" style={{opacity:decision?1:.5,cursor:decision?'pointer':'not-allowed'}} onClick={()=>decision&&onNext({decision,orR,orN,cN})} disabled={!decision}>Submit &amp; Record Review ›</button></div>
+      <div className="btn-row"><button className="btn btn-o" onClick={onBack}>← Back</button><button className="btn btn-t" style={{opacity:decision?1:.5,cursor:decision?'pointer':'not-allowed'}} onClick={()=>decision&&onNext({decision,orR,orN,cN,escName,escEmail})} disabled={!decision}>Submit &amp; Record Review ›</button></div>
     </div>
   );
 }
 
-/* ═══ STEP 5 ═══ */
+/* ══ STEP 5 ══ */
 function Step5({entry,onNew}){
   return(
     <div className="fade-up"><div className="card"><div className="sw">
@@ -841,50 +904,43 @@ function Step5({entry,onNew}){
       <h2 style={{fontSize:20,fontWeight:800,color:'var(--primary)',marginBottom:6}}>Review Complete</h2>
       <p style={{fontSize:13,color:'var(--muted)',marginBottom:6}}>This review has been recorded to the audit trail.</p>
       <div className="rid">{entry.id}</div>
-      <div className="rpills">{[['Assessment Outcome',entry.aiDecision],['Reviewer Decision',H_LABELS[entry.humanDecision]],['Review Score',`${entry.avgLensScore} / 5.0`],['Sector',entry.sector]].map(([l,v])=>(<div key={l} className="rpill"><div className="rpl">{l}</div><div className="rpv">{v}</div></div>))}</div>
+      <div className="rpills">{[['Assessment Outcome',entry.aiDecision],['Reviewer Decision',H_LABELS[entry.humanDecision]],['Review Score',`${entry.avgLensScore} / 5.0`],['Input Type',entry.inputType==='proposed'?'Proposed Decision':'AI Output']].map(([l,v])=>(<div key={l} className="rpill"><div className="rpl">{l}</div><div className="rpv">{v}</div></div>))}</div>
+      {entry.humanDecision==='escalate'&&entry.escEmail&&<div style={{marginTop:20,background:'#FFF1F2',border:'1px solid #FECDD3',borderRadius:10,padding:'14px 18px',fontSize:13,color:'#7f1d1d'}}><strong>Escalation logged.</strong> Email was prepared for {entry.escName||entry.escEmail}. If you have not sent it yet, return to Decision step or copy from the Audit Trail.</div>}
       <div className="btn-row" style={{justifyContent:'center',marginTop:26}}><button className="btn btn-p" onClick={onNew}>New Review</button></div>
     </div></div></div>
   );
 }
 
-/* ═══ REVIEW FLOW ═══ */
+/* ══ REVIEW FLOW ══ */
 function ReviewTab({onComplete}){
   const [step,setStep]=useState(1);
   const [data,setData]=useState({});
-
-  // Auto-save on every data change
-  useEffect(()=>{
-    if(step>1&&Object.keys(data).length>0){
-      localStorage.setItem(SAVE_KEY,JSON.stringify({step,data,savedAt:new Date().toISOString()}));
-    }
-  },[step,data]);
-
+  useEffect(()=>{if(step>1&&Object.keys(data).length>0){localStorage.setItem(SAVE_KEY,JSON.stringify({step,data,savedAt:new Date().toISOString()}));}},[step,data]);
   function go(n){setStep(n);window.scrollTo({top:0,behavior:'smooth'});}
   function handleS1(d){const nd={...data,...d};setData(nd);go(2);}
   function handleS3(d){const nd={...data,lens:d};setData(nd);go(4);}
   function handleS4(d){
-    const entry={id:genId(),timestamp:new Date().toISOString(),sector:data.sector,sectorCustom:data.sectorCustom||'',dtype:data.dtype,dtypeCustom:data.dtypeCustom||'',scenario:data.scenario,reviewer:data.reviewer,orgName:data.orgName,aiDecision:data.result.decision,aiConfidence:data.result.confidence,aiSummary:data.result.summary,aiRiskFlags:data.result.risk_flags,avgLensScore:data.lens.avg,lensRatings:data.lens.ratings,lensNotes:data.lens.notes,humanDecision:d.decision,orReasons:d.orR,orNotes:d.orN,condNotes:d.cN};
+    const entry={id:genId(),timestamp:new Date().toISOString(),inputType:data.inputType,sector:data.sector,sectorCustom:data.sectorCustom||'',dtype:data.dtype,dtypeCustom:data.dtypeCustom||'',scenario:data.scenario,reviewer:data.reviewer,orgName:data.orgName,aiDecision:data.result.decision,aiConfidence:data.result.confidence,aiSummary:data.result.summary,aiRiskFlags:data.result.risk_flags,avgLensScore:data.lens.avg,lensRatings:data.lens.ratings,lensNotes:data.lens.notes,humanDecision:d.decision,orReasons:d.orR,orNotes:d.orN,condNotes:d.cN,escName:d.escName||'',escEmail:d.escEmail||''};
     setData(p=>({...p,entry}));onComplete(entry);
-    localStorage.removeItem(SAVE_KEY);// clear saved progress
+    localStorage.removeItem(SAVE_KEY);
     go(5);
   }
   function reset(){setStep(1);setData({});localStorage.removeItem(SAVE_KEY);}
-
   return(<div>
     <StepsBar step={step}/>
     {step===1&&<Step1 onNext={handleS1} savedData={data}/>}
-    {step===2&&<Step2 result={data.result} onNext={()=>go(3)} onBack={()=>go(1)}/>}
+    {step===2&&<Step2 result={data.result} inputType={data.inputType} onNext={()=>go(3)} onBack={()=>go(1)}/>}
     {step===3&&<Step3 onNext={handleS3} onBack={()=>go(2)} saved={data.lens}/>}
-    {step===4&&<Step4 avgScore={data.lens?.avg||3} onNext={handleS4} onBack={()=>go(3)} saved={data.step4}/>}
+    {step===4&&<Step4 avgScore={data.lens?.avg||3} reviewData={data} onNext={handleS4} onBack={()=>go(3)} saved={data.step4}/>}
     {step===5&&<Step5 entry={data.entry} onNew={reset}/>}
   </div>);
 }
 
-/* ═══ AUDIT TAB ═══ */
+/* ══ AUDIT TAB ══ */
 function AuditTab({trail,onClear}){
   function exportCSV(){
-    const h=['Review ID','Timestamp','Reviewer','Organisation','Sector','Decision Type','Assessment Outcome','Confidence %','Reviewer Decision','Avg Lens Score','Override Reasons','Notes','Summary'];
-    const r=trail.map(e=>[e.id,e.timestamp,e.reviewer,e.orgName,e.sector,e.dtype,e.aiDecision,e.aiConfidence,H_LABELS[e.humanDecision]||e.humanDecision,e.avgLensScore,(e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label||id).join('; '),e.orNotes||e.condNotes||'',e.aiSummary||'']);
+    const h=['Review ID','Timestamp','Input Type','Reviewer','Organisation','Sector','Decision Type','Assessment Outcome','Confidence %','Reviewer Decision','Avg Lens Score','Override Reasons','Notes','Escalation Recipient','Escalation Email','Summary'];
+    const r=trail.map(e=>[e.id,e.timestamp,e.inputType==='proposed'?'Proposed Decision':'AI Output',e.reviewer,e.orgName,e.sector,e.dtype,e.aiDecision,e.aiConfidence,H_LABELS[e.humanDecision]||e.humanDecision,e.avgLensScore,(e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label||id).join('; '),e.orNotes||e.condNotes||'',e.escName||'',e.escEmail||'',e.aiSummary||'']);
     const csv=[h,...r].map(rw=>rw.map(c=>`"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`hos-audit-${new Date().toISOString().slice(0,10)}.csv`;a.click();
   }
@@ -905,6 +961,7 @@ function AuditTab({trail,onClear}){
         <div key={e.id} className={`aitem ${hlC[e.humanDecision]||''}`}>
           <div className="ameta"><span className="aid">{e.id}</span><span className="atime">{fmtDate(e.timestamp)}</span></div>
           <div className="brow">
+            <span className={`mb ${e.inputType==='proposed'?'mb-proposed':'mb-ai'}`}>{e.inputType==='proposed'?'📋 Proposed Decision':'🤖 AI Output'}</span>
             <span className="mb mb-g">{e.sector}</span>
             <span className={`mb ${aiB[e.aiDecision]||'mb-g'}`}>Assessment: {e.aiDecision} ({e.aiConfidence}%)</span>
             <span className={`mb ${hB[e.humanDecision]||'mb-g'}`}>Reviewer: {H_LABELS[e.humanDecision]||e.humanDecision}</span>
@@ -915,37 +972,43 @@ function AuditTab({trail,onClear}){
           <div style={{fontSize:13,color:'var(--text)',lineHeight:1.55}}>{e.aiSummary}</div>
           {orL.length>0&&<div style={{fontSize:11.5,color:'var(--muted)',marginTop:6,fontStyle:'italic'}}>Override reasons: {orL.join(' · ')}</div>}
           {(e.orNotes||e.condNotes)&&<div style={{fontSize:11.5,color:'var(--muted)',marginTop:4,fontStyle:'italic'}}>"{e.orNotes||e.condNotes}"</div>}
+          {e.humanDecision==='escalate'&&e.escEmail&&<div style={{marginTop:8,fontSize:11.5,color:'var(--escalate)',fontWeight:600}}>🚨 Escalated to: {e.escName||e.escEmail} ({e.escEmail})</div>}
         </div>
       );})}
     </div>
   );
 }
 
-/* ═══ GOVERNANCE TAB ═══ */
+/* ══ GOVERNANCE TAB ══ */
 function GovernanceTab({trail}){
-  const d1=useRef(null),d2=useRef(null),d3=useRef(null);
+  const d1=useRef(null),d2=useRef(null),d3=useRef(null),d4=useRef(null);
   const ch=useRef({});
   useEffect(()=>{
     if(!trail.length) return;
     Object.values(ch.current).forEach(c=>c&&c.destroy());ch.current={};
-    const aiC={APPROVE:0,FLAG:0,REJECT:0,REFER:0},hC={approve:0,approve_cond:0,override:0,escalate:0},sC={},rC={};
-    trail.forEach(e=>{if(aiC[e.aiDecision]!==undefined)aiC[e.aiDecision]++;if(hC[e.humanDecision]!==undefined)hC[e.humanDecision]++;sC[e.sector]=(sC[e.sector]||0)+1;(e.orReasons||[]).forEach(id=>{const l=OVERRIDES.find(r=>r.id===id)?.label||id;rC[l]=(rC[l]||0)+1;});});
+    const aiC={APPROVE:0,FLAG:0,REJECT:0,REFER:0},hC={approve:0,approve_cond:0,override:0,escalate:0},sC={},rC={},itC={'AI Output':0,'Proposed Decision':0};
+    trail.forEach(e=>{
+      if(aiC[e.aiDecision]!==undefined)aiC[e.aiDecision]++;
+      if(hC[e.humanDecision]!==undefined)hC[e.humanDecision]++;
+      sC[e.sector]=(sC[e.sector]||0)+1;
+      (e.orReasons||[]).forEach(id=>{const l=OVERRIDES.find(r=>r.id===id)?.label||id;rC[l]=(rC[l]||0)+1;});
+      if(e.inputType==='proposed')itC['Proposed Decision']++;else itC['AI Output']++;
+    });
     const ft={family:'Inter,sans-serif',size:11};
-    if(d1.current)ch.current.d1=new Chart(d1.current,{type:'bar',data:{labels:['Approve','Flag','Reject','Refer'],datasets:[{label:'Assessment',data:[aiC.APPROVE,aiC.FLAG,aiC.REJECT,aiC.REFER],backgroundColor:['#DCFCE7','#FEF3C7','#FEE2E2','#DBEAFE'],borderColor:['#16A34A','#D97706','#DC2626','#2563EB'],borderWidth:2,borderRadius:4},{label:'Reviewer',data:[hC.approve,hC.approve_cond,hC.override,hC.escalate],backgroundColor:['rgba(15,23,42,.75)','rgba(15,23,42,.5)','rgba(124,58,237,.7)','rgba(220,38,38,.65)'],borderWidth:0,borderRadius:4}]},options:{responsive:true,plugins:{legend:{labels:{font:ft}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:ft}},x:{ticks:{font:ft}}}}});
+    if(d1.current)ch.current.d1=new Chart(d1.current,{type:'bar',data:{labels:['Approve','Flag','Reject','Refer'],datasets:[{label:'Assessment',data:[aiC.APPROVE,aiC.FLAG,aiC.REJECT,aiC.REFER],backgroundColor:['#DCFCE7','#FEF3C7','#FEE2E2','#DBEAFE'],borderColor:['#16A34A','#D97706','#DC2626','#2563EB'],borderWidth:2,borderRadius:4},{label:'Reviewer',data:[hC.approve,hC.approve_cond,hC.override,hC.escalate],backgroundColor:['rgba(15,23,42,.75)','rgba(15,23,42,.5)','rgba(124,58,237,.7)','rgba(159,18,57,.65)'],borderWidth:0,borderRadius:4}]},options:{responsive:true,plugins:{legend:{labels:{font:ft}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:ft}},x:{ticks:{font:ft}}}}});
     if(d2.current)ch.current.d2=new Chart(d2.current,{type:'doughnut',data:{labels:Object.keys(sC),datasets:[{data:Object.values(sC),backgroundColor:['#0f172a','#1FBFD7','#2563EB','#7C3AED','#16A34A','#D97706','#DC2626','#6B7280','#EC4899'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:ft,boxWidth:12}}}}});
     const sr=Object.entries(rC).sort((a,b)=>b[1]-a[1]);
     if(sr.length&&d3.current)ch.current.d3=new Chart(d3.current,{type:'bar',data:{labels:sr.map(([k])=>k),datasets:[{label:'Override Frequency',data:sr.map(([,v])=>v),backgroundColor:'rgba(124,58,237,.65)',borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{stepSize:1,font:ft}},y:{ticks:{font:ft}}}}});
+    if(d4.current)ch.current.d4=new Chart(d4.current,{type:'doughnut',data:{labels:['AI Output Reviews','Proposed Decision Reviews'],datasets:[{data:[itC['AI Output'],itC['Proposed Decision']],backgroundColor:['#1FBFD7','#7C3AED'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:ft,boxWidth:12}}}}});
     return()=>Object.values(ch.current).forEach(c=>c&&c.destroy());
   },[trail]);
 
   if(!trail.length) return<div className="empty"><div className="ei">📊</div><h3>No data yet</h3><p>Complete your first review to begin building governance intelligence.</p></div>;
-
   const total=trail.length,ov=trail.filter(e=>e.humanDecision==='override').length,esc=trail.filter(e=>e.humanDecision==='escalate').length;
   const rate=Math.round(((ov+esc)/total)*100);
   const avgS=(trail.reduce((s,e)=>s+parseFloat(e.avgLensScore),0)/total).toFixed(1);
   const lL={};trail.forEach(e=>{(e.lensRatings?Object.entries(e.lensRatings):[]).forEach(([id,r])=>{if(r<=2){const t=LENSES.find(x=>x.id===id)?.title||id;lL[t]=(lL[t]||0)+1;}});});
   const topL=Object.entries(lL).sort((a,b)=>b[1]-a[1])[0];
-
   return(
     <div className="fade-up">
       <div style={{marginBottom:22}}><h2 style={{fontSize:18,fontWeight:800,color:'var(--primary)'}}>Governance Dashboard</h2><p style={{fontSize:12,color:'var(--muted)',marginTop:3}}>Aggregated oversight metrics across all completed reviews.</p></div>
@@ -956,13 +1019,14 @@ function GovernanceTab({trail}){
       <div className="chartgrid">
         <div className="ccard"><div className="clbl">Decision Distribution — Assessment vs Reviewer</div><canvas ref={d1} height={210}/></div>
         <div className="ccard"><div className="clbl">Reviews by Sector</div><canvas ref={d2} height={210}/></div>
-        <div className="ccard" style={{gridColumn:'1 / -1'}}><div className="clbl">Override Reasoning Intelligence — Category Frequency</div><canvas ref={d3} height={130}/></div>
+        <div className="ccard"><div className="clbl">Override Reasoning Intelligence — Category Frequency</div><canvas ref={d3} height={160}/></div>
+        <div className="ccard"><div className="clbl">Review Type Split — AI Output vs Proposed Decision</div><canvas ref={d4} height={160}/></div>
       </div>
     </div>
   );
 }
 
-/* ═══ APP ═══ */
+/* ══ APP ══ */
 function App(){
   const [tab,setTab]=useState('review');
   const [trail,setTrail]=useState(()=>{try{return JSON.parse(localStorage.getItem('hos_trail')||'[]');}catch{return [];}});
@@ -970,14 +1034,12 @@ function App(){
   const [showWelcome,setShowWelcome]=useState(false);
   const [showTour,setShowTour]=useState(false);
   const [savedProgress,setSavedProgress]=useState(null);
-  const [reviewKey,setReviewKey]=useState(0);// force remount to load saved data
+  const [reviewKey,setReviewKey]=useState(0);
 
   useEffect(()=>{
     const seen=localStorage.getItem('hos_seen');
     const saved=localStorage.getItem(SAVE_KEY);
-    if(saved){
-      try{const p=JSON.parse(saved);setSavedProgress(p);}catch{}
-    }
+    if(saved){try{const p=JSON.parse(saved);setSavedProgress(p);}catch{}}
     if(!seen) setShowWelcome(true);
   },[]);
 
@@ -987,20 +1049,19 @@ function App(){
   function startTour(){localStorage.setItem('hos_seen','1');setShowWelcome(false);setShowTour(true);}
   function skipWelcome(){localStorage.setItem('hos_seen','1');setShowWelcome(false);}
   function discardProgress(){localStorage.removeItem(SAVE_KEY);setSavedProgress(null);}
-
   const tabs=[{id:'review',label:'🔍 New Review'},{id:'audit',label:'📋 Audit Trail',count:trail.length},{id:'governance',label:'📊 Governance View'}];
 
   return(
     <>
-      {showWelcome&&<div className="mmask"><div className="wbox"><div className="wicon">🔍</div><div className="wtitle">Human Oversight System</div><p className="wbody">Welcome to HOS — CCC's structured review tool for AI-enabled decisions. Every case goes through a five-step protocol that produces a complete, defensible audit trail. Would you like a short tour before you begin?</p><div className="wbtns"><button className="btn btn-p" onClick={startTour}>Take the Tour ›</button><button className="btn btn-o" onClick={skipWelcome}>Skip — Go Straight In</button></div></div></div>}
+      {showWelcome&&<div className="mmask"><div className="wbox"><div className="wicon">🔍</div><div className="wtitle">Human Oversight System</div><p className="wbody">Welcome to HOS — CCC's structured review tool for AI-enabled decisions and significant proposed decisions. Every case goes through a five-step protocol producing a complete, defensible audit trail. Would you like a short tour before you begin?</p><div className="wbtns"><button className="btn btn-p" onClick={startTour}>Take the Tour ›</button><button className="btn btn-o" onClick={skipWelcome}>Skip — Go Straight In</button></div></div></div>}
       {showTour&&<Walkthrough onClose={()=>setShowTour(false)}/>}
       {toast&&<Toast {...toast}/>}
 
       <header className="hdr">
         <div className="hdr-brand">
-         <div className="hdr-logo" style={{background:'transparent',border:'none',padding:2}}>
-  <img src="logo.png" alt="CCC Consultancy Group" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
-</div>
+          <div className="hdr-logo" style={{background:'transparent',border:'none',padding:2}}>
+            <img src="logo.png" alt="CCC" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+          </div>
           <div><div className="hdr-org">CCC Consultancy Group</div><div className="hdr-tag">UK Expertise · Global Perspective · Local Impact</div></div>
           <div className="hdr-div"/>
           <div><div className="hdr-tool">Human Oversight System</div><div className="hdr-abbr">HOS — Structured review for AI-enabled decisions</div></div>
@@ -1016,8 +1077,8 @@ function App(){
         <div className="resume-bar">
           <div><p>You have an unsaved review in progress — saved at {fmtDate(savedProgress.savedAt)}</p><span>Step {savedProgress.step} of 5 completed</span></div>
           <div style={{display:'flex',gap:10}}>
-            <button className="btn btn-o" style={{background:'rgba(255,255,255,.1)',color:'#fff',border:'1px solid rgba(255,255,255,.3)',fontSize:12,padding:'8px 14px'}} onClick={()=>{/* resume logic via key */setSavedProgress(null);}}>Dismiss</button>
-            <button className="btn btn-t" style={{fontSize:12,padding:'8px 16px'}} onClick={()=>{setSavedProgress(null);showToast('Resuming saved review — scroll down to continue');}}>Resume Review ›</button>
+            <button className="btn btn-o" style={{background:'rgba(255,255,255,.1)',color:'#fff',border:'1px solid rgba(255,255,255,.3)',fontSize:12,padding:'8px 14px'}} onClick={discardProgress}>Dismiss</button>
+            <button className="btn btn-t" style={{fontSize:12,padding:'8px 16px'}} onClick={()=>{setSavedProgress(null);showToast('Resuming saved review');}}>Resume Review ›</button>
           </div>
         </div>
       )}
@@ -1036,9 +1097,12 @@ function App(){
         <div className="fi2">
           <div className="ftop">
             <div className="fleft">
-              <div className="flrow"><div className="flbox" style={{background:'transparent',border:'none',padding:2}}>
-  <img src="logo.png" alt="CCC Consultancy Group" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
-</div><div><div className="forg">CCC Consultancy Group Ltd</div><div className="ftag">UK expertise. Global perspective. Local impact.</div></div></div>
+              <div className="flrow">
+                <div className="flbox" style={{background:'transparent',border:'none',padding:2}}>
+                  <img src="logo.png" alt="CCC" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                </div>
+                <div><div className="forg">CCC Consultancy Group Ltd</div><div className="ftag">UK expertise. Global perspective. Local impact.</div></div>
+              </div>
               <p className="fbody">The Human Oversight System was developed by CCC Consultancy Group as part of our AI governance and regulatory advisory practice. It embeds structured human review directly into AI-enabled decision workflows — turning informal oversight into a measurable, auditable, and regulatorily-defensible process.</p>
               <div className="flinks">
                 <a href="https://www.cccconsultancygroup.com" target="_blank" rel="noopener noreferrer">🌐 cccconsultancygroup.com</a>
@@ -1061,8 +1125,52 @@ function App(){
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script>
+/* ══════════════════════════════════════════════════════════════════
+   ACCESS GATE — loads access.json, validates code, mounts App
+══════════════════════════════════════════════════════════════════ */
+function AccessGate({onGranted}){
+  const [code,setCode]=useState('');
+  const [status,setStatus]=useState('idle');
+  const [msg,setMsg]=useState('');
+  async function verify(e){
+    e.preventDefault();
+    if(!code.trim()){setStatus('error');setMsg('Please enter an access code.');return;}
+    setStatus('checking');
+    try{
+      const res=await fetch('./access.json?_='+Date.now(),{cache:'no-store'});
+      if(!res.ok)throw new Error('not found');
+      const cfg=await res.json();
+      const valid=Array.isArray(cfg.codes)&&cfg.codes.map(c=>String(c).trim().toUpperCase()).includes(code.trim().toUpperCase());
+      if(valid){sessionStorage.setItem('hos_access','1');onGranted();}
+      else{setStatus('error');setMsg('Invalid access code. Please check your code or contact info@cccconsultancygroup.com.');}
+    }catch{setStatus('locked');setMsg('Access configuration could not be loaded. Please contact info@cccconsultancygroup.com.');}
+  }
+  return(
+    <div style={{minHeight:'100vh',background:'var(--bg)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:24}}>
+      <div style={{background:'#fff',borderRadius:20,padding:'40px 36px',maxWidth:420,width:'100%',boxShadow:'0 16px 48px rgba(15,23,42,.14)',textAlign:'center'}}>
+        <div style={{width:52,height:52,background:'var(--primary)',borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',fontSize:22}}>🔍</div>
+        <div style={{fontSize:20,fontWeight:800,color:'var(--primary)',marginBottom:6}}>Human Oversight System</div>
+        <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'1px',color:'var(--turquoise)',marginBottom:20}}>CCC Consultancy Group · Licensed Tool</div>
+        <p style={{fontSize:13.5,color:'var(--muted)',lineHeight:1.7,marginBottom:28}}>This tool is available to licensed users only. Enter your access code to continue. Contact <a href="mailto:info@cccconsultancygroup.com" style={{color:'var(--turquoise)',fontWeight:600}}>CCC</a> to obtain access.</p>
+        <form onSubmit={verify}>
+          <input type="text" value={code} onChange={e=>setCode(e.target.value)} placeholder="Enter access code" style={{width:'100%',padding:'12px 16px',border:'1.5px solid var(--border)',borderRadius:10,fontSize:15,fontFamily:'Inter,sans-serif',outline:'none',marginBottom:14,textAlign:'center',letterSpacing:'2px',fontWeight:700,color:'var(--primary)'}} autoFocus autoComplete="off" spellCheck={false}/>
+          {status==='error'&&<div style={{background:'#FEE2E2',color:'#991B1B',borderRadius:8,padding:'10px 14px',fontSize:12.5,marginBottom:14,lineHeight:1.55,border:'1px solid #FECDD3'}}>{msg}</div>}
+          {status==='locked'&&<div style={{background:'#FEF3C7',color:'#78350F',borderRadius:8,padding:'10px 14px',fontSize:12.5,marginBottom:14,lineHeight:1.55,border:'1px solid #FCD34D'}}>{msg}</div>}
+          <button type="submit" disabled={status==='checking'} style={{width:'100%',background:'var(--primary)',color:'#fff',border:'none',borderRadius:11,padding:'13px 0',fontSize:14,fontWeight:700,cursor:status==='checking'?'not-allowed':'pointer',opacity:status==='checking'?.65:1,fontFamily:'Inter,sans-serif'}}>
+            {status==='checking'?'Verifying…':'Unlock Access →'}
+          </button>
+        </form>
+        <div style={{marginTop:22,fontSize:11,color:'var(--muted)'}}>© 2026 CCC Consultancy Group Ltd. All rights reserved.</div>
+      </div>
+    </div>
+  );
+}
+function Root(){
+  const [granted,setGranted]=useState(()=>sessionStorage.getItem('hos_access')==='1');
+  if(!granted)return <AccessGate onGranted={()=>setGranted(true)}/>;
+  return <App/>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Root/>);
 <script>window.addEventListener('DOMContentLoaded',()=>document.body.classList.add('loaded'));</script>
 </body>
 </html>
