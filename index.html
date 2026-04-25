@@ -458,16 +458,16 @@ const GENERIC_FLAGS=['Material risk indicator identified in the scenario present
 // FLAG ITEMS — each has triggers (keywords from scenario) and a text
 const FLAG_ITEMS = [
   // ── Credit / Lending ──
-  {text:'Debt-service coverage ratio below sector benchmark — repayment capacity is a material concern',triggers:['loan','debt','repayment','dscr','coverage','borrow','credit','mortgage','facility','overdraft','cashflow','cash flow'],dtype:['credit_assessment'],sector:[]},
-  {text:'Director or shareholder credit history is adverse — personal financial conduct should be verified',triggers:['director','shareholder','personal','guarantee','credit history','ccj','county court','personal debt','adverse credit'],dtype:['credit_assessment'],sector:[]},
-  {text:'Source of funds documentation is incomplete or implausible given the stated scenario',triggers:['funds','source','origin','payment','transfer','deposit','cash','wealth','income','salary'],dtype:['aml_alert','kyc_check','credit_assessment'],sector:[]},
+  {text:'Debt-service coverage ratio below sector benchmark — repayment capacity is a material concern',triggers:['loan','debt','repayment','dscr','coverage','borrow','credit','mortgage','facility','overdraft','cashflow','cash flow','apply','application','lend','finance','funds requested','amount','£','$','capital','affordability'],dtype:['credit_assessment'],sector:[]},
+  {text:'Director or shareholder credit history is adverse — personal financial conduct should be verified',triggers:['director','shareholder','personal','guarantee','credit history','ccj','county court','personal debt','adverse credit','owner','founder','partner','principal','management'],dtype:['credit_assessment'],sector:[]},
+  {text:'Source of funds documentation is incomplete or implausible given the stated scenario',triggers:['funds','source','origin','payment','transfer','deposit','cash','wealth','income','salary','where','how','earn','made','come from','explain','account for','provenance','proceeds'],dtype:['aml_alert','kyc_check','credit_assessment'],sector:[]},
   {text:'Politically exposed person (PEP) connection identified — enhanced due diligence is mandatory',triggers:['pep','political','politician','minister','government','public official','official','embassy','state','senior official'],dtype:['aml_alert','kyc_check'],sector:[]},
   {text:'High-risk jurisdiction involvement identified — heightened scrutiny required under FATF standards',triggers:['jurisdiction','offshore','cayman','bvi','panama','nigeria','sanctioned','fatf','greylist','blacklist','high risk country','international','foreign'],dtype:['aml_alert','kyc_check'],sector:[]},
-  {text:'Transaction velocity is inconsistent with the established customer profile and expected activity',triggers:['transaction','velocity','frequency','multiple transfers','rapid','unusual volume','high volume','sudden','spike'],dtype:['fraud_detection','aml_alert'],sector:[]},
+  {text:'Transaction velocity is inconsistent with the established customer profile and expected activity',triggers:['transaction','velocity','frequency','multiple transfers','rapid','unusual volume','high volume','sudden','spike','moved','sent','received','activity','pattern','behaviour','movement'],dtype:['fraud_detection','aml_alert'],sector:[]},
   {text:'Structuring behaviour detected — transaction pattern is consistent with known layering typologies',triggers:['structur','layer','smurfing','round trip','split','multiple accounts','transfer pattern','below threshold'],dtype:['aml_alert'],sector:[]},
   {text:'Beneficial ownership structure is opaque or complex — UBO verification is incomplete',triggers:['ownership','beneficial','ubo','nominee','trust','structure','holding','complex','opaque','obscure'],dtype:['kyc_check','aml_alert'],sector:[]},
-  {text:'Identity document verification is inconclusive — biometric or enhanced verification is required',triggers:['identity','id','passport','document','verify','verification','authenticate','proof','kyc','onboarding'],dtype:['kyc_check'],sector:[]},
-  {text:'Adverse media search has returned results relevant to this entity — further investigation is required',triggers:['adverse','media','news','press','article','report','allegation','accused','charged','convicted'],dtype:['kyc_check','aml_alert','credit_assessment'],sector:[]},
+  {text:'Identity document verification is inconclusive — biometric or enhanced verification is required',triggers:['identity','id','passport','document','verify','verification','authenticate','proof','kyc','onboarding','who','name','person','individual','confirm','check','match','valid'],dtype:['kyc_check'],sector:[]},
+  {text:'Adverse media search has returned results relevant to this entity — further investigation is required',triggers:['adverse','media','news','press','article','report','allegation','accused','charged','convicted','google','search','online','public record','press coverage','negative','concern raised'],dtype:['kyc_check','aml_alert','credit_assessment'],sector:[]},
   {text:'Account opened recently with immediate high-value activity — heightened fraud and AML risk',triggers:['new account','recently opened','new customer','just opened','recent account','first transaction','new relationship'],dtype:['fraud_detection','aml_alert'],sector:[]},
   {text:'Device and behavioural mismatch identified — originating device does not match established customer pattern',triggers:['device','ip','location','login','browser','mobile','app','access','authentication','mfa','otp'],dtype:['fraud_detection'],sector:[]},
   {text:'Regulatory notification obligation may have been triggered — legal counsel should assess disclosure requirements',triggers:['breach','notification','report','disclose','regulator','fca','cbn','sec','notify','mandatory','obligation','report to'],dtype:['regulatory_breach','compliance_flag'],sector:[]},
@@ -485,7 +485,7 @@ const FLAG_ITEMS = [
   {text:'Internal audit findings have not been tracked to closure — remediation ownership is unassigned',triggers:['internal audit','finding','closure','open finding','unresolved','remediation owner','action owner','audit'],dtype:['governance_finding'],sector:['governance_risk']},
   {text:'Capital adequacy concern identified — the risk exposure may not be adequately capitalised',triggers:['capital','adequacy','tier 1','cet1','icaap','capital ratio','buffer','solvency','scr','reserves'],dtype:['risk_rating'],sector:['banking','insurance','financial_services']},
   {text:'Liquidity risk indicators present — the entity may face stress under adverse market conditions',triggers:['liquidity','liquid','funding','cash','short term','maturity','mismatch','stress','lcr','nsfr'],dtype:['risk_rating'],sector:['banking','financial_services']},
-  {text:'Conduct risk indicators present — customer outcome or fair treatment concerns have been identified',triggers:['conduct','customer','outcome','fair','mis-sell','unsuitable','complaint','redress','tcf','consumer duty'],dtype:['compliance_flag'],sector:['financial_services','banking','insurance','fintech']},
+  {text:'Conduct risk indicators present — customer outcome or fair treatment concerns have been identified',triggers:['conduct','customer','outcome','fair','mis-sell','unsuitable','complaint','redress','tcf','consumer duty','treat','harm','vulnerable','complaint','dissatisfied','poor','wrong','mistake','error','outcome'],dtype:['compliance_flag'],sector:['financial_services','banking','insurance','fintech']},
   {text:'Regulatory licensing or authorisation status requires verification before this activity can proceed',triggers:['licen','authoris','authoriz','permission','fca register','regulated','approval','permit','approval'],dtype:['compliance_flag','regulatory_breach'],sector:['fintech','startup_scaleup']},
   {text:'Data protection compliance uncertainty noted — a DPIA may be required before proceeding',triggers:['data','gdpr','personal data','privacy','dpia','ico','data protection','processing','consent','lawful basis'],dtype:['compliance_flag','vendor_risk'],sector:['fintech']},
   {text:'Model risk governance approval has not been obtained — the model requires independent validation',triggers:['model','algorithm','ai','automated','decision system','machine learning','validation','model risk','sr 11-7'],dtype:['risk_rating','credit_assessment'],sector:['financial_services','banking','fintech']},
@@ -498,9 +498,9 @@ const FLAG_ITEMS = [
 
 // DATA GAP ITEMS — scored against scenario text
 const DATA_GAP_ITEMS = [
-  {text:'Full 24-month bank statement and cashflow analysis',triggers:['bank','cashflow','cash flow','statement','account','transaction','payment','deposit'],dtype:['credit_assessment'],sector:[]},
-  {text:'Most recent audited financial statements (minimum 2 years)',triggers:['financial','accounts','audit','revenue','profit','balance sheet','turnover','income'],dtype:['credit_assessment','risk_rating'],sector:[]},
-  {text:'Director personal credit bureau report',triggers:['director','personal','guarantee','credit','shareholder'],dtype:['credit_assessment'],sector:[]},
+  {text:'Full 24-month bank statement and cashflow analysis',triggers:['bank','cashflow','cash flow','statement','account','transaction','payment','deposit','loan','borrow','credit','finance','apply','income','revenue','funds'],dtype:['credit_assessment'],sector:[]},
+  {text:'Most recent audited financial statements (minimum 2 years)',triggers:['financial','accounts','audit','revenue','profit','balance sheet','turnover','income','company','business','trading','annual','report','accounts filed'],dtype:['credit_assessment','risk_rating'],sector:[]},
+  {text:'Director personal credit bureau report',triggers:['director','personal','guarantee','credit','shareholder','owner','founder','ceo','md','management','principal','individual','named','person'],dtype:['credit_assessment'],sector:[]},
   {text:'Independent business valuation and asset schedule',triggers:['valuation','asset','property','security','collateral','value','worth'],dtype:['credit_assessment'],sector:[]},
   {text:'Management accounts for the current trading period',triggers:['management','trading','current year','ytd','year to date','recent'],dtype:['credit_assessment'],sector:[]},
   {text:'Full transaction history — prior 12 months with counterparty detail',triggers:['transaction','transfer','payment','history','activity','movement'],dtype:['fraud_detection','aml_alert'],sector:[]},
@@ -537,7 +537,7 @@ const DATA_GAP_ITEMS = [
 
 // REG ITEMS — scored against scenario + sector + dtype
 const REG_ITEMS = [
-  {text:'FCA Handbook — SYSC (Systems & Controls), COBS (Conduct of Business), PRIN (Principles)',triggers:['fca','conduct','principle','systems','control','authorised','regulated'],sector:['financial_services','banking','insurance','asset_management','compliance_regulatory'],dtype:[]},
+  {text:'FCA Handbook — SYSC (Systems & Controls), COBS (Conduct of Business), PRIN (Principles)',triggers:['fca','conduct','principle','systems','control','authorised','regulated','financial','service','uk','regulated activity','permission','approve','licence'],sector:['financial_services','banking','insurance','asset_management','compliance_regulatory'],dtype:[]},
   {text:'UK Senior Managers & Certification Regime (SM&CR)',triggers:['senior manager','smcr','accountability','responsibility','approved person'],sector:['financial_services','banking','insurance'],dtype:[]},
   {text:'FCA Consumer Duty (PS22/9) — Outcome-Based Consumer Protection',triggers:['consumer','customer','outcome','fair','duty','retail','product'],sector:['financial_services','banking','fintech','insurance'],dtype:['credit_assessment','compliance_flag','investment_recommendation']},
   {text:'FSMA 2000 — Financial Services and Markets Act',triggers:['authorisation','regulated activity','financial promotion','fsma'],sector:['financial_services','banking'],dtype:[]},
@@ -546,9 +546,9 @@ const REG_ITEMS = [
   {text:'Basel III / CRD V — Capital Requirements and Risk-Weighted Assets',triggers:['capital','tier 1','rwa','risk weighted','basel','buffer','cet1'],sector:['banking','financial_services'],dtype:['risk_rating','credit_assessment']},
   {text:'PRA Rulebook — Prudential Standards and Supervision',triggers:['pra','prudential','capital','liquidity','stress','icaap'],sector:['banking','insurance'],dtype:[]},
   {text:'IFRS 9 — Expected Credit Loss Provisioning',triggers:['impairment','provision','credit loss','ecl','stage','default','forward looking'],sector:['banking','financial_services'],dtype:['credit_assessment','risk_rating']},
-  {text:'CCA 1974 (as amended) — Consumer Credit Act',triggers:['consumer credit','consumer loan','personal loan','hire purchase','credit agreement','conc'],sector:['financial_services','banking','fintech'],dtype:['credit_assessment']},
+  {text:'CCA 1974 (as amended) — Consumer Credit Act',triggers:['consumer credit','consumer loan','personal loan','hire purchase','credit agreement','conc','loan','borrow','credit','lend','personal','individual','retail','consumer','apply','repay'],sector:['financial_services','banking','fintech'],dtype:['credit_assessment']},
   {text:'Proceeds of Crime Act 2002 (POCA) — Money Laundering Offences',triggers:['money laundering','proceeds','criminal','asset','poca','aml'],sector:['financial_services','banking','compliance_regulatory'],dtype:['aml_alert','fraud_detection']},
-  {text:'MLR 2017 — Money Laundering Regulations (UK)',triggers:['aml','kyc','due diligence','cdd','mlr','suspicious','reporting'],sector:['financial_services','banking','fintech'],dtype:['aml_alert','kyc_check']},
+  {text:'MLR 2017 — Money Laundering Regulations (UK)',triggers:['aml','kyc','due diligence','cdd','mlr','suspicious','reporting','launder','money','identify','customer','verify','check','screen','onboard'],sector:['financial_services','banking','fintech'],dtype:['aml_alert','kyc_check']},
   {text:'JMLSG Guidance (Parts I–III) — Joint Money Laundering Steering Group',triggers:['aml','kyc','due diligence','customer','onboarding','risk assessment'],sector:['financial_services','banking'],dtype:['aml_alert','kyc_check']},
   {text:'FATF 40 Recommendations — International AML/CFT Standards',triggers:['fatf','aml','international','cft','terrorism','financing','40 recommendations'],sector:[],dtype:['aml_alert','kyc_check']},
   {text:'Fraud Act 2006 — Criminal Liability for Fraudulent Activity',triggers:['fraud','false','dishonest','deception','misrepresentation','fake'],sector:[],dtype:['fraud_detection']},
@@ -583,30 +583,81 @@ const REG_ITEMS = [
    + dtype match bonus + sector match bonus.
    Returns top N, with fallback items used to guarantee minimum count.
 ───────────────────────────────────────────────────────────────── */
+// Natural-language synonym map — expands common reviewer summary words
+// into the technical terms the trigger library was built against.
+// This bridges the gap between how reviewers write and how items are tagged.
+const NL_SYNONYMS = {
+  'loan': ['credit','borrow','lending','finance','facility'],
+  'money': ['funds','payment','transfer','cash','capital'],
+  'company': ['business','entity','firm','organisation','corporate'],
+  'person': ['individual','customer','client','applicant','subject'],
+  'check': ['verify','screen','assess','review','examine'],
+  'flag': ['alert','warning','concern','signal','issue'],
+  'history': ['record','background','track record','past','previous'],
+  'account': ['transaction','banking','statement','activity'],
+  'offshore': ['foreign','international','overseas','jurisdiction'],
+  'new': ['recent','newly','just','first','initial','opening'],
+  'unknown': ['unclear','unverified','incomplete','not provided','missing'],
+  'large': ['high value','significant','substantial','material','elevated'],
+  'unusual': ['anomal','suspicious','unexpected','inconsistent','irregular'],
+  'fake': ['fraud','false','misrepresent','fabricat','forgery'],
+  'problem': ['concern','issue','risk','exposure','gap'],
+  'report': ['document','file','submission','return','filing'],
+  'fail': ['breach','violation','non-complian','deficien','shortfall'],
+  'old': ['historic','legacy','previous','prior','existing'],
+  'complex': ['layered','structured','opaque','intricate','complicated'],
+  'apply': ['applicant','application','request','seek','submit'],
+};
+
+function expandScenario(scenario) {
+  let expanded = scenario.toLowerCase();
+  Object.entries(NL_SYNONYMS).forEach(([word, synonyms]) => {
+    if(expanded.includes(word)) {
+      synonyms.forEach(syn => { if(!expanded.includes(syn)) expanded += ' ' + syn; });
+    }
+  });
+  return expanded;
+}
+
 function scoreItems(items, scenario, sector, dtype, topN) {
-  const t = scenario.toLowerCase();
+  const t = expandScenario(scenario);
+  const seen = new Set();
   const scored = items.map(item => {
     let score = 0;
-    // Trigger keyword match (each match = 2 pts)
+    // Keyword match in expanded scenario (2 pts each)
     item.triggers.forEach(kw => { if(kw && t.includes(kw.toLowerCase())) score += 2; });
-    // Dtype relevance bonus
-    if(item.dtype && item.dtype.length > 0 && item.dtype.includes(dtype)) score += 3;
-    // Sector relevance bonus
-    if(item.sector && item.sector.length > 0 && item.sector.includes(sector)) score += 2;
-    // Penalise pure fallbacks (no triggers, no dtype, no sector)
-    if(!item.triggers.length && !item.dtype.length && !item.sector.length) score -= 1;
-    return { text: item.text, score };
+    // Dtype match — strong signal, guarantees relevance even with no keyword hits
+    const dtypeMatch = item.dtype && item.dtype.length > 0 && item.dtype.includes(dtype);
+    if(dtypeMatch) score += 5;
+    // Sector match bonus
+    if(item.sector && item.sector.length > 0 && item.sector.includes(sector)) score += 3;
+    // Generic fallback items (no dtype, no sector, no triggers) get lowest priority
+    if(!item.triggers.length && !item.dtype.length && !item.sector.length) score -= 2;
+    return { text: item.text, score, dtypeMatch };
   });
-  // Sort by score descending, deduplicate text
-  const seen = new Set();
+
   const ranked = scored
     .sort((a,b) => b.score - a.score)
     .filter(i => { if(seen.has(i.text)) return false; seen.add(i.text); return true; });
-  // Take top N — but only items with score > 0 as primary, fallbacks for padding
-  const primary = ranked.filter(i => i.score > 0).slice(0, topN);
-  if(primary.length >= topN) return primary.map(i => i.text);
-  const fallback = ranked.filter(i => i.score <= 0);
-  return [...primary, ...fallback].slice(0, topN).map(i => i.text);
+
+  // Layer 1: dtype-matched items with any keyword hit (most relevant)
+  const tier1 = ranked.filter(i => i.dtypeMatch && i.score > 5);
+  // Layer 2: dtype-matched items even without keyword hit
+  const tier2 = ranked.filter(i => i.dtypeMatch && i.score <= 5);
+  // Layer 3: keyword hits without dtype match
+  const tier3 = ranked.filter(i => !i.dtypeMatch && i.score > 0);
+  // Layer 4: pure fallbacks
+  const tier4 = ranked.filter(i => i.score <= 0);
+
+  const pool = [...tier1, ...tier2, ...tier3, ...tier4];
+  // Deduplicate again across tiers
+  const finalSeen = new Set();
+  const final = pool.filter(i => {
+    if(finalSeen.has(i.text)) return false;
+    finalSeen.add(i.text);
+    return true;
+  });
+  return final.slice(0, topN).map(i => i.text);
 }
 
 /* SCENARIO-AWARE ACTION BUILDER
@@ -614,14 +665,19 @@ function scoreItems(items, scenario, sector, dtype, topN) {
    then enriches it with any specific entities mentioned in the scenario.
 */
 function buildAction(decision, dtype, sector, scenario) {
-  const base = (ACTIONS[decision]||{})[dtype] || (ACTIONS[decision]||{})['generic'] || ACTIONS[decision].generic;
-  // Detect entity-specific mentions to personalise
+  // Resolve action — dtype first, then sector, then generic
+  const decActions = ACTIONS[decision] || {};
+  const base = decActions[dtype] || decActions[sector] || decActions['generic'] || Object.values(decActions)[0] || 'Document the decision rationale and apply appropriate monitoring.';
   const t = scenario.toLowerCase();
-  let prefix = '';
-  if(t.includes('fca') && decision==='REJECT') prefix = 'Notify FCA under SUP 15. ';
-  else if(t.includes('cbn') && decision==='REJECT') prefix = 'Notify CBN immediately. ';
-  else if(t.includes('sar') || t.includes('suspicious activity report')) prefix = 'File SAR with NCA/NFIU. ';
-  return prefix + base;
+  // Context-specific prefixes based on what appears in the scenario
+  const prefixes = [];
+  if((t.includes('fca') || t.includes('pra')) && decision==='REJECT') prefixes.push('Notify FCA/PRA under SUP 15.');
+  if(t.includes('cbn') && decision==='REJECT') prefixes.push('Notify CBN immediately.');
+  if(t.includes('sar') || t.includes('suspicious activity report')) prefixes.push('File SAR with NCA/NFIU.');
+  if((t.includes('pep') || t.includes('politically exposed')) && decision==='FLAG') prefixes.push('Escalate to MLRO — PEP connection requires senior sign-off.');
+  if((t.includes('sanction') || t.includes('watchlist')) && decision !== 'APPROVE') prefixes.push('Freeze activity pending sanctions clearance.');
+  if(t.includes('data breach') || t.includes('cyber incident')) prefixes.push('Notify ICO within 72 hours if personal data affected.');
+  return (prefixes.length ? prefixes.join(' ') + ' ' : '') + base;
 }
 
 function detectNegation(text,phrase){const idx=text.indexOf(phrase);if(idx<0)return false;const before=text.substring(Math.max(0,idx-40),idx).toLowerCase();return NEGATORS.some(n=>before.includes(n));}
@@ -922,18 +978,18 @@ function Step1({onNext,savedData}){
             <input className="fi" type="text" placeholder="e.g. Sarah Johnson" value={reviewer} onChange={e=>setReviewer(e.target.value)}/>
           </div>
           <div>
-            <label className="fl">Role / Job Title * <span style={{fontSize:9,color:'var(--turquoise)',fontWeight:700}}></span></label>
+            <label className="fl">Role / Job Title *</label>
             <input className="fi" type="text" placeholder="e.g. Senior Compliance Analyst" value={reviewerRole} onChange={e=>setReviewerRole(e.target.value)}/>
           </div>
         </div>
 
-        {/* AI LITERACY ACKNOWLEDGEMENT — mandatory, EU AI Act Article 4 */}
+        {/* AI LITERACY ACKNOWLEDGEMENT */}
         <div className={`literacy-box ${literacyChecked?'checked':''}`} style={{marginTop:16}} onClick={()=>setLiteracyChecked(p=>!p)}>
           <div className={`lchk ${literacyChecked?'on':''}`}>{literacyChecked&&'✓'}</div>
           <div>
             <div className="literacy-lbl">AI Literacy Acknowledgement</div>
             <div className="literacy-txt">
-              I confirm that I have sufficient understanding of this AI system's purpose, capabilities, and known limitations to perform a meaningful review of its output. I am aware of the risk of automation bias — the tendency to over-rely on AI outputs — and I am exercising independent judgement in this review.
+              I confirm that I have sufficient understanding of this AI system's purpose, capabilities, and known limitations to perform a meaningful review of its output. I am exercising independent judgement and not relying solely on the AI output to reach my conclusion.
             </div>
           </div>
         </div>
@@ -1046,7 +1102,13 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
       ...previewEntry,id:'HOS-'+genId().split('-')[1]
     });
     const url=`mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(url,'_blank');
+    // Use anchor click — more reliable than window.open for mailto across browsers/GitHub Pages
+    const a=document.createElement('a');
+    a.href=url;
+    a.style.display='none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   return(
@@ -1173,7 +1235,7 @@ function ReviewTab({onComplete}){
       sector:data.sector,sectorCustom:data.sectorCustom||'',
       dtype:data.dtype,dtypeCustom:data.dtypeCustom||'',scenario:data.scenario,
       reviewer:data.reviewer,reviewerRole:data.reviewerRole||'',orgName:data.orgName,
-      // AI system metadata (Article 11 / 72 traceability)
+      // AI system metadata
       aiSystem:data.aiSystem||'',aiModelVersion:data.aiModelVersion||'',aiOutputTimestamp:data.aiOutputTimestamp||'',
       // Assessment output
       aiDecision:data.result.decision,aiConfidence:data.result.confidence,
@@ -1389,7 +1451,7 @@ tr:nth-child(even) td{background:#f8faff}
   <div><div class="org">CCC Consultancy Group</div><div class="tag">Human Oversight System — Full Audit Trail Export</div></div>
   <div style="text-align:right"><h1>AI Oversight Audit Trail</h1><div class="sub">Exported: ${new Date().toLocaleString()} · ${entries.length} records · Filter: ${filter}</div></div>
 </div>
-<p style="font-size:10px;color:#374151;margin-bottom:14px;line-height:1.6">This document is an AI oversight audit record generated by the Human Oversight System (HOS), a CCC Consultancy Group proprietary tool. It provides evidence of structured human review of AI-generated or proposed decisions in accordance with EU AI Act oversight requirements.</p>
+<p style="font-size:10px;color:#374151;margin-bottom:14px;line-height:1.6">This document is an AI oversight audit record generated by the Human Oversight System (HOS), a CCC Consultancy Group proprietary tool. It provides evidence of structured human review of AI-generated decisions and supports organisational governance and accountability requirements.</p>
 <table>
   <thead><tr><th>HOS ID</th><th>Timestamp</th><th>Type</th><th>Reviewer</th><th>AI System</th><th>Sector</th><th>Assessment</th><th>Decision</th><th>Lens Score</th><th>Override Rationale</th><th>Status</th></tr></thead>
   <tbody>${rows}</tbody>
@@ -1482,25 +1544,27 @@ tr:nth-child(even) td{background:#f8faff}
 function GovernanceTab({trail}){
   const d1=useRef(null),d2=useRef(null),d3=useRef(null);
   const ch=useRef({});
+  const [rC,setRC]=useState({});
   useEffect(()=>{
     if(!trail.length) return;
     Object.values(ch.current).forEach(c=>c&&c.destroy());ch.current={};
     const aiC={APPROVE:0,FLAG:0,REJECT:0,REFER:0};
     const hC={approve:0,approve_cond:0,override:0,escalate:0,suspend:0};
-    const sC={},rC={};
+    const sC={},rCLocal={};
     const aiSysC={};
     trail.forEach(e=>{
       if(aiC[e.aiDecision]!==undefined)aiC[e.aiDecision]++;
       if(hC[e.humanDecision]!==undefined)hC[e.humanDecision]++;
       sC[e.sector]=(sC[e.sector]||0)+1;
-      (e.orReasons||[]).forEach(id=>{const l=OVERRIDES.find(r=>r.id===id)?.label||id;rC[l]=(rC[l]||0)+1;});
+      (e.orReasons||[]).forEach(id=>{const l=OVERRIDES.find(r=>r.id===id)?.label||id;rCLocal[l]=(rCLocal[l]||0)+1;});
 
       if(e.aiSystem)aiSysC[e.aiSystem]=(aiSysC[e.aiSystem]||0)+1;
     });
     const ft={family:'Inter,sans-serif',size:11};
     if(d1.current)ch.current.d1=new Chart(d1.current,{type:'bar',data:{labels:['Approve','Flag','Reject','Refer'],datasets:[{label:'Assessment',data:[aiC.APPROVE,aiC.FLAG,aiC.REJECT,aiC.REFER],backgroundColor:['#DCFCE7','#FEF3C7','#FEE2E2','#DBEAFE'],borderColor:['#16A34A','#D97706','#DC2626','#2563EB'],borderWidth:2,borderRadius:4},{label:'Reviewer',data:[hC.approve,hC.approve_cond,hC.override,hC.escalate],backgroundColor:['rgba(15,23,42,.75)','rgba(15,23,42,.5)','rgba(124,58,237,.7)','rgba(159,18,57,.65)'],borderWidth:0,borderRadius:4},{label:'Suspended',data:[0,0,0,hC.suspend],backgroundColor:['rgba(217,119,6,.6)'],borderWidth:0,borderRadius:4}]},options:{responsive:true,plugins:{legend:{labels:{font:ft}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:ft}},x:{ticks:{font:ft}}}}});
     if(d2.current)ch.current.d2=new Chart(d2.current,{type:'doughnut',data:{labels:Object.keys(sC),datasets:[{data:Object.values(sC),backgroundColor:['#0f172a','#1FBFD7','#2563EB','#7C3AED','#16A34A','#D97706','#DC2626','#6B7280','#EC4899'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:ft,boxWidth:12}}}}});
-    const sr=Object.entries(rC).sort((a,b)=>b[1]-a[1]);
+    setRC({...rCLocal});
+    const sr=Object.entries(rCLocal).sort((a,b)=>b[1]-a[1]);
     if(sr.length&&d3.current)ch.current.d3=new Chart(d3.current,{type:'bar',data:{labels:sr.map(([k])=>k),datasets:[{label:'Override Frequency',data:sr.map(([,v])=>v),backgroundColor:'rgba(124,58,237,.65)',borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{stepSize:1,font:ft}},y:{ticks:{font:ft}}}}});
 
     return()=>Object.values(ch.current).forEach(c=>c&&c.destroy());
@@ -1532,7 +1596,17 @@ function GovernanceTab({trail}){
       <div className="chartgrid">
         <div className="ccard"><div className="clbl">Decision Distribution — Assessment vs Reviewer</div><canvas ref={d1} height={210}/></div>
         <div className="ccard"><div className="clbl">Reviews by Sector</div><canvas ref={d2} height={210}/></div>
-        <div className="ccard"><div className="clbl">Override Reasoning Intelligence — Category Frequency</div><canvas ref={d3} height={160}/></div>
+        <div className="ccard">
+          <div className="clbl">Override Reasoning Intelligence — Category Frequency</div>
+          {Object.keys(rC).length>0
+            ? <canvas ref={d3} height={160}/>
+            : <div style={{textAlign:'center',padding:'32px 20px',color:'var(--muted)'}}>
+                <div style={{fontSize:28,marginBottom:10}}>🔄</div>
+                <div style={{fontSize:13,fontWeight:600,marginBottom:6}}>No override data yet</div>
+                <div style={{fontSize:12,lineHeight:1.6}}>This chart populates when reviewers complete an Override decision and select at least one taxonomy category. It shows which reasons are most commonly given for departing from the AI output.</div>
+              </div>
+          }
+        </div>
 
       </div>
     </div>
