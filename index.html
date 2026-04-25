@@ -65,14 +65,7 @@ input,select,textarea,button{font-family:inherit}
 .card-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;color:var(--turquoise);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
 
 /* ─── INPUT TYPE SELECTOR ─── */
-.itype-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
-.itype-card{border:2px solid var(--border);border-radius:14px;padding:18px 20px;cursor:pointer;background:var(--surface);transition:all .2s;text-align:left}
-.itype-card:hover{border-color:#9ca3af}
-.itype-card.sel{border-color:var(--turquoise);background:var(--tq-light)}
-.itype-icon{font-size:22px;margin-bottom:9px;display:block}
-.itype-title{font-size:13.5px;font-weight:800;color:var(--primary);margin-bottom:5px}
-.itype-desc{font-size:11.5px;color:var(--muted);line-height:1.6}
-.itype-card.sel .itype-title{color:var(--turquoise)}
+
 
 /* ─── DISCLAIMER ─── */
 .disclaimer{background:#F8FAFF;border:1px solid #C7D7F0;border-radius:10px;padding:11px 15px;margin-bottom:16px;font-size:11.5px;color:#374151;line-height:1.65;display:flex;gap:10px;align-items:flex-start}
@@ -200,7 +193,6 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 .mb-reject{background:var(--reject-bg);color:var(--reject)}.mb-refer{background:var(--refer-bg);color:var(--refer)}
 .mb-ov{background:var(--override-bg);color:var(--override)}.mb-cond{background:#FEF9C3;color:#854D0E}.mb-esc{background:var(--escalate-bg);color:var(--escalate)}
 .mb-ai{background:#F3F4F6;color:#374151}
-.mb-proposed{background:#E0F2FE;color:#0369A1}
 
 /* ─── STATS ─── */
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
@@ -253,6 +245,53 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 .empty h3{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:8px}
 .empty p{font-size:13px;color:var(--muted);line-height:1.6}
 
+
+/* ── AI LITERACY CHECKBOX ── */
+.literacy-box{background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:12px;padding:16px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start}
+.literacy-box.checked{background:#F0FDF4;border-color:#86EFAC}
+.lchk{width:20px;height:20px;border-radius:5px;border:2px solid #93C5FD;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:1px;transition:all .2s;font-size:12px}
+.lchk.on{background:#2563EB;border-color:#2563EB;color:#fff}
+.literacy-box.checked .lchk{background:#16A34A;border-color:#16A34A}
+.literacy-txt{font-size:12.5px;line-height:1.7;color:#1E40AF}
+.literacy-box.checked .literacy-txt{color:#14532D}
+.literacy-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#2563EB;margin-bottom:5px}
+.literacy-box.checked .literacy-lbl{color:#15803D}
+
+/* ── AI METADATA BLOCK ── */
+.ai-meta-block{background:#F8F5FF;border:1.5px solid #DDD6FE;border-radius:12px;padding:18px;margin-bottom:16px}
+.ai-meta-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#6D28D9;margin-bottom:14px}
+.ai-sys-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* ── SUSPEND OPTION ── */
+.dopt.suspend:hover{border-color:#D97706;background:#FFFBEB}
+.dopt.suspend.sel{border-color:#D97706;background:#FFFBEB}
+.dopt.suspend.sel .dt{color:#92400E}
+.dopt.suspend.sel .dd{color:#B45309}
+.suspend-box{background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:12px;padding:18px;margin-bottom:14px}
+.suspend-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#92400E;margin-bottom:12px}
+.suspend-reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.sropt{padding:10px 12px;border:1.5px solid #FCD34D;border-radius:8px;cursor:pointer;background:#fff;font-size:12.5px;font-weight:600;color:#78350F;transition:all .18s;text-align:center}
+.sropt:hover{background:#FEF9C3}
+.sropt.sel{background:#F59E0B;border-color:#D97706;color:#fff}
+
+/* ── OVERRIDE RATIONALE ── */
+.or-rationale{background:#fff;border:1.5px solid #DDD6FE;border-radius:8px;padding:12px 14px;margin:12px 0;position:relative}
+.or-rat-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#6D28D9;margin-bottom:7px}
+.char-count{position:absolute;right:10px;top:10px;font-size:10px;color:var(--muted)}
+.char-count.over{color:var(--reject)}
+
+/* ── ARCHIVE + SUSPEND BADGES ── */
+.h-suspend{border-left-color:#D97706}
+.mb-suspend{background:#FFFBEB;color:#92400E}
+.arc-entry{opacity:.55}
+.arc-badge{background:#F3F4F6;color:#6B7280;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-left:8px}
+
+/* ── SESSION TIMEOUT ── */
+.timeout-overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);z-index:800;display:flex;align-items:center;justify-content:center;padding:24px}
+.timeout-box{background:#fff;border-radius:20px;padding:36px;max-width:400px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.timeout-bar{height:4px;background:var(--border);border-radius:2px;margin:16px 0;overflow:hidden}
+.timeout-fill{height:100%;background:var(--turquoise);border-radius:2px;transition:width 1s linear}
+
 /* ─── TOAST ─── */
 .toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:1000;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,.2);max-width:320px;animation:toastIn .3s ease both;font-family:'Inter',sans-serif}
 
@@ -287,7 +326,7 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
   .wrap{padding:16px}.hdr{padding:0 16px}
   .statgrid{grid-template-columns:1fr 1fr}.chartgrid{grid-template-columns:1fr}
   .ai-g{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr}.orgrid{grid-template-columns:1fr}
-  .itype-grid{grid-template-columns:1fr}.escgrid{grid-template-columns:1fr}
+.escgrid{grid-template-columns:1fr}
   .steps .sl{display:none}.hdr-tool{display:none}.fright{text-align:left}
   .fbfloat span{display:none}.fbfloat{padding:12px}
   .resume-bar{padding:12px 16px}
@@ -299,7 +338,93 @@ textarea.fi{resize:vertical;min-height:100px;line-height:1.7}
 <script type="text/babel">
 const {useState,useEffect,useRef,useMemo,useCallback} = React;
 
-/* ══════════════════════════════════════════════════════════════════
+/* ================================================================
+   ACTIVITY LOGGER
+   ----------------------------------------------------------------
+   Fire-and-forget telemetry to Google Sheets via Apps Script.
+   Replace LOGGER_ENDPOINT with your deployed Apps Script URL.
+
+   ACTION CODES (short codes sent in transit):
+     A01=ACCESS_GRANTED  A02=ACCESS_DENIED   A03=ACCESS_REVOKED
+     R01=REVIEW_STARTED  R02=STEP_ADVANCE    R03=REVIEW_COMPLETE
+     R04=REVIEW_ABANDON  T01=TAB_REVIEW      T02=TAB_AUDIT
+     T03=TAB_GOVERNANCE  T04=TOUR_STARTED    T05=TOUR_SKIPPED
+     E01=EXPORT_CSV      E02=ESCALATION_OPEN E03=AUDIT_CLEARED
+     S01=SESSION_START   S02=SESSION_RESUME
+================================================================ */
+
+const LOGGER_ENDPOINT = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+// Lightweight char-rotation obfuscation so action codes are not
+// plain text in the network payload. Not encryption.
+function _obs(str, offset) {
+  offset = offset || 7;
+  return btoa(str.split('').map(function(c){ return String.fromCharCode(c.charCodeAt(0) + offset); }).join(''));
+}
+
+// Stable anonymous session ID per browser session — no PII
+function _getSessionId() {
+  var key = '_hid';
+  var id = sessionStorage.getItem(key);
+  if (!id) {
+    id = 'anon_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7);
+    sessionStorage.setItem(key, id);
+  }
+  return id;
+}
+
+// djb2-style hash of access code — never sends the raw code,
+// gives per-user analytics without exposing identity
+function _hashCode(code) {
+  if (!code) return 'anon';
+  var h = 5381;
+  for (var i = 0; i < code.length; i++) { h = (h * 33) ^ code.charCodeAt(i); }
+  return 'u_' + (h >>> 0).toString(36);
+}
+
+/*
+  logEvent(action, details)
+  ─────────────────────────
+  action  : ACTION CODE string e.g. 'A01', 'R03'
+  details : optional object with lightweight metadata.
+            Max 5 keys, values truncated to 80 chars.
+            No PII, no scenario text, no sensitive data.
+
+  Fire-and-forget. Returns void. Never throws. Never blocks UI.
+  Safe to call anywhere in the app.
+*/
+async function logEvent(action, details) {
+  details = details || {};
+  if (!LOGGER_ENDPOINT || LOGGER_ENDPOINT.indexOf('YOUR_') === 0) return;
+
+  var code = sessionStorage.getItem('hos_code') || null;
+  var dEntries = Object.entries(details).slice(0, 5);
+  var dPayload = {};
+  dEntries.forEach(function(kv) { dPayload['d_' + kv[0]] = String(kv[1]).slice(0, 80); });
+
+  var payload = Object.assign({
+    sid: _getSessionId(),
+    uid: _hashCode(code),
+    act: _obs(action),
+    ts:  new Date().toISOString(),
+    tz:  Intl.DateTimeFormat().resolvedOptions().timeZone,
+    ref: document.referrer ? 'ext' : 'direct'
+  }, dPayload);
+
+  try {
+    await fetch(LOGGER_ENDPOINT, {
+      method:    'POST',
+      mode:      'no-cors',
+      keepalive: true,
+      headers:   {'Content-Type': 'application/json'},
+      body:      JSON.stringify(payload)
+    });
+  } catch(e) {
+    // Intentionally silent — logging must never affect user experience
+  }
+}
+
+/* ================================================================
    ASSESSMENT ENGINE v3
    ── All keyword/phrase libraries, negation detection, sector
       boosters, jurisdiction detection, content assembly ──
@@ -320,8 +445,6 @@ const FLAGS_BY_DTYPE={credit_assessment:['Debt-service coverage ratio below sect
 const GENERIC_FLAGS=['Material risk indicator identified in the scenario presented','Compliance exposure requires further assessment','Control gap noted — remediation action recommended','Documentation insufficient relative to level of risk','Regulatory alignment requires verification against current standards','Sector-specific risk concentration identified','Oversight framework may not be commensurate with risk profile','Escalation pathway not clearly defined for this risk type'];
 
 // ── PROPOSED DECISION FLAGS (for non-AI input mode) ──
-const PROPOSED_FLAGS_BY_SECTOR={financial_services:['FCA Consumer Duty outcomes not fully considered','TCF principles may not be adequately embedded in this proposal','Conduct risk dimension has not been explicitly assessed','Regulatory pre-notification requirement should be considered','Senior Manager accountability not allocated for this decision'],banking:['Capital impact of this decision not quantified','Liquidity implications under stress scenario not considered','Credit risk concentration effect not assessed','Model risk governance approval required','Basel III implications not explicitly addressed'],fintech:['Regulatory perimeter clarification recommended before proceeding','Consumer harm risk not fully mapped','Data protection impact assessment may be required','AML exposure of proposed approach not assessed','Authorisation scope adequately covers proposed activity'],insurance:['Policyholder outcome risk not explicitly modelled','SCR impact assessment required','Product governance framework compliance not confirmed','Conduct implications for vulnerable customers not assessed','Solvency II proportionality principle not applied'],compliance_regulatory:['Regulatory obligation mapping not yet completed for this decision','Three lines of defence involvement not documented','Board-level approval may be required for this decision level','Policy framework adequacy not confirmed','Compliance sign-off not obtained'],governance_risk:['Board authority threshold should be confirmed before proceeding','Risk appetite alignment not explicitly demonstrated','Risk register update required following this decision','Second line challenge has not been documented','Committee approval protocol may apply'],startup_scaleup:['Regulatory authorisation confirms this activity is within scope','Board governance sufficient for this decision level should be confirmed','Financial headroom assessment recommended','Investor consent requirements should be checked','Personal liability implications of this decision should be considered']};
-const GENERIC_PROPOSED_FLAGS=['Proposed decision has not been subject to formal risk assessment','Regulatory approval or notification requirement not confirmed','Stakeholder impact assessment not documented','Board or committee authority level not confirmed','Decision rationale may not meet audit or regulatory scrutiny standards','Precedent implications of this decision not assessed','Implementation risks not formally identified','Exit or reversal plan not considered'];
 
 /* ─────────────────────────────────────────────────────────────────
    SCENARIO-AWARE CONTENT MAPS
@@ -506,17 +629,16 @@ function detectJurisdiction(text){const t=text.toLowerCase();const scores={};Obj
 function clamp(v,min,max){return Math.min(max,Math.max(min,v));}
 function rand(n){return Math.floor(Math.random()*n);}
 
-function runEngine(sector,dtype,scenario,inputType){
+function runEngine(sector,dtype,scenario){
   const t=scenario.toLowerCase();
   let score=0;
-  const isProposed = inputType==='proposed';
 
-  PHRASES_HIGH.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph)){score+=isProposed?0.5:1;}else{score+=isProposed?2:3;}}});
-  PHRASES_MED.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score-=0.5;else score+=isProposed?0.5:1;}});
-  PHRASES_LOW.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score+=1;else score-=isProposed?1.5:2;}});
+  PHRASES_HIGH.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score+=1;else score+=3;}});
+  PHRASES_MED.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score-=0.5;else score+=1;}});
+  PHRASES_LOW.forEach(ph=>{if(t.includes(ph)){if(detectNegation(t,ph))score+=1;else score-=2;}});
 
   const sb=SECTOR_BOOSTERS[sector];
-  if(sb){(sb.high||[]).forEach(p=>{if(t.includes(p.toLowerCase()))score+=isProposed?1:2;});(sb.low||[]).forEach(p=>{if(t.includes(p.toLowerCase()))score-=isProposed?1:1.5;});}
+  if(sb){(sb.high||[]).forEach(p=>{if(t.includes(p.toLowerCase()))score+=2;});(sb.low||[]).forEach(p=>{if(t.includes(p.toLowerCase()))score-=1.5;});}
 
   let decision,conf;
   if(score>=9){decision='REJECT';conf=clamp(75+Math.floor(score)+rand(8),75,97);}
@@ -531,27 +653,15 @@ function runEngine(sector,dtype,scenario,inputType){
 
   const sLabel=sector||'regulated sector';
   const dLabel=dtype||'compliance decision';
-  const modeLabel=isProposed?'proposed decision':'AI output';
-
   const summaryMap={
-    APPROVE:`Assessment outcome: Approve. This ${modeLabel} for a ${dLabel} in the ${sLabel} sector presents a risk profile within acceptable parameters for structured review.`,
-    FLAG:`Assessment outcome: Flag for review. This ${modeLabel} contains risk indicators that require structured human review before a final determination is made.`,
-    REJECT:`Assessment outcome: Reject. This ${modeLabel} presents a risk profile that exceeds acceptable thresholds for the ${sLabel} context.`,
-    REFER:`Assessment outcome: Refer for specialist review. This ${modeLabel} requires senior-level or specialist assessment before a determination can be finalised.`,
+    APPROVE:`Assessment outcome: Approve. This AI output for a ${dLabel} in the ${sLabel} sector presents a risk profile within acceptable parameters for structured review.`,
+    FLAG:`Assessment outcome: Flag for review. This AI output contains risk indicators that require structured human review before a final determination is made.`,
+    REJECT:`Assessment outcome: Reject. This AI output presents a risk profile that exceeds acceptable thresholds for the ${sLabel} context.`,
+    REFER:`Assessment outcome: Refer for specialist review. This AI output requires senior-level or specialist assessment before a determination can be finalised.`,
   };
 
   // ── SCENARIO-AWARE CONTENT ASSEMBLY ──
-  // Flags: use proposed-mode items for proposed, else scored FLAG_ITEMS
-  let riskFlags;
-  if(isProposed){
-    const pFlags = [...(PROPOSED_FLAGS_BY_SECTOR[sector]||[]),...GENERIC_PROPOSED_FLAGS];
-    // Score proposed flags by keyword match too
-    const pScored = pFlags.map(f => ({text:f, score: f.toLowerCase().split(' ').filter(w=>w.length>4).filter(w=>t.includes(w)).length}));
-    const pRanked = pScored.sort((a,b)=>b.score-a.score);
-    riskFlags = [...new Set(pRanked.map(i=>i.text))].slice(0,4);
-  } else {
-    riskFlags = scoreItems(FLAG_ITEMS, scenario, sector, dtype, 4);
-  }
+  const riskFlags = scoreItems(FLAG_ITEMS, scenario, sector, dtype, 4);
 
   // Data gaps: scenario-aware scored
   const dataGaps = scoreItems(DATA_GAP_ITEMS, scenario, sector, dtype, 3);
@@ -577,7 +687,41 @@ const LENSES=[{id:'plausibility',icon:'🧠',title:'Plausibility',desc:'Does thi
 const R_LABELS=['','Major Concern','Concern','Acceptable','Good','Strong'];
 const OVERRIDES=[{id:'data_quality',label:'Data Quality Issue',desc:'Incomplete or incorrect input data'},{id:'model_bias',label:'Model Bias / Skew',desc:'Output shows systematic or directional skew'},{id:'reg_misalign',label:'Regulatory Misalignment',desc:'Does not reflect current regulatory position'},{id:'missing_context',label:'Missing Context',desc:'Relevant factors not captured in analysis'},{id:'disproportionate',label:'Disproportionate Response',desc:'Recommendation not proportionate to risk level'},{id:'precedent_conflict',label:'Precedent Conflict',desc:'Contradicts established precedent or internal policy'},{id:'expert_override',label:'Expert Judgement',desc:"Reviewer's domain expertise leads to a different conclusion"},{id:'other',label:'Other',desc:'Specify reasoning in notes field below'}];
 const H_OPTIONS=[{id:'approve',icon:'✅',title:'Approve',desc:'Accept output without conditions. No material concerns identified.'},{id:'approve_cond',icon:'⚠️',title:'Approve with Conditions',desc:'Accept with documented caveats. Apply additional monitoring or interim controls.'},{id:'override',icon:'🔄',title:'Override',desc:'Human judgement supersedes system output. Requires documented reasoning and taxonomy classification.'},{id:'escalate',icon:'🚨',title:'Escalate',desc:'Refer to senior reviewer or committee. Matter exceeds reviewer authority.'}];
-const H_LABELS={approve:'Approved',approve_cond:'Approved (Cond.)',override:'Overridden',escalate:'Escalated'};
+
+// Updated with suspend
+const H_LABELS={approve:'Approved',approve_cond:'Approved (Cond.)',override:'Overridden',escalate:'Escalated',suspend:'Suspended'};
+
+// Pre-configured AI systems (org can extend this list)
+const AI_SYSTEMS=[
+  'Credit Scoring Model','Fraud Detection Engine','AML Transaction Monitor',
+  'KYC Identity Verification System','Compliance Screening Engine',
+  'Risk Rating Algorithm','Investment Suitability Model','Document Verification AI',
+  'Behavioural Analytics Platform','Sanctions Screening System',
+  'Customer Onboarding AI','Anti-Money Laundering AI',
+  'Regulatory Reporting Engine','Credit Decision System',
+  'Underwriting Automation Model','Other / Not Listed'
+];
+
+// Suspend reasons (structured, not free text)
+const SUSPEND_REASONS=[
+  'Insufficient data to make a determination',
+  'Conflicting information requires resolution',
+  'Regulatory guidance is unclear or pending',
+  'Requires legal or compliance review',
+  'AI output appears anomalous or unreliable',
+  'Potential harm to customer if actioned',
+  'Senior authorisation required before proceeding',
+  'External verification of facts required',
+];
+
+// Updated decision options including Suspend
+const H_OPTIONS_FULL=[
+  {id:'approve',icon:'✅',title:'Approve',desc:'Accept output without conditions. No material concerns identified.'},
+  {id:'approve_cond',icon:'⚠️',title:'Approve with Conditions',desc:'Accept with documented caveats. Apply additional monitoring or interim controls.'},
+  {id:'override',icon:'🔄',title:'Override',desc:'Human judgement supersedes system output. Requires documented reasoning and taxonomy classification.'},
+  {id:'escalate',icon:'🚨',title:'Escalate',desc:'Refer to senior reviewer or committee. Matter exceeds reviewer authority.'},
+  {id:'suspend',icon:'⏸️',title:'Suspend / Halt',desc:'Halt this decision entirely. No action should be taken until senior review is complete.'},
+];
 const SAVE_KEY='hos_progress';
 
 function genId(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';return 'HOS-'+Array.from({length:8},()=>c[Math.floor(Math.random()*c.length)]).join('');}
@@ -600,7 +744,7 @@ Submitted by: ${reviewerName||'Reviewer'} — ${orgName||'Organisation not speci
 CASE DETAILS
 Sector: ${sector||'Not specified'}
 Decision Type: ${dtype||'Not specified'}
-Input Type: ${inputType==='proposed'?'Proposed Decision (pre-AI)':'AI Output Review'}
+Input Type: AI Output Review
 
 ASSESSMENT RESULT
 Structured Assessment Outcome: ${aiDecision}
@@ -636,7 +780,7 @@ function StepsBar({step}){
 /* ══ WALKTHROUGH ══ */
 const TOUR=[
   {title:'Welcome to the Human Oversight System',body:'HOS embeds structured human review into AI-enabled decisions and significant proposed decisions. Every case goes through a five-step protocol generating a full audit trail. This tour walks you through each part of the tool.'},
-  {title:'New: Input Type Selector',body:'Start by choosing what you are reviewing. "AI Output Review" is for system-generated decisions — credit assessments, fraud flags, compliance outputs. "Proposed Decision Review" is for significant human-proposed decisions that have not yet passed through an AI system. The engine calibrates its output differently for each.'},
+
   {title:'Step 1 — Configure your review',body:'Select your sector and decision type. Paste or describe the decision scenario in as much detail as possible. The disclaimer below the scenario box tells reviewers exactly what this tool is and is not for — it is always visible and cannot be dismissed.'},
   {title:'Assessment Output — Step 2',body:'The structured assessment engine analyses your scenario using phrase-level risk scanning, negation detection, and sector-specific calibration. It returns a structured output — decision, confidence, rationale, risk flags, data gaps, and regulatory references — as a starting point for human review.'},
   {title:'Five-Lens Review — Step 3',body:'Rate the assessment across five lenses: Plausibility, Risk Identification, Regulatory Alignment, Data Completeness, and Proportionality. Your scores drive the system recommendation on the next step.'},
@@ -654,38 +798,54 @@ function Walkthrough({onClose}){
 
 /* ══ STEP 1 ══ */
 function Step1({onNext,savedData}){
-  const [inputType,setInputType]=useState(savedData?.inputType||'');
   const [sector,setSector]=useState(savedData?.sector||'');
   const [sectorCustom,setSectorCustom]=useState(savedData?.sectorCustom||'');
   const [dtype,setDtype]=useState(savedData?.dtype||'');
   const [dtypeCustom,setDtypeCustom]=useState(savedData?.dtypeCustom||'');
   const [scenario,setScenario]=useState(savedData?.scenario||'');
   const [reviewer,setReviewer]=useState(savedData?.reviewer||localStorage.getItem('hos_reviewer')||'');
+  const [reviewerRole,setReviewerRole]=useState(savedData?.reviewerRole||localStorage.getItem('hos_role')||'');
   const [orgName,setOrgName]=useState(savedData?.orgName||localStorage.getItem('hos_org')||'');
+  // AI Metadata fields (for AI Output Review mode)
+  const [aiSystemSel,setAiSystemSel]=useState(savedData?.aiSystemSel||'');
+  const [aiSystemCustom,setAiSystemCustom]=useState(savedData?.aiSystemCustom||'');
+  const [aiModelVersion,setAiModelVersion]=useState(savedData?.aiModelVersion||'');
+  const [aiOutputTimestamp,setAiOutputTimestamp]=useState(savedData?.aiOutputTimestamp||'');
+  // AI Literacy acknowledgement
+  const [literacyChecked,setLiteracyChecked]=useState(false);
   const [loading,setLoading]=useState(false);
   const [toast,setToast]=useState(null);
 
   function showToast(msg,type='error'){setToast({msg,type});setTimeout(()=>setToast(null),3200);}
   const effectiveSector=sector==='other'?(sectorCustom.trim()||'other sector'):sector;
   const effectiveDtype=dtype==='other'?(dtypeCustom.trim()||'decision'):dtype;
+  const effectiveAiSystem=aiSystemSel==='Other / Not Listed'?(aiSystemCustom.trim()||'Unknown System'):aiSystemSel;
 
-  const scenarioPlaceholder=inputType==='ai_output'
-    ?'Paste the AI-generated decision output here, or describe what the system produced. Include the outcome, any confidence scores, flags, or recommendations the AI system returned. The engine uses this content to identify risk signals and generate a structured assessment for your review.'
-    :inputType==='proposed'
-    ?'Describe the proposed decision here. Include what is being decided, who is proposing it, what the implications are, and any relevant context — financial, regulatory, reputational, or governance. Do not paste reports or analytical documents — describe the specific decision you are seeking to review before it is acted upon.'
-    :'Select an input type above, then describe your scenario here.';
+  const scenarioPlaceholder='Paste or describe the AI-generated decision output here. Include the outcome, confidence score, any flags or recommendations the system returned, and any relevant context about the case being reviewed.';
 
   function generate(){
-    if(!inputType) return showToast('Please select an input type');
     if(!sector) return showToast('Please select a sector');
     if(sector==='other'&&!sectorCustom.trim()) return showToast('Please specify your sector');
     if(!scenario.trim()) return showToast('Please describe the scenario');
+    if(!reviewer.trim()) return showToast('Reviewer Name is required');
+    if(!reviewerRole.trim()) return showToast('Reviewer Role / Job Title is required');
+    if(!literacyChecked) return showToast('Please confirm the AI literacy acknowledgement before proceeding');
+    if(!aiSystemSel) return showToast('Please identify the AI system being reviewed');
+    if(aiSystemSel==='Other / Not Listed'&&!aiSystemCustom.trim()) return showToast('Please specify the AI system name');
     setLoading(true);
     if(reviewer) localStorage.setItem('hos_reviewer',reviewer);
+    if(reviewerRole) localStorage.setItem('hos_role',reviewerRole);
     if(orgName) localStorage.setItem('hos_org',orgName);
     setTimeout(()=>{
-      const result=runEngine(effectiveSector,effectiveDtype,scenario,inputType);
-      onNext({result,inputType,sector:effectiveSector,sectorCustom,dtype:effectiveDtype,dtypeCustom,scenario:scenario.substring(0,500),reviewer:reviewer||'Anonymous',orgName:orgName||''});
+      const result=runEngine(effectiveSector,effectiveDtype,scenario);
+      logEvent('R01',{sector:effectiveSector,dtype:effectiveDtype,verdict:result.decision,conf:result.confidence});
+      onNext({
+        result,sector:effectiveSector,sectorCustom,dtype:effectiveDtype,dtypeCustom,
+        scenario:scenario.substring(0,500),reviewer:reviewer||'Anonymous',
+        reviewerRole:reviewerRole||'',orgName:orgName||'',
+        aiSystem:effectiveAiSystem,aiModelVersion:aiModelVersion||'Unknown',
+        aiOutputTimestamp:aiOutputTimestamp||''
+      });
       setLoading(false);
     },800+Math.random()*600);
   }
@@ -696,20 +856,7 @@ function Step1({onNext,savedData}){
       <div className="card">
         <div className="card-lbl">Review Configuration</div>
 
-        {/* INPUT TYPE SELECTOR */}
-        <label className="fl" style={{marginBottom:10}}>What are you reviewing?</label>
-        <div className="itype-grid" style={{marginBottom:22}}>
-          <div className={`itype-card ${inputType==='ai_output'?'sel':''}`} onClick={()=>setInputType('ai_output')}>
-            <span className="itype-icon">🤖</span>
-            <div className="itype-title">AI Output Review</div>
-            <div className="itype-desc">An AI system or automated model has produced a decision output — a credit assessment, fraud flag, AML alert, compliance recommendation, or similar. You are reviewing whether that output is correct, appropriate, and safe to act on.</div>
-          </div>
-          <div className={`itype-card ${inputType==='proposed'?'sel':''}`} onClick={()=>setInputType('proposed')}>
-            <span className="itype-icon">📋</span>
-            <div className="itype-title">Proposed Decision Review</div>
-            <div className="itype-desc">A significant decision is being proposed by a person or team — before it goes through an AI system or before it is acted on. You are reviewing whether it is appropriate, proportionate, and regulatory-compliant before proceeding.</div>
-          </div>
-        </div>
+
 
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
           <div>
@@ -730,31 +877,72 @@ function Step1({onNext,savedData}){
           </div>
         </div>
 
-        <label className="fl">
-          {inputType==='ai_output'?'AI Output — paste or describe the decision output for review':
-           inputType==='proposed'?'Proposed Decision — describe the decision being considered before action':
-           'Scenario — describe the situation or paste a decision output for review'}
-        </label>
+        <label className="fl">AI Output — paste or describe the decision output for review</label>
         <textarea className="fi" style={{minHeight:120,marginBottom:10}} placeholder={scenarioPlaceholder} value={scenario} onChange={e=>setScenario(e.target.value)}/>
 
         {/* PERSISTENT DISCLAIMER BELOW INPUT BOX */}
         <div className="disclaimer">
           <span>ℹ️</span>
           <span>
-            <strong>Tool Scope:</strong> The Human Oversight System is designed for structured review of AI-generated or system-generated decision outputs, and for reviewing significant proposed decisions before they are acted on. It is <em>not</em> a general information verification tool, a document analysis service, or a replacement for legal or regulatory advice. Pasting reports, analytical documents, or general information will produce misleading outputs. Enter the specific decision or AI output being reviewed.
+            <strong>Scope:</strong> This tool reviews AI-generated or system-generated decision outputs. Paste the specific AI output — not a report, document, or general description. The assessment engine reads the output text to surface relevant risk flags and regulatory references. Replacing the AI output with other content will produce misleading results. This tool does not provide legal or regulatory advice.
           </span>
         </div>
 
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginTop:16}}>
-          <div><label className="fl">Organisation Name</label><input className="fi" type="text" placeholder="e.g. Vantage Capital Ltd" value={orgName} onChange={e=>setOrgName(e.target.value)}/></div>
-          <div><label className="fl">Reviewer Name</label><input className="fi" type="text" placeholder="e.g. Sarah Johnson" value={reviewer} onChange={e=>setReviewer(e.target.value)}/></div>
+        {/* AI SYSTEM METADATA — only for AI Output Review */}
+        <div className="ai-meta-block">
+            <div className="ai-meta-lbl">🤖 AI System Identification — required for EU AI Act Article 11 traceability</div>
+            <div className="ai-sys-grid">
+              <div>
+                <label className="fl">AI System / Tool Name *</label>
+                <select className="fi" value={aiSystemSel} onChange={e=>setAiSystemSel(e.target.value)}>
+                  <option value="">Select system...</option>
+                  {AI_SYSTEMS.map(s=><option key={s} value={s}>{s}</option>)}
+                </select>
+                {aiSystemSel==='Other / Not Listed'&&<input className="fi" style={{marginTop:8}} type="text" placeholder="Enter AI system name..." value={aiSystemCustom} onChange={e=>setAiSystemCustom(e.target.value)}/>}
+              </div>
+              <div>
+                <label className="fl">Model Version</label>
+                <input className="fi" type="text" placeholder='e.g. v3.2.1 or "Unknown"' value={aiModelVersion} onChange={e=>setAiModelVersion(e.target.value)}/>
+              </div>
+              <div>
+                <label className="fl">AI Output Generated At</label>
+                <input className="fi" type="datetime-local" value={aiOutputTimestamp} onChange={e=>setAiOutputTimestamp(e.target.value)}/>
+              </div>
+            </div>
+        </div>
+
+        {/* REVIEWER IDENTITY — three fields */}
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:12,marginTop:16}}>
+          <div>
+            <label className="fl">Organisation Name</label>
+            <input className="fi" type="text" placeholder="e.g. Vantage Capital Ltd" value={orgName} onChange={e=>setOrgName(e.target.value)}/>
+          </div>
+          <div>
+            <label className="fl">Reviewer Name *</label>
+            <input className="fi" type="text" placeholder="e.g. Sarah Johnson" value={reviewer} onChange={e=>setReviewer(e.target.value)}/>
+          </div>
+          <div>
+            <label className="fl">Role / Job Title * <span style={{fontSize:9,color:'var(--turquoise)',fontWeight:700}}>EU AI Act Art.26</span></label>
+            <input className="fi" type="text" placeholder="e.g. Senior Compliance Analyst" value={reviewerRole} onChange={e=>setReviewerRole(e.target.value)}/>
+          </div>
+        </div>
+
+        {/* AI LITERACY ACKNOWLEDGEMENT — mandatory, EU AI Act Article 4 */}
+        <div className={`literacy-box ${literacyChecked?'checked':''}`} style={{marginTop:16}} onClick={()=>setLiteracyChecked(p=>!p)}>
+          <div className={`lchk ${literacyChecked?'on':''}`}>{literacyChecked&&'✓'}</div>
+          <div>
+            <div className="literacy-lbl">AI Literacy Acknowledgement — EU AI Act Article 4</div>
+            <div className="literacy-txt">
+              I confirm that I have sufficient understanding of this AI system's purpose, capabilities, and known limitations to perform a meaningful review of its output. I am aware of the risk of automation bias — the tendency to over-rely on AI outputs — and I am exercising independent judgement in this review.
+            </div>
+          </div>
         </div>
 
         <div className="btn-row">
           <button className="btn btn-p" onClick={generate} disabled={loading}>
             {loading&&<span className="spinner"/>}{loading?'Analysing scenario...':'Generate Assessment Output ›'}
           </button>
-          <span style={{fontSize:11,color:'var(--muted)'}}>Include detail — richer scenarios produce more contextual assessments</span>
+          <span style={{fontSize:11,color:'var(--muted)'}}>All fields marked * are required. Include detail — richer scenarios produce more contextual assessments.</span>
         </div>
       </div>
     </div>
@@ -762,20 +950,18 @@ function Step1({onNext,savedData}){
 }
 
 /* ══ STEP 2 ══ */
-function Step2({result,inputType,onNext,onBack}){
+function Step2({result,onNext,onBack}){
   const col={APPROVE:'var(--approve)',FLAG:'var(--flag)',REJECT:'var(--reject)',REFER:'var(--refer)'};
   const bg={APPROVE:'var(--approve-bg)',FLAG:'var(--flag-bg)',REJECT:'var(--reject-bg)',REFER:'var(--refer-bg)'};
   const ico={APPROVE:'✅',FLAG:'⚠️',REJECT:'❌',REFER:'↗️'};
   const cc=result.confidence>=75?'var(--approve)':result.confidence>=50?'var(--flag)':'var(--reject)';
-  const modeNote=inputType==='proposed'
-    ?'⚠️ <strong>Proposed Decision Mode:</strong> The assessment below has been generated for a proposed decision — not an AI output. Risk flags reflect what a structured reviewer should consider before this decision is acted on. This is a structured starting point for human review, not a determination. Use the five-lens protocol on the next step to record your defensible judgement.'
-    :'⚠️ <strong>Assessment Engine Notice:</strong> The output below is generated by a structured local assessment engine using keyword and phrase-level risk analysis. It is a starting point for structured human review — <em>not</em> a regulatory determination. The five-lens protocol on the next step is where defensible human judgement is recorded. Treat this output as a structured prompt, not a final conclusion.';
+  const modeNote='⚠️ <strong>Assessment Engine Notice:</strong> The output below is generated by a structured local assessment engine using keyword and phrase-level risk analysis calibrated to the sector and decision type you selected. It is a structured starting point for human review — <em>not</em> a regulatory determination. The five-lens protocol on the next step is where your defensible judgement is recorded. Treat this output as a structured prompt, not a conclusion.';
   return(
     <div className="fade-up">
       <div className="eng-note" dangerouslySetInnerHTML={{__html:modeNote}}/>
       <div className="alert a-info" style={{marginBottom:16}}><span>ℹ️</span><span>Review the assessment output carefully before proceeding to the five-lens structured review protocol.</span></div>
       <div className="card">
-        <div className="card-lbl">Assessment Output {inputType==='proposed'?'— Proposed Decision':'— AI Output'}</div>
+        <div className="card-lbl">Assessment Output — AI Output Review</div>
         <div className="otop">
           <span className="dbadge" style={{background:bg[result.decision],color:col[result.decision]}}>{ico[result.decision]} {result.decision}</span>
           <div className="cfb"><div><div className="cfm">Confidence</div><div className="cfn" style={{color:cc}}>{result.confidence}%</div></div><div style={{flex:1}}><div className="cfbar"><div className="cffill" style={{width:result.confidence+'%'}}/></div></div></div>
@@ -825,7 +1011,11 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
   const [decision,setDecision]=useState(saved?.decision||null);
   const [orR,setOrR]=useState(saved?.orR||[]);
   const [orN,setOrN]=useState(saved?.orN||'');
+  const [orRationale,setOrRationale]=useState(saved?.orRationale||'');
   const [cN,setCN]=useState(saved?.cN||'');
+  const [suspendReason,setSuspendReason]=useState(saved?.suspendReason||'');
+  const [suspendNotes,setSuspendNotes]=useState(saved?.suspendNotes||'');
+  const [suspendEscalate,setSuspendEscalate]=useState(saved?.suspendEscalate||false);
   // Escalation fields
   const [escName,setEscName]=useState(saved?.escName||'');
   const [escEmail,setEscEmail]=useState(saved?.escEmail||'');
@@ -835,6 +1025,8 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
   const toggleOR=id=>setOrR(r=>r.includes(id)?r.filter(x=>x!==id):[...r,id]);
   const showOr=decision==='override';
   const showEsc=decision==='escalate';
+  const showSuspend=decision==='suspend';
+  const ratLen=orRationale.length;
 
   // Build email preview for escalation
   const previewEntry={
@@ -849,6 +1041,7 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
   const emailPreview=buildEscalationEmail(previewEntry);
 
   function openMailto(){
+    logEvent('E02',{to:escEmail?'set':'unset'});
     const {subject,body,recipientEmail:to}=buildEscalationEmail({
       ...previewEntry,id:'HOS-'+genId().split('-')[1]
     });
@@ -861,14 +1054,26 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
       <div className="card">
         <div className="card-lbl">Reviewer Decision</div>
         <div className={`sug ${sCls}`}>💡 {sTxt}</div>
-        <div className="dgrid">{H_OPTIONS.map(d=>(<div key={d.id} className={`dopt ${decision===d.id?'sel':''}`} onClick={()=>setDecision(d.id)}><span className="di">{d.icon}</span><span className="dt">{d.title}</span><span className="dd">{d.desc}</span></div>))}</div>
+        <div className="dgrid" style={{gridTemplateColumns:'1fr 1fr 1fr',gap:10}}>
+          {H_OPTIONS_FULL.map(d=>(
+            <div key={d.id} className={`dopt ${d.id==='suspend'?'suspend':''} ${decision===d.id?'sel':''}`} onClick={()=>setDecision(d.id)}>
+              <span className="di">{d.icon}</span><span className="dt">{d.title}</span><span className="dd">{d.desc}</span>
+            </div>
+          ))}
+        </div>
+        {decision==='suspend'&&<div className="alert a-warn" style={{margin:'0 0 16px'}}><span>⏸️</span><strong>This decision has been suspended. No action should be taken until senior review is complete.</strong></div>}
 
         {/* OVERRIDE TAXONOMY */}
         {showOr&&<div className="orbox">
           <div className="orlbl">🔍 Override Reasoning Taxonomy — select all that apply</div>
           <div className="orgrid">{OVERRIDES.map(r=>{const sel=orR.includes(r.id);return(<div key={r.id} className={`orch ${sel?'sel':''}`} onClick={()=>toggleOR(r.id)}><div className="orchk">{sel&&'✓'}</div><div><div className="orcn">{r.label}</div><div className="orcd">{r.desc}</div></div></div>);})}</div>
-          <label className="fl">Documentation &amp; Notes</label>
-          <textarea className="fi" style={{minHeight:90,marginBottom:0}} placeholder="Document your reasoning for the override. This forms part of the regulatory audit trail and should be sufficiently detailed to be defensible under regulatory scrutiny..." value={orN} onChange={e=>setOrN(e.target.value)}/>
+          <div className="or-rationale">
+            <div className="or-rat-lbl">Override Rationale (required for audit) <span className={`char-count ${ratLen>200?'over':''}`}>{ratLen}/200</span></div>
+            <input type="text" style={{width:'100%',padding:'8px 10px',border:'1.5px solid #DDD6FE',borderRadius:7,fontSize:13,fontFamily:'Inter,sans-serif',outline:'none'}} maxLength={220} placeholder="State clearly why the AI output is being overridden — max 200 characters..." value={orRationale} onChange={e=>setOrRationale(e.target.value)}/>
+            {ratLen===0&&<div style={{fontSize:11,color:'var(--reject)',marginTop:5}}>This field is required to complete the review.</div>}
+          </div>
+          <label className="fl">Extended Notes</label>
+          <textarea className="fi" style={{minHeight:70,marginBottom:0}} placeholder="Additional context, evidence references, or supporting documentation..." value={orN} onChange={e=>setOrN(e.target.value)}/>
         </div>}
 
         {/* ESCALATION EMAIL BUILDER */}
@@ -889,24 +1094,67 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
           </div>
         </div>}
 
+        {/* SUSPEND BOX */}
+        {showSuspend&&<div className="suspend-box">
+          <div className="suspend-lbl">⏸️ Suspension Reason — EU AI Act Article 14(4)(d)</div>
+          <p style={{fontSize:12,color:'#78350F',marginBottom:14,lineHeight:1.6}}>Select the primary reason for halting this decision. This is captured separately in the audit trail as a pre-action suspension — a stronger compliance position than a post-action override.</p>
+          <div className="suspend-reason-grid">
+            {SUSPEND_REASONS.map(r=>(
+              <div key={r} className={`sropt ${suspendReason===r?'sel':''}`} onClick={()=>setSuspendReason(r)}>{r}</div>
+            ))}
+          </div>
+          <label className="fl">Additional Notes</label>
+          <textarea className="fi" style={{minHeight:70,marginBottom:12}} placeholder="Provide any additional context about why this decision has been suspended and what must happen before it can be reactivated..." value={suspendNotes} onChange={e=>setSuspendNotes(e.target.value)}/>
+          <div style={{display:'flex',alignItems:'center',gap:10,padding:'12px 14px',background:'#fff',borderRadius:8,border:'1px solid #FCD34D',cursor:'pointer'}} onClick={()=>setSuspendEscalate(p=>!p)}>
+            <div style={{width:18,height:18,borderRadius:4,border:'2px solid #D97706',background:suspendEscalate?'#D97706':'#fff',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:11,flexShrink:0}}>{suspendEscalate&&'✓'}</div>
+            <span style={{fontSize:12.5,color:'#78350F',fontWeight:600}}>Also send escalation email to a senior reviewer</span>
+          </div>
+          {suspendEscalate&&<div style={{marginTop:12,display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+            <div><label className="fl">Recipient Name</label><input className="fi" type="text" placeholder="e.g. Jane Smith" value={escName} onChange={e=>setEscName(e.target.value)}/></div>
+            <div><label className="fl">Recipient Email</label><input className="fi" type="email" placeholder="e.g. j.smith@org.com" value={escEmail} onChange={e=>setEscEmail(e.target.value)}/></div>
+          </div>}
+        </div>}
+
         {decision==='approve_cond'&&<div><label className="fl">Conditions &amp; Caveats</label><textarea className="fi" style={{minHeight:90,marginBottom:0}} placeholder="Document the conditions, monitoring requirements, or additional controls applied to this conditional approval..." value={cN} onChange={e=>setCN(e.target.value)}/></div>}
       </div>
-      <div className="btn-row"><button className="btn btn-o" onClick={onBack}>← Back</button><button className="btn btn-t" style={{opacity:decision?1:.5,cursor:decision?'pointer':'not-allowed'}} onClick={()=>decision&&onNext({decision,orR,orN,cN,escName,escEmail})} disabled={!decision}>Submit &amp; Record Review ›</button></div>
+      <div className="btn-row"><button className="btn btn-o" onClick={onBack}>← Back</button><button className="btn btn-t" style={{opacity:decision?1:.5,cursor:decision?'pointer':'not-allowed'}} onClick={()=>{
+            if(!decision) return;
+            if(decision==='override'&&!orRationale.trim()) return alert('Override Rationale is required before completing the review.');
+            if(decision==='suspend'&&!suspendReason) return alert('Please select a suspension reason before completing the review.');
+            onNext({decision,orR,orN,orRationale,cN,escName,escEmail,suspendReason,suspendNotes,suspendEscalate});
+          }} disabled={!decision}>Submit &amp; Record Review ›</button></div>
     </div>
   );
 }
 
 /* ══ STEP 5 ══ */
 function Step5({entry,onNew}){
+  const isSuspend=entry.humanDecision==='suspend';
+  const isOverride=entry.humanDecision==='override';
   return(
     <div className="fade-up"><div className="card"><div className="sw">
-      <div className="sring">✅</div>
-      <h2 style={{fontSize:20,fontWeight:800,color:'var(--primary)',marginBottom:6}}>Review Complete</h2>
-      <p style={{fontSize:13,color:'var(--muted)',marginBottom:6}}>This review has been recorded to the audit trail.</p>
+      <div className="sring">{isSuspend?'⏸️':'✅'}</div>
+      <h2 style={{fontSize:20,fontWeight:800,color:'var(--primary)',marginBottom:6}}>{isSuspend?'Decision Suspended':'Review Complete'}</h2>
+      <p style={{fontSize:13,color:'var(--muted)',marginBottom:6}}>
+        {isSuspend?'This decision has been suspended and recorded. No action should be taken until senior review is complete.':'This review has been recorded to the audit trail.'}
+      </p>
       <div className="rid">{entry.id}</div>
-      <div className="rpills">{[['Assessment Outcome',entry.aiDecision],['Reviewer Decision',H_LABELS[entry.humanDecision]],['Review Score',`${entry.avgLensScore} / 5.0`],['Input Type',entry.inputType==='proposed'?'Proposed Decision':'AI Output']].map(([l,v])=>(<div key={l} className="rpill"><div className="rpl">{l}</div><div className="rpv">{v}</div></div>))}</div>
-      {entry.humanDecision==='escalate'&&entry.escEmail&&<div style={{marginTop:20,background:'#FFF1F2',border:'1px solid #FECDD3',borderRadius:10,padding:'14px 18px',fontSize:13,color:'#7f1d1d'}}><strong>Escalation logged.</strong> Email was prepared for {entry.escName||entry.escEmail}. If you have not sent it yet, return to Decision step or copy from the Audit Trail.</div>}
-      <div className="btn-row" style={{justifyContent:'center',marginTop:26}}><button className="btn btn-p" onClick={onNew}>New Review</button></div>
+      <div className="rpills">
+        {[
+          ['Assessment Outcome',entry.aiDecision],
+          ['Reviewer Decision',H_LABELS[entry.humanDecision]||entry.humanDecision],
+          ['Review Score',`${entry.avgLensScore} / 5.0`],
+          ['Review Type','AI Output Review'],
+          ...(entry.aiSystem?[['AI System',entry.aiSystem]]:[] ),
+          ...(entry.reviewerRole?[['Reviewer Role',entry.reviewerRole]]:[]),
+        ].map(([l,v])=>(<div key={l} className="rpill"><div className="rpl">{l}</div><div className="rpv">{v}</div></div>))}
+      </div>
+      {isSuspend&&entry.suspendReason&&<div style={{marginTop:16,background:'#FFFBEB',border:'1px solid #FCD34D',borderRadius:10,padding:'14px 18px',fontSize:13,color:'#78350F'}}><strong>Suspension reason:</strong> {entry.suspendReason}</div>}
+      {isOverride&&entry.orRationale&&<div style={{marginTop:16,background:'#F8F5FF',border:'1px solid #DDD6FE',borderRadius:10,padding:'14px 18px',fontSize:13,color:'#4C1D95'}}><strong>Override rationale:</strong> {entry.orRationale}</div>}
+      {(entry.humanDecision==='escalate'||(isSuspend&&entry.escEmail))&&entry.escEmail&&<div style={{marginTop:16,background:'#FFF1F2',border:'1px solid #FECDD3',borderRadius:10,padding:'14px 18px',fontSize:13,color:'#7f1d1d'}}><strong>Escalation logged.</strong> Email was prepared for {entry.escName||entry.escEmail}.</div>}
+      <div className="btn-row" style={{justifyContent:'center',marginTop:26}}>
+        <button className="btn btn-p" onClick={onNew}>New Review</button>
+      </div>
     </div></div></div>
   );
 }
@@ -916,20 +1164,39 @@ function ReviewTab({onComplete}){
   const [step,setStep]=useState(1);
   const [data,setData]=useState({});
   useEffect(()=>{if(step>1&&Object.keys(data).length>0){localStorage.setItem(SAVE_KEY,JSON.stringify({step,data,savedAt:new Date().toISOString()}));}},[step,data]);
-  function go(n){setStep(n);window.scrollTo({top:0,behavior:'smooth'});}
+  function go(n){setStep(n);window.scrollTo({top:0,behavior:'smooth'});logEvent('R02',{step:n});}
   function handleS1(d){const nd={...data,...d};setData(nd);go(2);}
   function handleS3(d){const nd={...data,lens:d};setData(nd);go(4);}
   function handleS4(d){
-    const entry={id:genId(),timestamp:new Date().toISOString(),inputType:data.inputType,sector:data.sector,sectorCustom:data.sectorCustom||'',dtype:data.dtype,dtypeCustom:data.dtypeCustom||'',scenario:data.scenario,reviewer:data.reviewer,orgName:data.orgName,aiDecision:data.result.decision,aiConfidence:data.result.confidence,aiSummary:data.result.summary,aiRiskFlags:data.result.risk_flags,avgLensScore:data.lens.avg,lensRatings:data.lens.ratings,lensNotes:data.lens.notes,humanDecision:d.decision,orReasons:d.orR,orNotes:d.orN,condNotes:d.cN,escName:d.escName||'',escEmail:d.escEmail||''};
+    const entry={
+      id:genId(),timestamp:new Date().toISOString(),
+      sector:data.sector,sectorCustom:data.sectorCustom||'',
+      dtype:data.dtype,dtypeCustom:data.dtypeCustom||'',scenario:data.scenario,
+      reviewer:data.reviewer,reviewerRole:data.reviewerRole||'',orgName:data.orgName,
+      // AI system metadata (Article 11 / 72 traceability)
+      aiSystem:data.aiSystem||'',aiModelVersion:data.aiModelVersion||'',aiOutputTimestamp:data.aiOutputTimestamp||'',
+      // Assessment output
+      aiDecision:data.result.decision,aiConfidence:data.result.confidence,
+      aiSummary:data.result.summary,aiRiskFlags:data.result.risk_flags,
+      // Lens review
+      avgLensScore:data.lens.avg,lensRatings:data.lens.ratings,lensNotes:data.lens.notes,
+      // Human decision
+      humanDecision:d.decision,
+      orReasons:d.orR,orNotes:d.orN,orRationale:d.orRationale||'',
+      condNotes:d.cN,
+      suspendReason:d.suspendReason||'',suspendNotes:d.suspendNotes||'',
+      escName:d.escName||'',escEmail:d.escEmail||'',
+      archived:false
+    };
     setData(p=>({...p,entry}));onComplete(entry);
     localStorage.removeItem(SAVE_KEY);
     go(5);
   }
-  function reset(){setStep(1);setData({});localStorage.removeItem(SAVE_KEY);}
+  function reset(){if(Object.keys(data).length>0&&!data.entry)logEvent('R04',{at:data.step||1});setStep(1);setData({});localStorage.removeItem(SAVE_KEY);}
   return(<div>
     <StepsBar step={step}/>
     {step===1&&<Step1 onNext={handleS1} savedData={data}/>}
-    {step===2&&<Step2 result={data.result} inputType={data.inputType} onNext={()=>go(3)} onBack={()=>go(1)}/>}
+    {step===2&&<Step2 result={data.result} onNext={()=>go(3)} onBack={()=>go(1)}/>}
     {step===3&&<Step3 onNext={handleS3} onBack={()=>go(2)} saved={data.lens}/>}
     {step===4&&<Step4 avgScore={data.lens?.avg||3} reviewData={data} onNext={handleS4} onBack={()=>go(3)} saved={data.step4}/>}
     {step===5&&<Step5 entry={data.entry} onNew={reset}/>}
@@ -937,96 +1204,345 @@ function ReviewTab({onComplete}){
 }
 
 /* ══ AUDIT TAB ══ */
-function AuditTab({trail,onClear}){
-  function exportCSV(){
-    const h=['Review ID','Timestamp','Input Type','Reviewer','Organisation','Sector','Decision Type','Assessment Outcome','Confidence %','Reviewer Decision','Avg Lens Score','Override Reasons','Notes','Escalation Recipient','Escalation Email','Summary'];
-    const r=trail.map(e=>[e.id,e.timestamp,e.inputType==='proposed'?'Proposed Decision':'AI Output',e.reviewer,e.orgName,e.sector,e.dtype,e.aiDecision,e.aiConfidence,H_LABELS[e.humanDecision]||e.humanDecision,e.avgLensScore,(e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label||id).join('; '),e.orNotes||e.condNotes||'',e.escName||'',e.escEmail||'',e.aiSummary||'']);
+function AuditTab({trail,onUpdate}){
+  const [filter,setFilter]=useState('all'); // all | active | archived
+
+  // CSV export
+  function exportCSV(entries,label){
+    logEvent('E01',{count:entries.length});
+    const h=['Review ID','Timestamp','Archived','Input Type','Reviewer','Role','Organisation',
+      'AI System','Model Version','AI Output Timestamp',
+      'Sector','Decision Type','Assessment Outcome','Confidence %',
+      'Reviewer Decision','Avg Lens Score','Override Rationale','Override Reasons','Extended Notes',
+      'Suspend Reason','Escalation Recipient','Escalation Email','Summary'];
+    const r=entries.map(e=>[
+      e.id,e.timestamp,e.archived?'Yes':'No',
+      'AI Output Review',
+      e.reviewer,e.reviewerRole||'',e.orgName,
+      e.aiSystem||'',e.aiModelVersion||'',e.aiOutputTimestamp||'',
+      e.sector,e.dtype,e.aiDecision,e.aiConfidence,
+      H_LABELS[e.humanDecision]||e.humanDecision,e.avgLensScore,
+      e.orRationale||'',
+      (e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label||id).join('; '),
+      e.orNotes||e.condNotes||'',e.suspendReason||'',
+      e.escName||'',e.escEmail||'',e.aiSummary||''
+    ]);
     const csv=[h,...r].map(rw=>rw.map(c=>`"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
-    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`hos-audit-${new Date().toISOString().slice(0,10)}.csv`;a.click();
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    a.download=`hos-audit-${label}-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
   }
-  const hlC={approve:'h-approve',approve_cond:'h-cond',override:'h-override',escalate:'h-escalate'};
+
+  // Single entry PDF — opens print dialog with a clean one-page layout
+  function exportEntryPDF(e){
+    const lensRows=LENSES.map(l=>`<tr><td>${l.icon} ${l.title}</td><td><strong>${e.lensRatings?.[l.id]||'—'}/5</strong></td><td>${e.lensNotes?.[l.id]||''}</td></tr>`).join('');
+    const orLabels=(e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label||id).join(', ')||'None';
+    const html=`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>HOS Audit Record — ${e.id}</title>
+<style>
+body{font-family:'Segoe UI',sans-serif;color:#0f172a;margin:0;padding:32px;font-size:12px}
+.header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #1e3a5f;padding-bottom:16px;margin-bottom:20px}
+.logo-block .org{font-size:16px;font-weight:800;color:#1e3a5f}.logo-block .tag{font-size:9px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.doc-title{font-size:20px;font-weight:800;color:#1e3a5f;margin-bottom:4px}
+.doc-sub{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px}
+.rid{font-family:monospace;font-size:14px;font-weight:700;color:#1FBFD7;margin:4px 0}
+.section{margin-bottom:18px}
+.sec-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#1FBFD7;border-bottom:1px solid #e5e7eb;padding-bottom:5px;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.field label{font-size:9px;font-weight:700;text-transform:uppercase;color:#6b7280;display:block;margin-bottom:2px}
+.field p{font-size:12px;color:#0f172a;margin:0}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:#f1f5f9;text-align:left;padding:6px 8px;font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:#374151}
+td{padding:6px 8px;border-bottom:1px solid #f1f5f9}
+.badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.badge-approve{background:#DCFCE7;color:#166534}.badge-flag{background:#FEF3C7;color:#92400E}
+.badge-reject{background:#FEE2E2;color:#991B1B}.badge-refer{background:#DBEAFE;color:#1E40AF}
+.badge-override{background:#EDE9FE;color:#6D28D9}.badge-suspend{background:#FFFBEB;color:#92400E}
+.footer{border-top:1px solid #e5e7eb;padding-top:12px;margin-top:24px;font-size:9px;color:#9ca3af;display:flex;justify-content:space-between}
+</style></head><body>
+<div class="header">
+  <div class="logo-block">
+    <div class="org">CCC Consultancy Group</div>
+    <div class="tag">UK Expertise · Global Perspective · Local Impact</div>
+    <div style="margin-top:8px;font-size:10px;color:#6b7280">AI Oversight Audit Record — Human Oversight System (HOS)</div>
+  </div>
+  <div style="text-align:right">
+    <div class="doc-title">Audit Record</div>
+    <div class="rid">${e.id}</div>
+    <div class="doc-sub">${fmtDate(e.timestamp)}</div>
+    ${e.archived?'<div style="color:#D97706;font-size:10px;font-weight:700;margin-top:4px">ARCHIVED RECORD</div>':''}
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Reviewer Identity (EU AI Act Article 26)</div>
+  <div class="grid3">
+    <div class="field"><label>Reviewer Name</label><p>${e.reviewer}</p></div>
+    <div class="field"><label>Role / Job Title</label><p>${e.reviewerRole||'Not specified'}</p></div>
+    <div class="field"><label>Organisation</label><p>${e.orgName||'Not specified'}</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Review Configuration</div>
+  <div class="grid3">
+    <div class="field"><label>Input Type</label><p>AI Output Review</p></div>
+    <div class="field"><label>Sector</label><p>${e.sector}</p></div>
+    <div class="field"><label>Decision Type</label><p>${e.dtype}</p></div>
+  </div>
+</div>
+
+${e.aiSystem?`<div class="section">
+  <div class="sec-title">AI System Metadata (EU AI Act Articles 11 & 72)</div>
+  <div class="grid3">
+    <div class="field"><label>AI System / Tool Name</label><p>${e.aiSystem}</p></div>
+    <div class="field"><label>Model Version</label><p>${e.aiModelVersion||'Unknown'}</p></div>
+    <div class="field"><label>AI Output Generated At</label><p>${e.aiOutputTimestamp?new Date(e.aiOutputTimestamp).toLocaleString():'Not recorded'}</p></div>
+  </div>
+</div>`:''} 
+
+<div class="section">
+  <div class="sec-title">Assessment Output</div>
+  <div class="grid2">
+    <div class="field"><label>Assessment Outcome</label><p><span class="badge badge-${e.aiDecision.toLowerCase()}">${e.aiDecision}</span> — ${e.aiConfidence}% confidence</p></div>
+    <div class="field"><label>Human Decision</label><p><span class="badge badge-${e.humanDecision.replace('_','-')}">${H_LABELS[e.humanDecision]||e.humanDecision}</span></p></div>
+  </div>
+  <div class="field" style="margin-top:10px"><label>Assessment Summary</label><p>${e.aiSummary||''}</p></div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Five-Lens Review Scores</div>
+  <table>
+    <thead><tr><th>Lens</th><th>Score</th><th>Reviewer Notes</th></tr></thead>
+    <tbody>${lensRows}</tbody>
+  </table>
+  <p style="font-size:11px;margin-top:8px"><strong>Average lens score: ${e.avgLensScore}/5.0</strong></p>
+</div>
+
+${e.humanDecision==='override'?`<div class="section">
+  <div class="sec-title">Override Record</div>
+  <div class="field"><label>Override Rationale (audit record)</label><p><strong>${e.orRationale||'Not provided'}</strong></p></div>
+  <div class="field" style="margin-top:8px"><label>Taxonomy Classification</label><p>${orLabels}</p></div>
+  ${e.orNotes?`<div class="field" style="margin-top:8px"><label>Extended Notes</label><p>${e.orNotes}</p></div>`:''}
+</div>`:''}
+
+${e.humanDecision==='suspend'?`<div class="section">
+  <div class="sec-title">Suspension Record (EU AI Act Article 14(4)(d))</div>
+  <div class="field"><label>Suspension Reason</label><p><strong>${e.suspendReason||'Not recorded'}</strong></p></div>
+  ${e.suspendNotes?`<div class="field" style="margin-top:8px"><label>Additional Notes</label><p>${e.suspendNotes}</p></div>`:''}
+</div>`:''}
+
+${e.escEmail?`<div class="section">
+  <div class="sec-title">Escalation Record</div>
+  <div class="grid2">
+    <div class="field"><label>Escalated To</label><p>${e.escName||''}</p></div>
+    <div class="field"><label>Recipient Email</label><p>${e.escEmail}</p></div>
+  </div>
+</div>`:''}
+
+<div class="footer">
+  <span>© 2026 CCC Consultancy Group Ltd. All rights reserved. Human Oversight System is a CCC proprietary tool.</span>
+  <span>Generated: ${new Date().toLocaleString()}</span>
+</div>
+</body></html>`;
+    const w=window.open('','_blank','width=900,height=700');
+    w.document.write(html);
+    w.document.close();
+    setTimeout(()=>w.print(),600);
+  }
+
+  // Full trail PDF
+  function exportFullPDF(){
+    const entries=trail.filter(e=>filter==='all'||(filter==='active'&&!e.archived)||(filter==='archived'&&e.archived));
+    if(!entries.length){alert('No entries to export.');return;}
+    const rows=entries.map((e,i)=>`
+      <tr>
+        <td>${e.id}</td>
+        <td>${fmtDate(e.timestamp)}</td>
+        <td>AI Output Review</td>
+        <td>${e.reviewer}<br><small style="color:#6b7280">${e.reviewerRole||''}</small></td>
+        <td>${e.aiSystem||'—'}</td>
+        <td>${e.sector}</td>
+        <td>${e.aiDecision} (${e.aiConfidence}%)</td>
+        <td>${H_LABELS[e.humanDecision]||e.humanDecision}</td>
+        <td>${e.avgLensScore}/5</td>
+        <td>${e.orRationale||'—'}</td>
+        <td>${e.archived?'Archived':'Active'}</td>
+      </tr>`).join('');
+    const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>HOS Full Audit Trail</title>
+<style>
+body{font-family:'Segoe UI',sans-serif;color:#0f172a;margin:0;padding:24px;font-size:11px}
+.header{border-bottom:3px solid #1e3a5f;padding-bottom:14px;margin-bottom:20px;display:flex;justify-content:space-between}
+.org{font-size:16px;font-weight:800;color:#1e3a5f}.tag{font-size:9px;color:#6b7280;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:18px;font-weight:800;color:#1e3a5f;margin:0}
+.sub{font-size:10px;color:#6b7280}
+table{width:100%;border-collapse:collapse;font-size:10px}
+th{background:#1e3a5f;color:#fff;padding:7px 8px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:7px 8px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+tr:nth-child(even) td{background:#f8faff}
+.footer{border-top:1px solid #e5e7eb;padding-top:10px;margin-top:20px;font-size:9px;color:#9ca3af;display:flex;justify-content:space-between}
+@media print{@page{size:A4 landscape;margin:1cm}}
+</style></head><body>
+<div class="header">
+  <div><div class="org">CCC Consultancy Group</div><div class="tag">Human Oversight System — Full Audit Trail Export</div></div>
+  <div style="text-align:right"><h1>AI Oversight Audit Trail</h1><div class="sub">Exported: ${new Date().toLocaleString()} · ${entries.length} records · Filter: ${filter}</div></div>
+</div>
+<p style="font-size:10px;color:#374151;margin-bottom:14px;line-height:1.6">This document is an AI oversight audit record generated by the Human Oversight System (HOS), a CCC Consultancy Group proprietary tool. It provides evidence of structured human review of AI-generated or proposed decisions in accordance with EU AI Act oversight requirements.</p>
+<table>
+  <thead><tr><th>HOS ID</th><th>Timestamp</th><th>Type</th><th>Reviewer</th><th>AI System</th><th>Sector</th><th>Assessment</th><th>Decision</th><th>Lens Score</th><th>Override Rationale</th><th>Status</th></tr></thead>
+  <tbody>${rows}</tbody>
+</table>
+<div class="footer">
+  <span>© 2026 CCC Consultancy Group Ltd. All rights reserved. This document is an official AI oversight audit record.</span>
+  <span>${entries.length} records exported</span>
+</div>
+</body></html>`;
+    const w=window.open('','_blank','width=1200,height=800');
+    w.document.write(html);
+    w.document.close();
+    setTimeout(()=>w.print(),600);
+  }
+
+  // Archive toggle
+  function toggleArchive(id){
+    onUpdate(trail.map(e=>e.id===id?{...e,archived:!e.archived}:e));
+  }
+
+  const visible=trail.filter(e=>{
+    if(filter==='active') return !e.archived;
+    if(filter==='archived') return e.archived;
+    return true;
+  });
+
+  const hlC={approve:'h-approve',approve_cond:'h-cond',override:'h-override',escalate:'h-escalate',suspend:'h-suspend'};
   const aiB={APPROVE:'mb-approve',FLAG:'mb-flag',REJECT:'mb-reject',REFER:'mb-refer'};
-  const hB={approve:'mb-approve',approve_cond:'mb-cond',override:'mb-ov',escalate:'mb-esc'};
+  const hB={approve:'mb-approve',approve_cond:'mb-cond',override:'mb-ov',escalate:'mb-esc',suspend:'mb-suspend'};
+
   return(
     <div className="fade-up">
-      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:22,flexWrap:'wrap',gap:12}}>
-        <div><h2 style={{fontSize:18,fontWeight:800,color:'var(--primary)'}}>Audit Trail</h2><p style={{fontSize:12,color:'var(--muted)',marginTop:3}}>All completed reviews — timestamped, structured, and exportable for regulatory evidence.</p></div>
-        <div style={{display:'flex',gap:8}}>
-          <button className="btn btn-o" style={{fontSize:12,padding:'8px 14px'}} onClick={exportCSV}>⬇ Export CSV</button>
-          <button className="btn btn-o" style={{fontSize:12,padding:'8px 14px',color:'var(--reject)'}} onClick={()=>confirm('Clear all audit trail data?')&&onClear()}>🗑 Clear All</button>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:18,flexWrap:'wrap',gap:12}}>
+        <div>
+          <h2 style={{fontSize:18,fontWeight:800,color:'var(--primary)'}}>Audit Trail</h2>
+          <p style={{fontSize:12,color:'var(--muted)',marginTop:3}}>All completed reviews — timestamped, structured, and exportable for regulatory evidence.</p>
+        </div>
+        <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+          <select value={filter} onChange={e=>setFilter(e.target.value)} style={{padding:'8px 12px',border:'1.5px solid var(--border)',borderRadius:8,fontSize:12,fontFamily:'Inter,sans-serif',color:'var(--text)'}}>
+            <option value="all">All Records ({trail.length})</option>
+            <option value="active">Active ({trail.filter(e=>!e.archived).length})</option>
+            <option value="archived">Archived ({trail.filter(e=>e.archived).length})</option>
+          </select>
+          <button className="btn btn-o" style={{fontSize:12,padding:'8px 14px'}} onClick={()=>exportCSV(visible,filter)}>⬇ CSV</button>
+          <button className="btn btn-o" style={{fontSize:12,padding:'8px 14px'}} onClick={exportFullPDF}>📄 Full PDF</button>
         </div>
       </div>
-      {!trail.length?<div className="empty"><div className="ei">📋</div><h3>No reviews yet</h3><p>Completed reviews will appear here with full audit detail,<br/>timestamps, and exportable evidence.</p></div>:
-      trail.map(e=>{const orL=(e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label).filter(Boolean);return(
-        <div key={e.id} className={`aitem ${hlC[e.humanDecision]||''}`}>
-          <div className="ameta"><span className="aid">{e.id}</span><span className="atime">{fmtDate(e.timestamp)}</span></div>
-          <div className="brow">
-            <span className={`mb ${e.inputType==='proposed'?'mb-proposed':'mb-ai'}`}>{e.inputType==='proposed'?'📋 Proposed Decision':'🤖 AI Output'}</span>
-            <span className="mb mb-g">{e.sector}</span>
-            <span className={`mb ${aiB[e.aiDecision]||'mb-g'}`}>Assessment: {e.aiDecision} ({e.aiConfidence}%)</span>
-            <span className={`mb ${hB[e.humanDecision]||'mb-g'}`}>Reviewer: {H_LABELS[e.humanDecision]||e.humanDecision}</span>
-            {e.reviewer!=='Anonymous'&&<span className="mb mb-g">👤 {e.reviewer}</span>}
-            {e.orgName&&<span className="mb mb-g">🏢 {e.orgName}</span>}
-            <span className="mb mb-g">Score: {e.avgLensScore}/5</span>
-          </div>
-          <div style={{fontSize:13,color:'var(--text)',lineHeight:1.55}}>{e.aiSummary}</div>
-          {orL.length>0&&<div style={{fontSize:11.5,color:'var(--muted)',marginTop:6,fontStyle:'italic'}}>Override reasons: {orL.join(' · ')}</div>}
-          {(e.orNotes||e.condNotes)&&<div style={{fontSize:11.5,color:'var(--muted)',marginTop:4,fontStyle:'italic'}}>"{e.orNotes||e.condNotes}"</div>}
-          {e.humanDecision==='escalate'&&e.escEmail&&<div style={{marginTop:8,fontSize:11.5,color:'var(--escalate)',fontWeight:600}}>🚨 Escalated to: {e.escName||e.escEmail} ({e.escEmail})</div>}
-        </div>
-      );})}
+
+      {!visible.length?
+        <div className="empty"><div className="ei">📋</div><h3>{filter==='archived'?'No archived records':'No reviews yet'}</h3><p>{filter==='archived'?'Archive a review by clicking Archive on any active entry.':'Completed reviews will appear here.'}</p></div>:
+        visible.map(e=>{
+          const orL=(e.orReasons||[]).map(id=>OVERRIDES.find(r=>r.id===id)?.label).filter(Boolean);
+          return(
+            <div key={e.id} className={`aitem ${hlC[e.humanDecision]||''} ${e.archived?'arc-entry':''}`}>
+              <div className="ameta">
+                <span className="aid">{e.id}{e.archived&&<span className="arc-badge">Archived</span>}</span>
+                <span className="atime">{fmtDate(e.timestamp)}</span>
+              </div>
+              <div className="brow">
+                <span className="mb mb-ai">🤖 AI Output Review</span>
+                {e.aiSystem&&<span className="mb mb-g">⚙️ {e.aiSystem}</span>}
+                <span className="mb mb-g">{e.sector}</span>
+                <span className={`mb ${aiB[e.aiDecision]||'mb-g'}`}>Assessment: {e.aiDecision} ({e.aiConfidence}%)</span>
+                <span className={`mb ${hB[e.humanDecision]||'mb-g'}`}>{H_LABELS[e.humanDecision]||e.humanDecision}</span>
+                {e.reviewer&&<span className="mb mb-g">👤 {e.reviewer}{e.reviewerRole?` · ${e.reviewerRole}`:''}</span>}
+                {e.orgName&&<span className="mb mb-g">🏢 {e.orgName}</span>}
+                <span className="mb mb-g">Score: {e.avgLensScore}/5</span>
+              </div>
+              <div style={{fontSize:13,color:'var(--text)',lineHeight:1.55}}>{e.aiSummary}</div>
+              {e.orRationale&&<div style={{fontSize:12,color:'#4C1D95',marginTop:6,fontWeight:600}}>Override rationale: "{e.orRationale}"</div>}
+              {orL.length>0&&<div style={{fontSize:11.5,color:'var(--muted)',marginTop:4,fontStyle:'italic'}}>Override taxonomy: {orL.join(' · ')}</div>}
+              {e.suspendReason&&<div style={{fontSize:12,color:'#78350F',marginTop:6,fontWeight:600}}>⏸️ Suspended: {e.suspendReason}</div>}
+              {e.escEmail&&<div style={{marginTop:6,fontSize:11.5,color:'var(--escalate)',fontWeight:600}}>🚨 Escalated to: {e.escName||''} ({e.escEmail})</div>}
+              <div style={{display:'flex',gap:8,marginTop:12}}>
+                <button className="btn btn-o" style={{fontSize:11,padding:'6px 12px'}} onClick={()=>exportEntryPDF(e)}>📄 Export PDF</button>
+                <button className="btn btn-o" style={{fontSize:11,padding:'6px 12px',color:e.archived?'var(--approve)':'var(--muted)'}} onClick={()=>toggleArchive(e.id)}>
+                  {e.archived?'↩ Restore':'🗄 Archive'}
+                </button>
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   );
 }
 
+
 /* ══ GOVERNANCE TAB ══ */
 function GovernanceTab({trail}){
-  const d1=useRef(null),d2=useRef(null),d3=useRef(null),d4=useRef(null);
+  const d1=useRef(null),d2=useRef(null),d3=useRef(null);
   const ch=useRef({});
   useEffect(()=>{
     if(!trail.length) return;
     Object.values(ch.current).forEach(c=>c&&c.destroy());ch.current={};
-    const aiC={APPROVE:0,FLAG:0,REJECT:0,REFER:0},hC={approve:0,approve_cond:0,override:0,escalate:0},sC={},rC={},itC={'AI Output':0,'Proposed Decision':0};
+    const aiC={APPROVE:0,FLAG:0,REJECT:0,REFER:0};
+    const hC={approve:0,approve_cond:0,override:0,escalate:0,suspend:0};
+    const sC={},rC={};
+    const aiSysC={};
     trail.forEach(e=>{
       if(aiC[e.aiDecision]!==undefined)aiC[e.aiDecision]++;
       if(hC[e.humanDecision]!==undefined)hC[e.humanDecision]++;
       sC[e.sector]=(sC[e.sector]||0)+1;
       (e.orReasons||[]).forEach(id=>{const l=OVERRIDES.find(r=>r.id===id)?.label||id;rC[l]=(rC[l]||0)+1;});
-      if(e.inputType==='proposed')itC['Proposed Decision']++;else itC['AI Output']++;
+
+      if(e.aiSystem)aiSysC[e.aiSystem]=(aiSysC[e.aiSystem]||0)+1;
     });
     const ft={family:'Inter,sans-serif',size:11};
-    if(d1.current)ch.current.d1=new Chart(d1.current,{type:'bar',data:{labels:['Approve','Flag','Reject','Refer'],datasets:[{label:'Assessment',data:[aiC.APPROVE,aiC.FLAG,aiC.REJECT,aiC.REFER],backgroundColor:['#DCFCE7','#FEF3C7','#FEE2E2','#DBEAFE'],borderColor:['#16A34A','#D97706','#DC2626','#2563EB'],borderWidth:2,borderRadius:4},{label:'Reviewer',data:[hC.approve,hC.approve_cond,hC.override,hC.escalate],backgroundColor:['rgba(15,23,42,.75)','rgba(15,23,42,.5)','rgba(124,58,237,.7)','rgba(159,18,57,.65)'],borderWidth:0,borderRadius:4}]},options:{responsive:true,plugins:{legend:{labels:{font:ft}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:ft}},x:{ticks:{font:ft}}}}});
+    if(d1.current)ch.current.d1=new Chart(d1.current,{type:'bar',data:{labels:['Approve','Flag','Reject','Refer'],datasets:[{label:'Assessment',data:[aiC.APPROVE,aiC.FLAG,aiC.REJECT,aiC.REFER],backgroundColor:['#DCFCE7','#FEF3C7','#FEE2E2','#DBEAFE'],borderColor:['#16A34A','#D97706','#DC2626','#2563EB'],borderWidth:2,borderRadius:4},{label:'Reviewer',data:[hC.approve,hC.approve_cond,hC.override,hC.escalate],backgroundColor:['rgba(15,23,42,.75)','rgba(15,23,42,.5)','rgba(124,58,237,.7)','rgba(159,18,57,.65)'],borderWidth:0,borderRadius:4},{label:'Suspended',data:[0,0,0,hC.suspend],backgroundColor:['rgba(217,119,6,.6)'],borderWidth:0,borderRadius:4}]},options:{responsive:true,plugins:{legend:{labels:{font:ft}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:ft}},x:{ticks:{font:ft}}}}});
     if(d2.current)ch.current.d2=new Chart(d2.current,{type:'doughnut',data:{labels:Object.keys(sC),datasets:[{data:Object.values(sC),backgroundColor:['#0f172a','#1FBFD7','#2563EB','#7C3AED','#16A34A','#D97706','#DC2626','#6B7280','#EC4899'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:ft,boxWidth:12}}}}});
     const sr=Object.entries(rC).sort((a,b)=>b[1]-a[1]);
     if(sr.length&&d3.current)ch.current.d3=new Chart(d3.current,{type:'bar',data:{labels:sr.map(([k])=>k),datasets:[{label:'Override Frequency',data:sr.map(([,v])=>v),backgroundColor:'rgba(124,58,237,.65)',borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{stepSize:1,font:ft}},y:{ticks:{font:ft}}}}});
-    if(d4.current)ch.current.d4=new Chart(d4.current,{type:'doughnut',data:{labels:['AI Output Reviews','Proposed Decision Reviews'],datasets:[{data:[itC['AI Output'],itC['Proposed Decision']],backgroundColor:['#1FBFD7','#7C3AED'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:ft,boxWidth:12}}}}});
+
     return()=>Object.values(ch.current).forEach(c=>c&&c.destroy());
   },[trail]);
 
   if(!trail.length) return<div className="empty"><div className="ei">📊</div><h3>No data yet</h3><p>Complete your first review to begin building governance intelligence.</p></div>;
-  const total=trail.length,ov=trail.filter(e=>e.humanDecision==='override').length,esc=trail.filter(e=>e.humanDecision==='escalate').length;
-  const rate=Math.round(((ov+esc)/total)*100);
+  const active=trail.filter(e=>!e.archived);
+  const total=active.length||trail.length;
+  const ov=trail.filter(e=>e.humanDecision==='override').length;
+  const esc=trail.filter(e=>e.humanDecision==='escalate').length;
+  const susp=trail.filter(e=>e.humanDecision==='suspend').length;
+  const rate=Math.round(((ov+esc+susp)/trail.length)*100);
   const avgS=(trail.reduce((s,e)=>s+parseFloat(e.avgLensScore),0)/total).toFixed(1);
   const lL={};trail.forEach(e=>{(e.lensRatings?Object.entries(e.lensRatings):[]).forEach(([id,r])=>{if(r<=2){const t=LENSES.find(x=>x.id===id)?.title||id;lL[t]=(lL[t]||0)+1;}});});
   const topL=Object.entries(lL).sort((a,b)=>b[1]-a[1])[0];
   return(
     <div className="fade-up">
       <div style={{marginBottom:22}}><h2 style={{fontSize:18,fontWeight:800,color:'var(--primary)'}}>Governance Dashboard</h2><p style={{fontSize:12,color:'var(--muted)',marginTop:3}}>Aggregated oversight metrics across all completed reviews.</p></div>
-      <div className="statgrid">
-        {[{num:total,lbl:'Total Reviews'},{num:`${rate}%`,lbl:'Challenge Rate',sub:`${ov} overrides · ${esc} escalations`,col:rate>30?'var(--reject)':undefined},{num:avgS,lbl:'Avg Review Score',sub:'out of 5.0'},{num:topL?topL[0]:'—',lbl:'Most Flagged Lens',sub:topL?`${topL[1]} low rating${topL[1]>1?'s':''}`:undefined,small:!!topL}].map((s,i)=>(<div key={i} className="stcard"><div className="stnum" style={{color:s.col||'var(--primary)',fontSize:s.small?13:30,paddingTop:s.small?10:0}}>{s.num}</div><div className="stlbl">{s.lbl}</div>{s.sub&&<div className="stsub">{s.sub}</div>}</div>))}
+      <div className="statgrid" style={{gridTemplateColumns:'repeat(5,1fr)'}}>
+        {[
+          {num:trail.length,lbl:'Total Reviews'},
+          {num:`${rate}%`,lbl:'Challenge Rate',sub:`${ov} ov · ${esc} esc · ${susp} susp`,col:rate>30?'var(--reject)':undefined},
+          {num:avgS,lbl:'Avg Lens Score',sub:'out of 5.0'},
+          {num:susp,lbl:'Suspensions',sub:'pre-action halts',col:susp>0?'var(--flag)':undefined},
+          {num:topL?topL[0]:'—',lbl:'Most Flagged Lens',sub:topL?`${topL[1]} low rating${topL[1]>1?'s':''}`:undefined,small:!!topL}
+        ].map((s,i)=>(<div key={i} className="stcard"><div className="stnum" style={{color:s.col||'var(--primary)',fontSize:s.small?13:30,paddingTop:s.small?10:0}}>{s.num}</div><div className="stlbl">{s.lbl}</div>{s.sub&&<div className="stsub">{s.sub}</div>}</div>))}
       </div>
       {rate>30&&<div className="alert a-warn"><span>⚠️</span><div><strong>Governance Signal:</strong> Challenge rate of {rate}% exceeds the 30% threshold. This may indicate systematic assessment issues, data quality problems, or miscalibrated thresholds. Review the Override Reasoning chart below.</div></div>}
       <div className="chartgrid">
         <div className="ccard"><div className="clbl">Decision Distribution — Assessment vs Reviewer</div><canvas ref={d1} height={210}/></div>
         <div className="ccard"><div className="clbl">Reviews by Sector</div><canvas ref={d2} height={210}/></div>
         <div className="ccard"><div className="clbl">Override Reasoning Intelligence — Category Frequency</div><canvas ref={d3} height={160}/></div>
-        <div className="ccard"><div className="clbl">Review Type Split — AI Output vs Proposed Decision</div><canvas ref={d4} height={160}/></div>
+
       </div>
     </div>
   );
 }
 
 /* ══ APP ══ */
+const SESSION_TIMEOUT = 15 * 60 * 1000; // 15 minutes
+const WARN_AT       = 60 * 1000;           // warn 60s before lockout
+
 function App(){
   const [tab,setTab]=useState('review');
   const [trail,setTrail]=useState(()=>{try{return JSON.parse(localStorage.getItem('hos_trail')||'[]');}catch{return [];}});
@@ -1035,6 +1551,48 @@ function App(){
   const [showTour,setShowTour]=useState(false);
   const [savedProgress,setSavedProgress]=useState(null);
   const [reviewKey,setReviewKey]=useState(0);
+  // Session timeout
+  const [timedOut,setTimedOut]=useState(false);
+  const [countdown,setCountdown]=useState(0);
+  const timeoutRef=useRef(null);
+  const warnRef=useRef(null);
+  const countRef=useRef(null);
+
+  function resetTimer(){
+    clearTimeout(timeoutRef.current);
+    clearTimeout(warnRef.current);
+    clearInterval(countRef.current);
+    setCountdown(0);
+    warnRef.current=setTimeout(()=>{
+      // Start 60-second countdown warning
+      let secs=60;
+      setCountdown(secs);
+      countRef.current=setInterval(()=>{
+        secs--;
+        setCountdown(secs);
+        if(secs<=0) clearInterval(countRef.current);
+      },1000);
+    }, SESSION_TIMEOUT - WARN_AT);
+    timeoutRef.current=setTimeout(()=>{
+      clearInterval(countRef.current);
+      setCountdown(0);
+      setTimedOut(true);
+      sessionStorage.removeItem('hos_code');
+      logEvent('A03',{reason:'timeout'});
+    }, SESSION_TIMEOUT);
+  }
+
+  useEffect(()=>{
+    const events=['mousemove','keydown','click','touchstart','scroll'];
+    events.forEach(ev=>window.addEventListener(ev,resetTimer,{passive:true}));
+    resetTimer();
+    return()=>{
+      events.forEach(ev=>window.removeEventListener(ev,resetTimer));
+      clearTimeout(timeoutRef.current);
+      clearTimeout(warnRef.current);
+      clearInterval(countRef.current);
+    };
+  },[]);
 
   useEffect(()=>{
     const seen=localStorage.getItem('hos_seen');
@@ -1044,16 +1602,45 @@ function App(){
   },[]);
 
   function showToast(msg,type='success'){setToast({msg,type});setTimeout(()=>setToast(null),3200);}
-  function onComplete(entry){const next=[entry,...trail];setTrail(next);localStorage.setItem('hos_trail',JSON.stringify(next));showToast('Review recorded — '+entry.id);}
-  function clearTrail(){setTrail([]);localStorage.removeItem('hos_trail');}
-  function startTour(){localStorage.setItem('hos_seen','1');setShowWelcome(false);setShowTour(true);}
-  function skipWelcome(){localStorage.setItem('hos_seen','1');setShowWelcome(false);}
+  function onComplete(entry){
+    const next=[entry,...trail];
+    setTrail(next);
+    localStorage.setItem('hos_trail',JSON.stringify(next));
+    showToast('Review recorded — '+entry.id);
+    logEvent('R03',{sector:entry.sector,dtype:entry.dtype,decision:entry.humanDecision,ai:entry.aiDecision,score:entry.avgLensScore});
+  }
+  function onUpdateTrail(updated){
+    setTrail(updated);
+    localStorage.setItem('hos_trail',JSON.stringify(updated));
+  }
+  function startTour(){localStorage.setItem('hos_seen','1');setShowWelcome(false);setShowTour(true);logEvent('T04');}
+  function skipWelcome(){localStorage.setItem('hos_seen','1');setShowWelcome(false);logEvent('T05');}
   function discardProgress(){localStorage.removeItem(SAVE_KEY);setSavedProgress(null);}
   const tabs=[{id:'review',label:'🔍 New Review'},{id:'audit',label:'📋 Audit Trail',count:trail.length},{id:'governance',label:'📊 Governance View'}];
 
   return(
     <>
-      {showWelcome&&<div className="mmask"><div className="wbox"><div className="wicon">🔍</div><div className="wtitle">Human Oversight System</div><p className="wbody">Welcome to HOS — CCC's structured review tool for AI-enabled decisions and significant proposed decisions. Every case goes through a five-step protocol producing a complete, defensible audit trail. Would you like a short tour before you begin?</p><div className="wbtns"><button className="btn btn-p" onClick={startTour}>Take the Tour ›</button><button className="btn btn-o" onClick={skipWelcome}>Skip — Go Straight In</button></div></div></div>}
+      {/* SESSION TIMEOUT OVERLAY */}
+      {timedOut&&(
+        <div className="timeout-overlay">
+          <div className="timeout-box">
+            <div style={{fontSize:42,marginBottom:16}}>🔒</div>
+            <div style={{fontSize:18,fontWeight:800,color:'var(--primary)',marginBottom:8}}>Session Timed Out</div>
+            <p style={{fontSize:13,color:'var(--muted)',lineHeight:1.7,marginBottom:20}}>Your session has expired after 15 minutes of inactivity. Please re-enter your access code to continue. Your audit trail data is preserved.</p>
+            <button className="btn btn-p" style={{width:'100%'}} onClick={()=>window.location.reload()}>Re-enter Access Code →</button>
+          </div>
+        </div>
+      )}
+
+      {/* INACTIVITY WARNING */}
+      {countdown>0&&!timedOut&&(
+        <div style={{position:'fixed',bottom:80,right:24,background:'var(--primary)',color:'#fff',padding:'12px 18px',borderRadius:12,fontSize:13,fontWeight:600,zIndex:700,boxShadow:'0 4px 20px rgba(0,0,0,.2)'}}>
+          ⏱ Session expires in {countdown}s
+          <button onClick={resetTimer} style={{marginLeft:12,background:'var(--turquoise)',border:'none',color:'#fff',padding:'4px 10px',borderRadius:6,cursor:'pointer',fontSize:12,fontWeight:700,fontFamily:'Inter,sans-serif'}}>Stay Active</button>
+        </div>
+      )}
+
+      {showWelcome&&<div className="mmask"><div className="wbox"><div className="wicon">🔍</div><div className="wtitle">Human Oversight System</div><p className="wbody">Welcome to HOS — CCC's governance accountability instrument for structured human review of AI-enabled decisions. Every case goes through a five-step protocol producing a complete, defensible audit trail. Would you like a short tour before you begin?</p><div className="wbtns"><button className="btn btn-p" onClick={startTour}>Take the Tour ›</button><button className="btn btn-o" onClick={skipWelcome}>Skip — Go Straight In</button></div></div></div>}
       {showTour&&<Walkthrough onClose={()=>setShowTour(false)}/>}
       {toast&&<Toast {...toast}/>}
 
@@ -1070,7 +1657,7 @@ function App(){
       </header>
 
       <nav className="tabs">
-        {tabs.map(t=>(<button key={t.id} className={`tab-btn ${tab===t.id?'active':''}`} onClick={()=>setTab(t.id)}>{t.label}{t.count>0&&<span className="tab-count">{t.count}</span>}</button>))}
+        {tabs.map(t=>(<button key={t.id} className={`tab-btn ${tab===t.id?'active':''}`} onClick={()=>{setTab(t.id);logEvent(t.id==='review'?'T01':t.id==='audit'?'T02':'T03',{from:tab});}}>{t.label}{t.count>0&&<span className="tab-count">{t.count}</span>}</button>))}
       </nav>
 
       {savedProgress&&tab==='review'&&(
@@ -1078,14 +1665,14 @@ function App(){
           <div><p>You have an unsaved review in progress — saved at {fmtDate(savedProgress.savedAt)}</p><span>Step {savedProgress.step} of 5 completed</span></div>
           <div style={{display:'flex',gap:10}}>
             <button className="btn btn-o" style={{background:'rgba(255,255,255,.1)',color:'#fff',border:'1px solid rgba(255,255,255,.3)',fontSize:12,padding:'8px 14px'}} onClick={discardProgress}>Dismiss</button>
-            <button className="btn btn-t" style={{fontSize:12,padding:'8px 16px'}} onClick={()=>{setSavedProgress(null);showToast('Resuming saved review');}}>Resume Review ›</button>
+            <button className="btn btn-t" style={{fontSize:12,padding:'8px 16px'}} onClick={()=>{setSavedProgress(null);showToast('Resuming saved review');logEvent('S02');}}>Resume Review ›</button>
           </div>
         </div>
       )}
 
       <main style={{flex:1}}><div className="wrap">
         {tab==='review'&&<ReviewTab key={reviewKey} onComplete={onComplete}/>}
-        {tab==='audit'&&<AuditTab trail={trail} onClear={clearTrail}/>}
+        {tab==='audit'&&<AuditTab trail={trail} onUpdate={onUpdateTrail}/>}
         {tab==='governance'&&<GovernanceTab trail={trail}/>}
       </div></main>
 
@@ -1175,8 +1762,10 @@ function AccessGate({onGranted, reason}) {
       const valid = await validateCode(code);
       if(valid) {
         sessionStorage.setItem(ACCESS_KEY, code.trim().toUpperCase());
+        logEvent('A01',{via:'gate'});
         onGranted();
       } else {
+        logEvent('A02');
         setStatus('error');
         setMsg('Invalid access code. Please check your code or contact info@cccconsultancygroup.com.');
       }
@@ -1254,9 +1843,11 @@ function Root() {
       const valid = await validateCode(codeToCheck);
       if(valid) {
         setAuthState('granted');
+        if(!isBackground) logEvent('S01');
       } else {
         // Code was in sessionStorage but is no longer in access.json — revoked
         sessionStorage.removeItem(ACCESS_KEY);
+        logEvent(isBackground ? 'A03' : 'A02',{bg:isBackground?'1':'0'});
         setAuthState(isBackground ? 'revoked' : 'denied');
       }
     } catch {
