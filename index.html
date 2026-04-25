@@ -890,7 +890,7 @@ function Step1({onNext,savedData}){
 
         {/* AI SYSTEM METADATA — only for AI Output Review */}
         <div className="ai-meta-block">
-            <div className="ai-meta-lbl">🤖 AI System Identification — required for EU AI Act Article 11 traceability</div>
+            <div className="ai-meta-lbl">🤖 AI System Identification</div>
             <div className="ai-sys-grid">
               <div>
                 <label className="fl">AI System / Tool Name *</label>
@@ -922,7 +922,7 @@ function Step1({onNext,savedData}){
             <input className="fi" type="text" placeholder="e.g. Sarah Johnson" value={reviewer} onChange={e=>setReviewer(e.target.value)}/>
           </div>
           <div>
-            <label className="fl">Role / Job Title * <span style={{fontSize:9,color:'var(--turquoise)',fontWeight:700}}>EU AI Act Art.26</span></label>
+            <label className="fl">Role / Job Title * <span style={{fontSize:9,color:'var(--turquoise)',fontWeight:700}}></span></label>
             <input className="fi" type="text" placeholder="e.g. Senior Compliance Analyst" value={reviewerRole} onChange={e=>setReviewerRole(e.target.value)}/>
           </div>
         </div>
@@ -931,7 +931,7 @@ function Step1({onNext,savedData}){
         <div className={`literacy-box ${literacyChecked?'checked':''}`} style={{marginTop:16}} onClick={()=>setLiteracyChecked(p=>!p)}>
           <div className={`lchk ${literacyChecked?'on':''}`}>{literacyChecked&&'✓'}</div>
           <div>
-            <div className="literacy-lbl">AI Literacy Acknowledgement — EU AI Act Article 4</div>
+            <div className="literacy-lbl">AI Literacy Acknowledgement</div>
             <div className="literacy-txt">
               I confirm that I have sufficient understanding of this AI system's purpose, capabilities, and known limitations to perform a meaningful review of its output. I am aware of the risk of automation bias — the tendency to over-rely on AI outputs — and I am exercising independent judgement in this review.
             </div>
@@ -1096,7 +1096,7 @@ function Step4({avgScore,reviewData,onNext,onBack,saved}){
 
         {/* SUSPEND BOX */}
         {showSuspend&&<div className="suspend-box">
-          <div className="suspend-lbl">⏸️ Suspension Reason — EU AI Act Article 14(4)(d)</div>
+          <div className="suspend-lbl">⏸️ Suspension Reason</div>
           <p style={{fontSize:12,color:'#78350F',marginBottom:14,lineHeight:1.6}}>Select the primary reason for halting this decision. This is captured separately in the audit trail as a pre-action suspension — a stronger compliance position than a post-action override.</p>
           <div className="suspend-reason-grid">
             {SUSPEND_REASONS.map(r=>(
@@ -1277,7 +1277,7 @@ td{padding:6px 8px;border-bottom:1px solid #f1f5f9}
 </div>
 
 <div class="section">
-  <div class="sec-title">Reviewer Identity (EU AI Act Article 26)</div>
+  <div class="sec-title">Reviewer Identity</div>
   <div class="grid3">
     <div class="field"><label>Reviewer Name</label><p>${e.reviewer}</p></div>
     <div class="field"><label>Role / Job Title</label><p>${e.reviewerRole||'Not specified'}</p></div>
@@ -1295,7 +1295,7 @@ td{padding:6px 8px;border-bottom:1px solid #f1f5f9}
 </div>
 
 ${e.aiSystem?`<div class="section">
-  <div class="sec-title">AI System Metadata (EU AI Act Articles 11 & 72)</div>
+  <div class="sec-title">AI System Metadata</div>
   <div class="grid3">
     <div class="field"><label>AI System / Tool Name</label><p>${e.aiSystem}</p></div>
     <div class="field"><label>Model Version</label><p>${e.aiModelVersion||'Unknown'}</p></div>
@@ -1329,7 +1329,7 @@ ${e.humanDecision==='override'?`<div class="section">
 </div>`:''}
 
 ${e.humanDecision==='suspend'?`<div class="section">
-  <div class="sec-title">Suspension Record (EU AI Act Article 14(4)(d))</div>
+  <div class="sec-title">Suspension Record</div>
   <div class="field"><label>Suspension Reason</label><p><strong>${e.suspendReason||'Not recorded'}</strong></p></div>
   ${e.suspendNotes?`<div class="field" style="margin-top:8px"><label>Additional Notes</label><p>${e.suspendNotes}</p></div>`:''}
 </div>`:''}
